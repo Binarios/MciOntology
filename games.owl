@@ -14,31 +14,6 @@
                                                                  :updateDate "24-02-2019" ;
                                                                  :updatedBy "Ioannis IGOUMENAKIS" ;
                                                                  owl:versionInfo "0.0.1" .
-
-#################################################################
-#    Annotation properties
-#################################################################
-
-###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#changeNote
-:changeNote rdf:type owl:AnnotationProperty .
-
-
-###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#createdBy
-:createdBy rdf:type owl:AnnotationProperty .
-
-
-###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#createdDate
-:createdDate rdf:type owl:AnnotationProperty .
-
-
-###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#updateDate
-:updateDate rdf:type owl:AnnotationProperty .
-
-
-###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#updatedBy
-:updatedBy rdf:type owl:AnnotationProperty .
-
-
 #################################################################
 #    Object Properties
 #################################################################
