@@ -14,31 +14,6 @@
                                                                  :updateDate "24-02-2019" ;
                                                                  :updatedBy "Ioannis IGOUMENAKIS" ;
                                                                  owl:versionInfo "0.0.1" .
-
-#################################################################
-#    Annotation properties
-#################################################################
-
-###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#changeNote
-:changeNote rdf:type owl:AnnotationProperty .
-
-
-###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#createdBy
-:createdBy rdf:type owl:AnnotationProperty .
-
-
-###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#createdDate
-:createdDate rdf:type owl:AnnotationProperty .
-
-
-###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#updateDate
-:updateDate rdf:type owl:AnnotationProperty .
-
-
-###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#updatedBy
-:updatedBy rdf:type owl:AnnotationProperty .
-
-
 #################################################################
 #    Object Properties
 #################################################################
@@ -49,8 +24,8 @@
               owl:inverseOf :connectsWith ;
               rdf:type owl:SymmetricProperty ,
                        owl:IrreflexiveProperty ;
-              rdfs:domain <http://www.semanticweb.org/iigou/diplomatiki/ontologies/GameObjects#Piece> ;
-              rdfs:range <http://www.semanticweb.org/iigou/diplomatiki/ontologies/GameObjects#Piece> .
+              rdfs:domain :Piece ;
+              rdfs:range :Piece .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasAntonym
@@ -103,7 +78,7 @@
                                       :SoundGames
                                     )
                       ] ;
-          rdfs:range <http://www.semanticweb.org/iigou/diplomatiki/ontologies/GameObjects#Image> .
+          rdfs:range :Image .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasMainWord
@@ -145,7 +120,7 @@
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasPiece
 :hasPiece rdf:type owl:ObjectProperty ;
           rdfs:domain :PieceGames ;
-          rdfs:range <http://www.semanticweb.org/iigou/diplomatiki/ontologies/GameObjects#Piece> .
+          rdfs:range :Piece .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasQuotient
@@ -159,8 +134,8 @@
 :hasRelatedImage rdf:type owl:ObjectProperty ,
                           owl:SymmetricProperty ,
                           owl:IrreflexiveProperty ;
-                 rdfs:domain <http://www.semanticweb.org/iigou/diplomatiki/ontologies/GameObjects#Image> ;
-                 rdfs:range <http://www.semanticweb.org/iigou/diplomatiki/ontologies/GameObjects#Image> .
+                 rdfs:domain :Image ;
+                 rdfs:range :Image .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasShownNumber
@@ -226,7 +201,7 @@
 :isAssociatedWithImage rdf:type owl:ObjectProperty ,
                                 owl:FunctionalProperty ;
                        rdfs:domain :Sound ;
-                       rdfs:range <http://www.semanticweb.org/iigou/diplomatiki/ontologies/GameObjects#Image> .
+                       rdfs:range :Image .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#isBefore
@@ -263,19 +238,6 @@
 #################################################################
 #    Data properties
 #################################################################
-
-###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/GameObjects#imageLocation
-<http://www.semanticweb.org/iigou/diplomatiki/ontologies/GameObjects#imageLocation> rdf:type owl:DatatypeProperty ,
-                                                                                             owl:FunctionalProperty ;
-                                                                                    rdfs:domain <http://www.semanticweb.org/iigou/diplomatiki/ontologies/GameObjects#Image> ;
-                                                                                    rdfs:range xsd:string .
-
-
-###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/GameObjects#imageSize
-<http://www.semanticweb.org/iigou/diplomatiki/ontologies/GameObjects#imageSize> rdf:type owl:DatatypeProperty ;
-                                                                                rdfs:domain <http://www.semanticweb.org/iigou/diplomatiki/ontologies/GameObjects#Image> ;
-                                                                                rdfs:range xsd:decimal .
-
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#displayTime
 :displayTime rdf:type owl:DatatypeProperty ;
@@ -403,20 +365,40 @@
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#imageDescription
 :imageDescription rdf:type owl:DatatypeProperty ;
-                  rdfs:domain <http://www.semanticweb.org/iigou/diplomatiki/ontologies/GameObjects#Image> ;
+                  rdfs:domain :Image ;
                   rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#imageLocation
+:imageLocation rdf:type owl:DatatypeProperty ,
+                        owl:FunctionalProperty ;
+               rdfs:domain :Image ;
+               rdfs:range xsd:string .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#imageObject
 :imageObject rdf:type owl:DatatypeProperty ;
-             rdfs:domain <http://www.semanticweb.org/iigou/diplomatiki/ontologies/GameObjects#Image> ;
+             rdfs:domain :Image ;
              rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#imageSize
+:imageSize rdf:type owl:DatatypeProperty ;
+           rdfs:domain :Image ;
+           rdfs:range xsd:decimal .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#isCurrentLevel
 :isCurrentLevel rdf:type owl:DatatypeProperty ;
                 rdfs:domain :Game ;
                 rdfs:range xsd:positiveInteger .
+
+
+###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#isWord
+:isWord rdf:type owl:DatatypeProperty ,
+                 owl:FunctionalProperty ;
+        rdfs:domain :Word ;
+        rdfs:range xsd:string .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#maxCompletionTime
@@ -444,20 +426,6 @@
 #    Classes
 #################################################################
 
-###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/GameObjects#Image
-<http://www.semanticweb.org/iigou/diplomatiki/ontologies/GameObjects#Image> rdf:type owl:Class ;
-                                                                            rdfs:subClassOf :GameObject .
-
-
-###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/GameObjects#Piece
-<http://www.semanticweb.org/iigou/diplomatiki/ontologies/GameObjects#Piece> rdf:type owl:Class ;
-                                                                            rdfs:subClassOf :GameObject ,
-                                                                                            [ rdf:type owl:Restriction ;
-                                                                                              owl:onProperty :connectsWith ;
-                                                                                              owl:someValuesFrom <http://www.semanticweb.org/iigou/diplomatiki/ontologies/GameObjects#Piece>
-                                                                                            ] .
-
-
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#Addition
 :Addition rdf:type owl:Class ;
           rdfs:subClassOf :MathOperator ,
@@ -484,9 +452,9 @@
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#BigImage
 :BigImage rdf:type owl:Class ;
-          rdfs:subClassOf <http://www.semanticweb.org/iigou/diplomatiki/ontologies/GameObjects#Image> ,
+          rdfs:subClassOf :Image ,
                           [ rdf:type owl:Restriction ;
-                            owl:onProperty <http://www.semanticweb.org/iigou/diplomatiki/ontologies/GameObjects#imageSize> ;
+                            owl:onProperty :imageSize ;
                             owl:someValuesFrom [ rdf:type rdfs:Datatype ;
                                                  owl:onDatatype xsd:decimal ;
                                                  owl:withRestrictions ( [ xsd:minInclusive 0.5
@@ -588,7 +556,7 @@
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#BorderPiece
 :BorderPiece rdf:type owl:Class ;
-             rdfs:subClassOf <http://www.semanticweb.org/iigou/diplomatiki/ontologies/GameObjects#Piece> ,
+             rdfs:subClassOf :Piece ,
                              [ rdf:type owl:Restriction ;
                                owl:onProperty :connectsWith ;
                                owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
@@ -825,7 +793,7 @@
                             [ rdf:type owl:Restriction ;
                               owl:onProperty :hasPiece ;
                               owl:maxQualifiedCardinality "9"^^xsd:nonNegativeInteger ;
-                              owl:onClass <http://www.semanticweb.org/iigou/diplomatiki/ontologies/GameObjects#Piece>
+                              owl:onClass :Piece
                             ] ,
                             [ rdf:type owl:Restriction ;
                               owl:onProperty :hasDifficulty ;
@@ -1192,7 +1160,7 @@
                             [ rdf:type owl:Restriction ;
                               owl:onProperty :hasPiece ;
                               owl:minQualifiedCardinality "25"^^xsd:nonNegativeInteger ;
-                              owl:onClass <http://www.semanticweb.org/iigou/diplomatiki/ontologies/GameObjects#Piece>
+                              owl:onClass :Piece
                             ] ,
                             [ rdf:type owl:Restriction ;
                               owl:onProperty :hasPiece ;
@@ -1207,7 +1175,7 @@
                             [ rdf:type owl:Restriction ;
                               owl:onProperty :hasPiece ;
                               owl:maxQualifiedCardinality "64"^^xsd:nonNegativeInteger ;
-                              owl:onClass <http://www.semanticweb.org/iigou/diplomatiki/ontologies/GameObjects#Piece>
+                              owl:onClass :Piece
                             ] ,
                             [ rdf:type owl:Restriction ;
                               owl:onProperty :hasDifficulty ;
@@ -1282,18 +1250,23 @@
                                   ] .
 
 
+###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#Image
+:Image rdf:type owl:Class ;
+       rdfs:subClassOf :GameObject .
+
+
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#ImageGames
 :ImageGames rdf:type owl:Class ;
             rdfs:subClassOf :Game ,
                             [ rdf:type owl:Restriction ;
                               owl:onProperty :hasImage ;
-                              owl:someValuesFrom <http://www.semanticweb.org/iigou/diplomatiki/ontologies/GameObjects#Image>
+                              owl:someValuesFrom :Image
                             ] .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#InteriorPiece
 :InteriorPiece rdf:type owl:Class ;
-               rdfs:subClassOf <http://www.semanticweb.org/iigou/diplomatiki/ontologies/GameObjects#Piece> ,
+               rdfs:subClassOf :Piece ,
                                [ rdf:type owl:Class ;
                                  owl:unionOf ( [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
                                                                         owl:onProperty :connectsWith ;
@@ -1454,9 +1427,9 @@
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#MediumImage
 :MediumImage rdf:type owl:Class ;
-             rdfs:subClassOf <http://www.semanticweb.org/iigou/diplomatiki/ontologies/GameObjects#Image> ,
+             rdfs:subClassOf :Image ,
                              [ rdf:type owl:Restriction ;
-                               owl:onProperty <http://www.semanticweb.org/iigou/diplomatiki/ontologies/GameObjects#imageSize> ;
+                               owl:onProperty :imageSize ;
                                owl:someValuesFrom [ rdf:type rdfs:Datatype ;
                                                     owl:onDatatype xsd:decimal ;
                                                     owl:withRestrictions ( [ xsd:minExclusive 0.2
@@ -1517,7 +1490,7 @@
                               [ rdf:type owl:Restriction ;
                                 owl:onProperty :hasPiece ;
                                 owl:minQualifiedCardinality "12"^^xsd:nonNegativeInteger ;
-                                owl:onClass <http://www.semanticweb.org/iigou/diplomatiki/ontologies/GameObjects#Piece>
+                                owl:onClass :Piece
                               ] ,
                               [ rdf:type owl:Restriction ;
                                 owl:onProperty :hasPiece ;
@@ -1532,7 +1505,7 @@
                               [ rdf:type owl:Restriction ;
                                 owl:onProperty :hasPiece ;
                                 owl:maxQualifiedCardinality "25"^^xsd:nonNegativeInteger ;
-                                owl:onClass <http://www.semanticweb.org/iigou/diplomatiki/ontologies/GameObjects#Piece>
+                                owl:onClass :Piece
                               ] ,
                               [ rdf:type owl:Restriction ;
                                 owl:onProperty :hasDifficulty ;
@@ -1654,12 +1627,21 @@
           rdfs:subClassOf :Number .
 
 
+###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#Piece
+:Piece rdf:type owl:Class ;
+       rdfs:subClassOf :GameObject ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :connectsWith ;
+                         owl:someValuesFrom :Piece
+                       ] .
+
+
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#PieceGames
 :PieceGames rdf:type owl:Class ;
             rdfs:subClassOf :ImageGames ,
                             [ rdf:type owl:Restriction ;
                               owl:onProperty :hasPiece ;
-                              owl:someValuesFrom <http://www.semanticweb.org/iigou/diplomatiki/ontologies/GameObjects#Piece>
+                              owl:someValuesFrom :Piece
                             ] .
 
 
@@ -1699,9 +1681,9 @@
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#SmallImage
 :SmallImage rdf:type owl:Class ;
-            rdfs:subClassOf <http://www.semanticweb.org/iigou/diplomatiki/ontologies/GameObjects#Image> ,
+            rdfs:subClassOf :Image ,
                             [ rdf:type owl:Restriction ;
-                              owl:onProperty <http://www.semanticweb.org/iigou/diplomatiki/ontologies/GameObjects#imageSize> ;
+                              owl:onProperty :imageSize ;
                               owl:someValuesFrom [ rdf:type rdfs:Datatype ;
                                                    owl:onDatatype xsd:decimal ;
                                                    owl:withRestrictions ( [ xsd:maxInclusive 0.2
@@ -1785,30 +1767,6 @@
 #################################################################
 #    General axioms
 #################################################################
-
-[ rdf:type owl:AllDisjointClasses ;
-  owl:members ( <http://www.semanticweb.org/iigou/diplomatiki/ontologies/GameObjects#Image>
-                <http://www.semanticweb.org/iigou/diplomatiki/ontologies/GameObjects#Piece>
-                :Game
-                :MathOperator
-                :Number
-                :Sound
-                :Word
-              )
-] .
-
-
-[ rdf:type owl:AllDisjointClasses ;
-  owl:members ( <http://www.semanticweb.org/iigou/diplomatiki/ontologies/GameObjects#Image>
-                <http://www.semanticweb.org/iigou/diplomatiki/ontologies/GameObjects#Piece>
-                :LogicalOrderBlocks
-                :MathOperator
-                :Number
-                :Sound
-                :Word
-              )
-] .
-
 
 [ rdf:type owl:AllDisjointClasses ;
   owl:members ( :Addition
@@ -1904,6 +1862,30 @@
 
 
 [ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Game
+                :Image
+                :MathOperator
+                :Number
+                :Piece
+                :Sound
+                :Word
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Image
+                :LogicalOrderBlocks
+                :MathOperator
+                :Number
+                :Piece
+                :Sound
+                :Word
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
   owl:members ( :ImageGames
                 :LogicalOrder
                 :NumberGames
@@ -1951,16 +1933,36 @@
 
 
 [ rdf:type owl:AllDisjointProperties ;
-  owl:members ( <http://www.semanticweb.org/iigou/diplomatiki/ontologies/GameObjects#imageLocation>
-                <http://www.semanticweb.org/iigou/diplomatiki/ontologies/GameObjects#imageSize>
-                :displayTime
+  owl:members ( :displayTime
                 :hasDifficulty
                 :hasId
                 :hasLevel
                 :hasNumberValue
                 :hasSymbol
                 :imageDescription
+                :imageLocation
                 :imageObject
+                :imageSize
+                :isCurrentLevel
+                :isWord
+                :maxCompletionTime
+                :movementName
+                :soundLocation
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointProperties ;
+  owl:members ( :displayTime
+                :hasDifficulty
+                :hasId
+                :hasLevel
+                :hasNumberValue
+                :hasSymbol
+                :imageDescription
+                :imageLocation
+                :imageObject
+                :imageSize
                 :isCurrentLevel
                 :maxCompletionTime
                 :movementName
@@ -1970,16 +1972,16 @@
 
 
 [ rdf:type owl:AllDisjointProperties ;
-  owl:members ( <http://www.semanticweb.org/iigou/diplomatiki/ontologies/GameObjects#imageLocation>
-                <http://www.semanticweb.org/iigou/diplomatiki/ontologies/GameObjects#imageSize>
-                :displayTime
+  owl:members ( :displayTime
                 :hasDifficulty
                 :hasId
                 :hasLevel
                 :hasNumberValue
                 :hasSymbol
                 :imageDescription
+                :imageLocation
                 :imageObject
+                :imageSize
                 :isCurrentLevel
                 :maxCompletionTime
                 :soundLocation
