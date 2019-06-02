@@ -8,12 +8,8 @@
 @base <http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games> .
 
 <http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games> rdf:type owl:Ontology ;
-                                                                 :changeNote "init" ;
-                                                                 :createdBy "Ioannis IGOUMENAKIS" ;
-                                                                 :createdDate "24-02-2019" ;
-                                                                 :updateDate "24-02-2019" ;
-                                                                 :updatedBy "Ioannis IGOUMENAKIS" ;
                                                                  owl:versionInfo "0.0.1" .
+
 #################################################################
 #    Object Properties
 #################################################################
@@ -21,94 +17,150 @@
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#connectsWith
 :connectsWith rdf:type owl:ObjectProperty ;
               rdfs:subPropertyOf owl:topObjectProperty ;
-              owl:inverseOf :connectsWith ;
               rdf:type owl:SymmetricProperty ,
                        owl:IrreflexiveProperty ;
               rdfs:domain :Piece ;
               rdfs:range :Piece .
 
 
+###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasAddend
+:hasAddend rdf:type owl:ObjectProperty ;
+           rdfs:domain :Addition ;
+           rdfs:range :Number .
+
+
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasAntonym
 :hasAntonym rdf:type owl:ObjectProperty ;
-            rdfs:subPropertyOf :hasWord ;
-            rdfs:domain :AntonymsGame ;
-            rdfs:range :Word ;
-            owl:propertyDisjointWith :hasSynonim .
+            rdfs:subPropertyOf owl:topObjectProperty ;
+            rdf:type owl:FunctionalProperty ,
+                     owl:SymmetricProperty ,
+                     owl:IrreflexiveProperty ;
+            rdfs:domain :Word ;
+            rdfs:range :Word .
+
+
+###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasBigImage
+:hasBigImage rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf owl:topObjectProperty ;
+             rdf:type owl:FunctionalProperty ;
+             rdfs:domain :Puzzle ;
+             rdfs:range :BigImage .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasBlock
 :hasBlock rdf:type owl:ObjectProperty ;
+          rdfs:subPropertyOf owl:topObjectProperty ;
           rdfs:domain :BlocksState ;
           rdfs:range :Block .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasBlockState
 :hasBlockState rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf owl:topObjectProperty ;
                rdfs:domain :BlockMovementGame ;
                rdfs:range :BlocksState .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasDifference
-:hasDifference rdf:type owl:ObjectProperty ,
-                        owl:IrreflexiveProperty ;
-               rdfs:domain :Number ;
+:hasDifference rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf owl:topObjectProperty ;
+               rdf:type owl:FunctionalProperty ;
+               rdfs:domain :Substraction ;
                rdfs:range :Number .
 
 
+###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasDividend
+:hasDividend rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf owl:topObjectProperty ;
+             rdf:type owl:FunctionalProperty ;
+             rdfs:domain :Division ;
+             rdfs:range :Number .
+
+
+###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasDivisor
+:hasDivisor rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf owl:topObjectProperty ;
+            rdf:type owl:FunctionalProperty ;
+            rdfs:domain :Division ;
+            rdfs:range :Number .
+
+
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasEndingImage
-:hasEndingImage rdf:type owl:ObjectProperty ,
-                         owl:FunctionalProperty ;
+:hasEndingImage rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf owl:topObjectProperty ;
+                rdf:type owl:FunctionalProperty ;
                 rdfs:domain :ChronologicalOrder ;
                 rdfs:range :MediumImage .
 
 
-###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasHiddenNumber
-:hasHiddenNumber rdf:type owl:ObjectProperty ;
-                 rdfs:subPropertyOf :hasNumber ;
-                 rdf:type owl:FunctionalProperty ;
-                 rdfs:domain :Calculation ;
-                 rdfs:range :Number ;
-                 owl:propertyDisjointWith :hasShownNumber .
-
-
-###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasImage
-:hasImage rdf:type owl:ObjectProperty ;
-          rdfs:domain [ rdf:type owl:Class ;
-                        owl:unionOf ( :ImageGames
-                                      :SoundGames
-                                    )
-                      ] ;
-          rdfs:range :Image .
-
-
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasMainWord
 :hasMainWord rdf:type owl:ObjectProperty ;
-             rdfs:subPropertyOf :hasWord ;
+             rdfs:subPropertyOf owl:topObjectProperty ;
              rdf:type owl:FunctionalProperty ;
-             rdfs:domain :WordGames ;
+             rdfs:domain [ rdf:type owl:Class ;
+                           owl:unionOf ( :Antonyms
+                                         :Synonims
+                                       )
+                         ] ;
              rdfs:range :Word .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasMathOperation
 :hasMathOperation rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf owl:topObjectProperty ;
                   rdfs:domain :Calculation ;
                   rdfs:range :MathOperator .
 
 
+###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasMediumImage
+:hasMediumImage rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf owl:topObjectProperty ;
+                rdfs:domain :ChronologicalOrder ;
+                rdfs:range :MediumImage .
+
+
+###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasMinuend
+:hasMinuend rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf owl:topObjectProperty ;
+            rdf:type owl:FunctionalProperty ;
+            rdfs:domain :Substraction ;
+            rdfs:range :Number .
+
+
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasMovement
 :hasMovement rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf owl:topObjectProperty ;
              rdfs:domain :BlockMovementGame ;
              rdfs:range :Movement .
 
 
+###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasMultiplicant
+:hasMultiplicant rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf owl:topObjectProperty ;
+                 rdf:type owl:FunctionalProperty ;
+                 rdfs:domain :Multiplication ;
+                 rdfs:range :Number .
+
+
+###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasMultiplier
+:hasMultiplier rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf owl:topObjectProperty ;
+               rdf:type owl:FunctionalProperty ;
+               rdfs:domain :Multiplication ;
+               rdfs:range :Number .
+
+
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasNextState
-:hasNextState rdf:type owl:ObjectProperty ,
-                       owl:IrreflexiveProperty ;
-              rdfs:domain :BlocksState .
+:hasNextState rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf owl:topObjectProperty ;
+              rdf:type owl:IrreflexiveProperty ;
+              rdfs:domain :BlocksState ;
+              rdfs:range :BlocksState .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasNumber
 :hasNumber rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf owl:topObjectProperty ;
            rdfs:domain [ rdf:type owl:Class ;
                          owl:unionOf ( :Calculation
                                        :Recall
@@ -119,116 +171,127 @@
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasPiece
 :hasPiece rdf:type owl:ObjectProperty ;
-          rdfs:domain :PieceGames ;
+          rdfs:subPropertyOf owl:topObjectProperty ;
+          rdfs:domain :Puzzle ;
           rdfs:range :Piece .
 
 
+###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasProduct
+:hasProduct rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf owl:topObjectProperty ;
+            rdf:type owl:FunctionalProperty ;
+            rdfs:domain :Multiplication ;
+            rdfs:range :Number .
+
+
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasQuotient
-:hasQuotient rdf:type owl:ObjectProperty ,
-                      owl:IrreflexiveProperty ;
-             rdfs:domain :Number ;
+:hasQuotient rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf owl:topObjectProperty ;
+             rdf:type owl:FunctionalProperty ;
+             rdfs:domain :Division ;
              rdfs:range :Number .
 
 
-###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasRelatedImage
-:hasRelatedImage rdf:type owl:ObjectProperty ,
-                          owl:SymmetricProperty ,
-                          owl:IrreflexiveProperty ;
-                 rdfs:domain :Image ;
-                 rdfs:range :Image .
-
-
-###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasShownNumber
-:hasShownNumber rdf:type owl:ObjectProperty ;
-                rdfs:subPropertyOf :hasNumber ;
-                rdfs:domain [ rdf:type owl:Class ;
-                              owl:unionOf ( :Calculation
-                                            :Recall
-                                          )
-                            ] ;
-                rdfs:range :Number .
-
-
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasSimilarNumber
-:hasSimilarNumber rdf:type owl:ObjectProperty ,
+:hasSimilarNumber rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf owl:topObjectProperty ;
+                  rdf:type owl:SymmetricProperty ,
                            owl:IrreflexiveProperty ;
                   rdfs:domain :Number ;
                   rdfs:range :Number .
 
 
+###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasSmallImage
+:hasSmallImage rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf owl:topObjectProperty ;
+               rdfs:domain [ rdf:type owl:Class ;
+                             owl:unionOf ( :FindTheSound
+                                           :MemoryCards
+                                           :Observation
+                                         )
+                           ] ;
+               rdfs:range :SmallImage .
+
+
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasSound
-:hasSound rdf:type owl:ObjectProperty ,
-                   owl:FunctionalProperty ;
-          rdfs:domain :SoundGames ;
+:hasSound rdf:type owl:ObjectProperty ;
+          rdfs:subPropertyOf owl:topObjectProperty ;
+          rdf:type owl:FunctionalProperty ;
+          rdfs:domain :FindTheSound ;
           rdfs:range :Sound .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasStartingImage
-:hasStartingImage rdf:type owl:ObjectProperty ,
-                           owl:FunctionalProperty ;
+:hasStartingImage rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf owl:topObjectProperty ;
+                  rdf:type owl:FunctionalProperty ;
                   rdfs:domain :ChronologicalOrder ;
                   rdfs:range :MediumImage .
 
 
+###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasSubtrahend
+:hasSubtrahend rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf owl:topObjectProperty ;
+               rdf:type owl:FunctionalProperty ;
+               rdfs:domain :Substraction ;
+               rdfs:range :Number .
+
+
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasSum
-:hasSum rdf:type owl:ObjectProperty ,
-                 owl:IrreflexiveProperty ;
-        rdfs:domain :Number ;
+:hasSum rdf:type owl:ObjectProperty ;
+        rdfs:subPropertyOf owl:topObjectProperty ;
+        rdf:type owl:FunctionalProperty ;
+        rdfs:domain :Addition ;
         rdfs:range :Number .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasSynonim
 :hasSynonim rdf:type owl:ObjectProperty ;
-            rdfs:subPropertyOf :hasWord ;
-            rdfs:domain :SynonimsGame ;
+            rdfs:subPropertyOf owl:topObjectProperty ;
+            rdf:type owl:IrreflexiveProperty ;
+            rdfs:domain :Word ;
             rdfs:range :Word .
-
-
-###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasTotal
-:hasTotal rdf:type owl:ObjectProperty ,
-                   owl:IrreflexiveProperty ;
-          rdfs:domain :Number ;
-          rdfs:range :Number .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasWord
 :hasWord rdf:type owl:ObjectProperty ;
-         rdfs:domain :WordGames ;
+         rdfs:subPropertyOf owl:topObjectProperty ;
+         rdfs:domain [ rdf:type owl:Class ;
+                       owl:unionOf ( :Antonyms
+                                     :Synonims
+                                   )
+                     ] ;
          rdfs:range :Word .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#isAssociatedWithImage
-:isAssociatedWithImage rdf:type owl:ObjectProperty ,
-                                owl:FunctionalProperty ;
+:isAssociatedWithImage rdf:type owl:ObjectProperty ;
+                       rdfs:subPropertyOf owl:topObjectProperty ;
+                       rdf:type owl:FunctionalProperty ;
                        rdfs:domain :Sound ;
-                       rdfs:range :Image .
+                       rdfs:range :SmallImage .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#isBefore
-:isBefore rdf:type owl:ObjectProperty ,
-                   owl:SymmetricProperty ,
+:isBefore rdf:type owl:ObjectProperty ;
+          rdfs:subPropertyOf owl:topObjectProperty ;
+          rdf:type owl:SymmetricProperty ,
                    owl:IrreflexiveProperty ;
           rdfs:domain :ChronologicalImage ;
           rdfs:range :ChronologicalImage .
 
 
-###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#isEqualNumber
-:isEqualNumber rdf:type owl:ObjectProperty ,
-                        owl:SymmetricProperty ;
-               rdfs:domain :Number ;
-               rdfs:range :Number .
-
-
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#isRecallNumber
-:isRecallNumber rdf:type owl:ObjectProperty ,
-                         owl:FunctionalProperty ;
+:isRecallNumber rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf owl:topObjectProperty ;
+                rdf:type owl:FunctionalProperty ;
                 rdfs:domain :Recall ;
                 rdfs:range :Number .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#isSameWith
 :isSameWith rdf:type owl:ObjectProperty ;
-            owl:inverseOf :isSameWith ;
+            rdfs:subPropertyOf owl:topObjectProperty ;
             rdf:type owl:SymmetricProperty ,
                      owl:IrreflexiveProperty ;
             rdfs:domain :SmallImage ;
@@ -244,180 +307,116 @@
              rdfs:subPropertyOf owl:topDataProperty ;
              rdf:type owl:FunctionalProperty ;
              rdfs:domain :Recall ;
-             rdfs:range xsd:long .
+             rdfs:range xsd:string .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasDifficulty
-:hasDifficulty rdf:type owl:DatatypeProperty ,
-                        owl:FunctionalProperty ;
+:hasDifficulty rdf:type owl:DatatypeProperty ;
+               rdfs:subPropertyOf owl:topDataProperty ;
+               rdf:type owl:FunctionalProperty ;
                rdfs:domain :Game ;
                rdfs:range xsd:string .
 
 
-###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasFiveDigitValue
-:hasFiveDigitValue rdf:type owl:DatatypeProperty ;
-                   rdfs:subPropertyOf :hasNumberValue ;
-                   rdf:type owl:FunctionalProperty ;
-                   rdfs:domain :FiveDigit ;
-                   rdfs:range [ rdf:type rdfs:Datatype ;
-                                owl:onDatatype xsd:integer ;
-                                owl:withRestrictions ( [ xsd:totalDigits 5
-                                                       ]
-                                                     )
-                              ] .
-
-
-###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasFourDigitValue
-:hasFourDigitValue rdf:type owl:DatatypeProperty ;
-                   rdfs:subPropertyOf :hasNumberValue ;
-                   rdfs:domain :FourDigit ;
-                   rdfs:range [ rdf:type rdfs:Datatype ;
-                                owl:onDatatype xsd:integer ;
-                                owl:withRestrictions ( [ xsd:totalDigits 4
-                                                       ]
-                                                     )
-                              ] .
-
-
-###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasId
-:hasId rdf:type owl:DatatypeProperty ,
-                owl:FunctionalProperty ;
-       rdfs:domain [ rdf:type owl:Class ;
-                     owl:unionOf ( :Game
-                                   :GameObject
-                                 )
-                   ] ;
-       rdfs:range xsd:string .
+###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasGameId
+:hasGameId rdf:type owl:DatatypeProperty ;
+           rdfs:subPropertyOf owl:topDataProperty ;
+           rdf:type owl:FunctionalProperty ;
+           rdfs:domain :Game ;
+           rdfs:range xsd:string .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasLevel
-:hasLevel rdf:type owl:DatatypeProperty ,
-                   owl:FunctionalProperty ;
+:hasLevel rdf:type owl:DatatypeProperty ;
+          rdfs:subPropertyOf owl:topDataProperty ;
+          rdf:type owl:FunctionalProperty ;
           rdfs:domain :Game ;
-          rdfs:range xsd:integer .
+          rdfs:range xsd:string .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasNumberValue
-:hasNumberValue rdf:type owl:DatatypeProperty ,
-                         owl:FunctionalProperty ;
+:hasNumberValue rdf:type owl:DatatypeProperty ;
+                rdfs:subPropertyOf owl:topDataProperty ;
+                rdf:type owl:FunctionalProperty ;
                 rdfs:domain :Number ;
-                rdfs:range xsd:long .
+                rdfs:range xsd:positiveInteger .
 
 
-###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasOneDigitValue
-:hasOneDigitValue rdf:type owl:DatatypeProperty ;
-                  rdfs:subPropertyOf :hasNumberValue ;
-                  rdf:type owl:FunctionalProperty ;
-                  rdfs:domain :OneDigit ;
-                  rdfs:range [ rdf:type rdfs:Datatype ;
-                               owl:onDatatype xsd:integer ;
-                               owl:withRestrictions ( [ xsd:totalDigits 1
-                                                      ]
-                                                    )
-                             ] .
+###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasObjectId
+:hasObjectId rdf:type owl:DatatypeProperty ;
+             rdfs:subPropertyOf owl:topDataProperty ;
+             rdf:type owl:FunctionalProperty ;
+             rdfs:domain :GameObject ;
+             rdfs:range xsd:string .
 
 
-###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasSixDigitValue
-:hasSixDigitValue rdf:type owl:DatatypeProperty ;
-                  rdfs:subPropertyOf :hasNumberValue ;
-                  rdf:type owl:FunctionalProperty ;
-                  rdfs:domain :SixDigit ;
-                  rdfs:range [ rdf:type rdfs:Datatype ;
-                               owl:onDatatype xsd:long ;
-                               owl:withRestrictions ( [ xsd:totalDigits "6"^^xsd:long
-                                                      ]
-                                                    )
-                             ] .
+###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasPlayer
+:hasPlayer rdf:type owl:DatatypeProperty ;
+           rdfs:subPropertyOf owl:topDataProperty ;
+           rdf:type owl:FunctionalProperty ;
+           rdfs:domain :Game ;
+           rdfs:range xsd:string .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasSymbol
-:hasSymbol rdf:type owl:DatatypeProperty ,
-                    owl:FunctionalProperty ;
+:hasSymbol rdf:type owl:DatatypeProperty ;
+           rdfs:subPropertyOf owl:topDataProperty ;
+           rdf:type owl:FunctionalProperty ;
            rdfs:domain :MathOperator ;
            rdfs:range xsd:string .
 
 
-###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasThreeDigitValue
-:hasThreeDigitValue rdf:type owl:DatatypeProperty ;
-                    rdfs:subPropertyOf :hasNumberValue ;
-                    rdf:type owl:FunctionalProperty ;
-                    rdfs:domain :ThreeDigit ;
-                    rdfs:range [ rdf:type rdfs:Datatype ;
-                                 owl:onDatatype xsd:integer ;
-                                 owl:withRestrictions ( [ xsd:totalDigits 3
-                                                        ]
-                                                      )
-                               ] .
-
-
-###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasTwoDigitValue
-:hasTwoDigitValue rdf:type owl:DatatypeProperty ;
-                  rdfs:subPropertyOf :hasNumberValue ;
-                  rdf:type owl:FunctionalProperty ;
-                  rdfs:domain :TwoDigit ;
-                  rdfs:range [ rdf:type rdfs:Datatype ;
-                               owl:onDatatype xsd:integer ;
-                               owl:withRestrictions ( [ xsd:totalDigits 2
-                                                      ]
-                                                    )
-                             ] .
-
-
-###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#imageDescription
-:imageDescription rdf:type owl:DatatypeProperty ;
-                  rdfs:domain :Image ;
-                  rdfs:range xsd:string .
-
-
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#imageLocation
-:imageLocation rdf:type owl:DatatypeProperty ,
-                        owl:FunctionalProperty ;
+:imageLocation rdf:type owl:DatatypeProperty ;
+               rdfs:subPropertyOf owl:topDataProperty ;
+               rdf:type owl:FunctionalProperty ;
                rdfs:domain :Image ;
                rdfs:range xsd:string .
 
 
-###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#imageObject
-:imageObject rdf:type owl:DatatypeProperty ;
-             rdfs:domain :Image ;
-             rdfs:range xsd:string .
-
-
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#imageSize
 :imageSize rdf:type owl:DatatypeProperty ;
+           rdfs:subPropertyOf owl:topDataProperty ;
+           rdf:type owl:FunctionalProperty ;
            rdfs:domain :Image ;
            rdfs:range xsd:decimal .
 
 
-###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#isCurrentLevel
-:isCurrentLevel rdf:type owl:DatatypeProperty ;
-                rdfs:domain :Game ;
-                rdfs:range xsd:positiveInteger .
+###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#isCompletedIn
+:isCompletedIn rdf:type owl:DatatypeProperty ;
+               rdfs:subPropertyOf owl:topDataProperty ;
+               rdfs:domain :Game ;
+               rdfs:range xsd:string .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#isWord
-:isWord rdf:type owl:DatatypeProperty ,
-                 owl:FunctionalProperty ;
+:isWord rdf:type owl:DatatypeProperty ;
+        rdfs:subPropertyOf owl:topDataProperty ;
+        rdf:type owl:FunctionalProperty ;
         rdfs:domain :Word ;
         rdfs:range xsd:string .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#maxCompletionTime
-:maxCompletionTime rdf:type owl:DatatypeProperty ,
-                            owl:FunctionalProperty ;
+:maxCompletionTime rdf:type owl:DatatypeProperty ;
+                   rdfs:subPropertyOf owl:topDataProperty ;
+                   rdf:type owl:FunctionalProperty ;
                    rdfs:domain :Game ;
-                   rdfs:range xsd:long .
+                   rdfs:range xsd:integer .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#movementName
-:movementName rdf:type owl:DatatypeProperty ,
-                       owl:FunctionalProperty ;
+:movementName rdf:type owl:DatatypeProperty ;
+              rdfs:subPropertyOf owl:topDataProperty ;
+              rdf:type owl:FunctionalProperty ;
               rdfs:domain :Movement ;
               rdfs:range xsd:string .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#soundLocation
-:soundLocation rdf:type owl:DatatypeProperty ,
-                        owl:FunctionalProperty ;
+:soundLocation rdf:type owl:DatatypeProperty ;
+               rdfs:subPropertyOf owl:topDataProperty ;
+               rdf:type owl:FunctionalProperty ;
                rdfs:domain :Sound ;
                rdfs:range xsd:string .
 
@@ -430,24 +429,37 @@
 :Addition rdf:type owl:Class ;
           rdfs:subClassOf :MathOperator ,
                           [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasAddend ;
+                            owl:qualifiedCardinality "2"^^xsd:nonNegativeInteger ;
+                            owl:onClass :Number
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasSum ;
+                            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                            owl:onClass :Number
+                          ] ,
+                          [ rdf:type owl:Restriction ;
                             owl:onProperty :hasSymbol ;
                             owl:hasValue "+"
                           ] .
 
 
-###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#AntonymsGame
-:AntonymsGame rdf:type owl:Class ;
-              rdfs:subClassOf :WordGames ,
-                              [ rdf:type owl:Restriction ;
-                                owl:onProperty :hasAntonym ;
-                                owl:someValuesFrom :Word
-                              ] ,
-                              [ rdf:type owl:Restriction ;
-                                owl:onProperty :hasMainWord ;
-                                owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                owl:onClass :Word
-                              ] ;
-              owl:disjointWith :SynonimsGame .
+###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#AntonymWord
+:AntonymWord rdf:type owl:Class ;
+             owl:equivalentClass [ owl:intersectionOf ( :Word
+                                                        [ rdf:type owl:Restriction ;
+                                                          owl:onProperty :hasAntonym ;
+                                                          owl:someValuesFrom :Word
+                                                        ]
+                                                      ) ;
+                                   rdf:type owl:Class
+                                 ] ;
+             rdfs:subClassOf :GameObject .
+
+
+###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#Antonyms
+:Antonyms rdf:type owl:Class ;
+          rdfs:subClassOf :Game .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#BigImage
@@ -461,8 +473,7 @@
                                                                         ]
                                                                       )
                                                ]
-                          ] ;
-          owl:disjointWith :SmallImage .
+                          ] .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#Block
@@ -470,37 +481,9 @@
        rdfs:subClassOf :LogicalOrderBlocks .
 
 
-###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#BlockMovementEasyGame
-:BlockMovementEasyGame rdf:type owl:Class ;
-                       rdfs:subClassOf :BlockMovementGame ,
-                                       [ rdf:type owl:Restriction ;
-                                         owl:onProperty :hasMovement ;
-                                         owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                         owl:onClass :Movement
-                                       ] ,
-                                       [ rdf:type owl:Restriction ;
-                                         owl:onProperty :maxCompletionTime ;
-                                         owl:someValuesFrom [ rdf:type rdfs:Datatype ;
-                                                              owl:onDatatype xsd:long ;
-                                                              owl:withRestrictions ( [ xsd:maxInclusive "1800"^^xsd:long
-                                                                                     ]
-                                                                                   )
-                                                            ]
-                                       ] ,
-                                       [ rdf:type owl:Restriction ;
-                                         owl:onProperty :hasDifficulty ;
-                                         owl:hasValue "easy"
-                                       ] .
-
-
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#BlockMovementGame
 :BlockMovementGame rdf:type owl:Class ;
-                   rdfs:subClassOf :LogicalOrder ,
-                                   [ rdf:type owl:Restriction ;
-                                     owl:onProperty :hasBlockState ;
-                                     owl:qualifiedCardinality "5"^^xsd:nonNegativeInteger ;
-                                     owl:onClass :BlocksState
-                                   ] .
+                   rdfs:subClassOf :Game .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#BlocksState
@@ -551,7 +534,8 @@
                                    owl:onProperty :connectsWith ;
                                    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                    owl:onClass :InteriorPiece
-                                 ] .
+                                 ] ;
+                 owl:disjointWith :CornerPiece .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#BorderPiece
@@ -572,8 +556,7 @@
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#Calculation
 :Calculation rdf:type owl:Class ;
-             rdfs:subClassOf :NumberGames ;
-             owl:disjointWith :Recall .
+             rdfs:subClassOf :Game .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#ChronologicalImage
@@ -588,27 +571,7 @@
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#ChronologicalOrder
 :ChronologicalOrder rdf:type owl:Class ;
-                    rdfs:subClassOf :ImageGames ,
-                                    [ rdf:type owl:Restriction ;
-                                      owl:onProperty :hasImage ;
-                                      owl:minQualifiedCardinality "3"^^xsd:nonNegativeInteger ;
-                                      owl:onClass :ChronologicalImage
-                                    ] ,
-                                    [ rdf:type owl:Restriction ;
-                                      owl:onProperty :hasEndingImage ;
-                                      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                      owl:onClass :ChronologicalImage
-                                    ] ,
-                                    [ rdf:type owl:Restriction ;
-                                      owl:onProperty :hasStartingImage ;
-                                      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                      owl:onClass :ChronologicalImage
-                                    ] .
-
-
-###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#CircleObj
-:CircleObj rdf:type owl:Class ;
-           rdfs:subClassOf :SmallImage .
+                    rdfs:subClassOf :Game .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#CornerPiece
@@ -624,6 +587,21 @@
 :Division rdf:type owl:Class ;
           rdfs:subClassOf :MathOperator ,
                           [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasDividend ;
+                            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                            owl:onClass :Number
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasDivisor ;
+                            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                            owl:onClass :Number
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasQuotient ;
+                            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                            owl:onClass :Number
+                          ] ,
+                          [ rdf:type owl:Restriction ;
                             owl:onProperty :hasSymbol ;
                             owl:hasValue "/"
                           ] .
@@ -631,17 +609,22 @@
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#EasyAntonymsGame
 :EasyAntonymsGame rdf:type owl:Class ;
-                  rdfs:subClassOf :AntonymsGame ,
+                  rdfs:subClassOf :Antonyms ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty :hasMainWord ;
+                                    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                    owl:onClass :AntonymWord
+                                  ] ,
                                   [ rdf:type owl:Restriction ;
                                     owl:onProperty :hasWord ;
-                                    owl:maxQualifiedCardinality "6"^^xsd:nonNegativeInteger ;
+                                    owl:qualifiedCardinality "5"^^xsd:nonNegativeInteger ;
                                     owl:onClass :Word
                                   ] ,
                                   [ rdf:type owl:Restriction ;
                                     owl:onProperty :maxCompletionTime ;
                                     owl:someValuesFrom [ rdf:type rdfs:Datatype ;
-                                                         owl:onDatatype xsd:long ;
-                                                         owl:withRestrictions ( [ xsd:maxInclusive "1800"^^xsd:long
+                                                         owl:onDatatype xsd:integer ;
+                                                         owl:withRestrictions ( [ xsd:maxInclusive 1800
                                                                                 ]
                                                                               )
                                                        ]
@@ -652,34 +635,66 @@
                                   ] .
 
 
+###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#EasyBlockMovement
+:EasyBlockMovement rdf:type owl:Class ;
+                   rdfs:subClassOf :BlockMovementGame ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :hasBlockState ;
+                                     owl:qualifiedCardinality "5"^^xsd:nonNegativeInteger ;
+                                     owl:onClass :BlocksState
+                                   ] ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :hasMovement ;
+                                     owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                     owl:onClass :Movement
+                                   ] ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :maxCompletionTime ;
+                                     owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                          owl:onDatatype xsd:integer ;
+                                                          owl:withRestrictions ( [ xsd:maxInclusive 1800
+                                                                                 ]
+                                                                               )
+                                                        ]
+                                   ] ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :hasDifficulty ;
+                                     owl:hasValue "easy"
+                                   ] .
+
+
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#EasyCalculation
 :EasyCalculation rdf:type owl:Class ;
                  rdfs:subClassOf :Calculation ,
                                  [ rdf:type owl:Restriction ;
-                                   owl:onProperty :hasHiddenNumber ;
-                                   owl:allValuesFrom :TwoDigit
-                                 ] ,
-                                 [ rdf:type owl:Restriction ;
                                    owl:onProperty :hasMathOperation ;
                                    owl:allValuesFrom [ rdf:type owl:Class ;
                                                        owl:unionOf ( :Addition
-                                                                     :Equation
                                                                      :Substraction
                                                                    )
                                                      ]
                                  ] ,
                                  [ rdf:type owl:Restriction ;
-                                   owl:onProperty :hasShownNumber ;
-                                   owl:allValuesFrom :TwoDigit
+                                   owl:onProperty :hasNumber ;
+                                   owl:allValuesFrom :UpToTen
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :hasMathOperation ;
+                                   owl:maxQualifiedCardinality "5"^^xsd:nonNegativeInteger ;
+                                   owl:onClass :MathOperator
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :maxCompletionTime ;
+                                   owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                        owl:onDatatype xsd:integer ;
+                                                        owl:withRestrictions ( [ xsd:maxInclusive 1800
+                                                                               ]
+                                                                             )
+                                                      ]
                                  ] ,
                                  [ rdf:type owl:Restriction ;
                                    owl:onProperty :hasDifficulty ;
                                    owl:hasValue "easy"
-                                 ] ,
-                                 [ rdf:type owl:Restriction ;
-                                   owl:onProperty :maxCompletionTime ;
-                                   owl:maxQualifiedCardinality "1800"^^xsd:nonNegativeInteger ;
-                                   owl:onDataRange xsd:long
                                  ] .
 
 
@@ -687,79 +702,83 @@
 :EasyChronologicalOrder rdf:type owl:Class ;
                         rdfs:subClassOf :ChronologicalOrder ,
                                         [ rdf:type owl:Restriction ;
-                                          owl:onProperty :hasImage ;
+                                          owl:onProperty :hasEndingImage ;
+                                          owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                          owl:onClass :ChronologicalImage
+                                        ] ,
+                                        [ rdf:type owl:Restriction ;
+                                          owl:onProperty :hasMediumImage ;
                                           owl:qualifiedCardinality "3"^^xsd:nonNegativeInteger ;
                                           owl:onClass :ChronologicalImage
                                         ] ,
                                         [ rdf:type owl:Restriction ;
-                                          owl:onProperty :hasDifficulty ;
-                                          owl:hasValue "easy"
+                                          owl:onProperty :hasStartingImage ;
+                                          owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                          owl:onClass :ChronologicalImage
                                         ] ,
                                         [ rdf:type owl:Restriction ;
                                           owl:onProperty :maxCompletionTime ;
-                                          owl:maxQualifiedCardinality "18000"^^xsd:nonNegativeInteger ;
-                                          owl:onDataRange xsd:long
-                                        ] .
-
-
-###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#EasyFindManyAntonymGame
-:EasyFindManyAntonymGame rdf:type owl:Class ;
-                         rdfs:subClassOf :EasyAntonymsGame ,
-                                         [ rdf:type owl:Restriction ;
-                                           owl:onProperty :hasAntonym ;
-                                           owl:qualifiedCardinality "2"^^xsd:nonNegativeInteger ;
-                                           owl:onClass :Word
-                                         ] ;
-                         owl:disjointWith :EasyFindOneAntonymGame .
-
-
-###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#EasyFindManySynonymGame
-:EasyFindManySynonymGame rdf:type owl:Class ;
-                         rdfs:subClassOf :EasySynonymsGame ,
-                                         [ rdf:type owl:Restriction ;
-                                           owl:onProperty :hasSynonim ;
-                                           owl:qualifiedCardinality "2"^^xsd:nonNegativeInteger ;
-                                           owl:onClass :Word
-                                         ] ;
-                         owl:disjointWith :EasyFindOneSynonymGame .
-
-
-###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#EasyFindOneAntonymGame
-:EasyFindOneAntonymGame rdf:type owl:Class ;
-                        rdfs:subClassOf :EasyAntonymsGame ,
+                                          owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                               owl:onDatatype xsd:integer ;
+                                                               owl:withRestrictions ( [ xsd:maxInclusive 1800
+                                                                                      ]
+                                                                                    )
+                                                             ]
+                                        ] ,
                                         [ rdf:type owl:Restriction ;
-                                          owl:onProperty :hasAntonym ;
-                                          owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                          owl:onClass :Word
+                                          owl:onProperty :hasDifficulty ;
+                                          owl:hasValue "easy"
                                         ] .
 
 
-###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#EasyFindOneSynonymGame
-:EasyFindOneSynonymGame rdf:type owl:Class ;
-                        rdfs:subClassOf :EasySynonymsGame ,
-                                        [ rdf:type owl:Restriction ;
-                                          owl:onProperty :hasSynonim ;
-                                          owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                          owl:onClass :Word
-                                        ] .
+###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#EasyFindTheSound
+:EasyFindTheSound rdf:type owl:Class ;
+                  rdfs:subClassOf :FindTheSound ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty :hasSound ;
+                                    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                    owl:onClass :Sound
+                                  ] ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty :hasSmallImage ;
+                                    owl:maxQualifiedCardinality "6"^^xsd:nonNegativeInteger ;
+                                    owl:onClass :SmallImage
+                                  ] ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty :maxCompletionTime ;
+                                    owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                         owl:onDatatype xsd:integer ;
+                                                         owl:withRestrictions ( [ xsd:maxInclusive 1800
+                                                                                ]
+                                                                              )
+                                                       ]
+                                  ] ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty :hasDifficulty ;
+                                    owl:hasValue "easy"
+                                  ] .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#EasyMemoryCards
 :EasyMemoryCards rdf:type owl:Class ;
                  rdfs:subClassOf :MemoryCards ,
                                  [ rdf:type owl:Restriction ;
-                                   owl:onProperty :hasImage ;
+                                   owl:onProperty :hasSmallImage ;
                                    owl:qualifiedCardinality "6"^^xsd:nonNegativeInteger ;
-                                   owl:onClass :SmallImage
+                                   owl:onClass :SimilarImage
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :maxCompletionTime ;
+                                   owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                        owl:onDatatype xsd:integer ;
+                                                        owl:withRestrictions ( [ xsd:maxInclusive 1800
+                                                                               ]
+                                                                             )
+                                                      ]
                                  ] ,
                                  [ rdf:type owl:Restriction ;
                                    owl:onProperty :hasDifficulty ;
                                    owl:hasValue "easy"
-                                 ] ,
-                                 [ rdf:type owl:Restriction ;
-                                   owl:onProperty :maxCompletionTime ;
-                                   owl:maxQualifiedCardinality "18000"^^xsd:nonNegativeInteger ;
-                                   owl:onDataRange xsd:long
                                  ] .
 
 
@@ -767,19 +786,37 @@
 :EasyObservation rdf:type owl:Class ;
                  rdfs:subClassOf :Observation ,
                                  [ rdf:type owl:Restriction ;
-                                   owl:onProperty :hasDifficulty ;
-                                   owl:hasValue "easy"
+                                   owl:onProperty :hasSmallImage ;
+                                   owl:someValuesFrom :SimilarImage
                                  ] ,
                                  [ rdf:type owl:Restriction ;
                                    owl:onProperty :maxCompletionTime ;
-                                   owl:maxQualifiedCardinality "1800"^^xsd:nonNegativeInteger ;
-                                   owl:onDataRange xsd:long
+                                   owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                        owl:onDatatype xsd:integer ;
+                                                        owl:withRestrictions ( [ xsd:maxInclusive 1800
+                                                                               ]
+                                                                             )
+                                                      ]
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :hasDifficulty ;
+                                   owl:hasValue "easy"
                                  ] .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#EasyPuzzle
 :EasyPuzzle rdf:type owl:Class ;
             rdfs:subClassOf :Puzzle ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasBigImage ;
+                              owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                              owl:onClass :BigImage
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasPiece ;
+                              owl:qualifiedCardinality "4"^^xsd:nonNegativeInteger ;
+                              owl:onClass :CornerPiece
+                            ] ,
                             [ rdf:type owl:Restriction ;
                               owl:onProperty :hasPiece ;
                               owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
@@ -796,13 +833,17 @@
                               owl:onClass :Piece
                             ] ,
                             [ rdf:type owl:Restriction ;
-                              owl:onProperty :hasDifficulty ;
-                              owl:hasValue "easy"
+                              owl:onProperty :maxCompletionTime ;
+                              owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                   owl:onDatatype xsd:integer ;
+                                                   owl:withRestrictions ( [ xsd:maxInclusive 1800
+                                                                          ]
+                                                                        )
+                                                 ]
                             ] ,
                             [ rdf:type owl:Restriction ;
-                              owl:onProperty :maxCompletionTime ;
-                              owl:maxQualifiedCardinality "18000"^^xsd:nonNegativeInteger ;
-                              owl:onDataRange xsd:long
+                              owl:onProperty :hasDifficulty ;
+                              owl:hasValue "easy"
                             ] .
 
 
@@ -810,49 +851,48 @@
 :EasyRecall rdf:type owl:Class ;
             rdfs:subClassOf :Recall ,
                             [ rdf:type owl:Restriction ;
-                              owl:onProperty :hasShownNumber ;
-                              owl:minQualifiedCardinality "5"^^xsd:nonNegativeInteger ;
-                              owl:onClass :FourDigit
+                              owl:onProperty :hasNumber ;
+                              owl:qualifiedCardinality "5"^^xsd:nonNegativeInteger ;
+                              owl:onClass :SimilarNumber
                             ] ,
                             [ rdf:type owl:Restriction ;
                               owl:onProperty :isRecallNumber ;
                               owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                              owl:onClass :FourDigit
+                              owl:onClass :Thousands
                             ] ,
                             [ rdf:type owl:Restriction ;
-                              owl:onProperty :hasShownNumber ;
-                              owl:maxQualifiedCardinality "6"^^xsd:nonNegativeInteger ;
-                              owl:onClass :FourDigit
+                              owl:onProperty :maxCompletionTime ;
+                              owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                   owl:onDatatype xsd:integer ;
+                                                   owl:withRestrictions ( [ xsd:maxInclusive 1800
+                                                                          ]
+                                                                        )
+                                                 ]
                             ] ,
                             [ rdf:type owl:Restriction ;
                               owl:onProperty :hasDifficulty ;
                               owl:hasValue "easy"
-                            ] ,
-                            [ rdf:type owl:Restriction ;
-                              owl:onProperty :displayTime ;
-                              owl:maxQualifiedCardinality "1800"^^xsd:nonNegativeInteger ;
-                              owl:onDataRange xsd:long
-                            ] ,
-                            [ rdf:type owl:Restriction ;
-                              owl:onProperty :maxCompletionTime ;
-                              owl:maxQualifiedCardinality "1800"^^xsd:nonNegativeInteger ;
-                              owl:onDataRange xsd:long
                             ] .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#EasySynonymsGame
 :EasySynonymsGame rdf:type owl:Class ;
-                  rdfs:subClassOf :SynonimsGame ,
+                  rdfs:subClassOf :Synonims ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty :hasMainWord ;
+                                    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                    owl:onClass :SynonimWord
+                                  ] ,
                                   [ rdf:type owl:Restriction ;
                                     owl:onProperty :hasWord ;
-                                    owl:maxQualifiedCardinality "6"^^xsd:nonNegativeInteger ;
+                                    owl:qualifiedCardinality "5"^^xsd:nonNegativeInteger ;
                                     owl:onClass :Word
                                   ] ,
                                   [ rdf:type owl:Restriction ;
                                     owl:onProperty :maxCompletionTime ;
                                     owl:someValuesFrom [ rdf:type rdfs:Datatype ;
-                                                         owl:onDatatype xsd:long ;
-                                                         owl:withRestrictions ( [ xsd:maxInclusive "1800"^^xsd:long
+                                                         owl:onDatatype xsd:integer ;
+                                                         owl:withRestrictions ( [ xsd:maxInclusive 1800
                                                                                 ]
                                                                               )
                                                        ]
@@ -863,149 +903,40 @@
                                   ] .
 
 
-###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#Equation
-:Equation rdf:type owl:Class ;
-          rdfs:subClassOf :MathOperator ,
-                          [ rdf:type owl:Restriction ;
-                            owl:onProperty :hasSymbol ;
-                            owl:hasValue "="
-                          ] .
-
-
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#FindTheSound
 :FindTheSound rdf:type owl:Class ;
-              rdfs:subClassOf :SoundGames ,
-                              [ rdf:type owl:Restriction ;
-                                owl:onProperty :hasImage ;
-                                owl:someValuesFrom :SmallImage
-                              ] ,
-                              [ rdf:type owl:Restriction ;
-                                owl:onProperty :hasSound ;
-                                owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                owl:onClass :Sound
-                              ] .
-
-
-###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#FindTheSoundEasyGame
-:FindTheSoundEasyGame rdf:type owl:Class ;
-                      rdfs:subClassOf :FindTheSound ,
-                                      [ rdf:type owl:Restriction ;
-                                        owl:onProperty :hasImage ;
-                                        owl:maxQualifiedCardinality "6"^^xsd:nonNegativeInteger ;
-                                        owl:onClass :SmallImage
-                                      ] ,
-                                      [ rdf:type owl:Restriction ;
-                                        owl:onProperty :maxCompletionTime ;
-                                        owl:someValuesFrom [ rdf:type rdfs:Datatype ;
-                                                             owl:onDatatype xsd:long ;
-                                                             owl:withRestrictions ( [ xsd:maxInclusive "1800"^^xsd:long
-                                                                                    ]
-                                                                                  )
-                                                           ]
-                                      ] ,
-                                      [ rdf:type owl:Restriction ;
-                                        owl:onProperty :hasDifficulty ;
-                                        owl:hasValue "easy"
-                                      ] .
-
-
-###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#FindTheSoundHardGame
-:FindTheSoundHardGame rdf:type owl:Class ;
-                      rdfs:subClassOf :FindTheSound ,
-                                      [ rdf:type owl:Restriction ;
-                                        owl:onProperty :hasImage ;
-                                        owl:minQualifiedCardinality "10"^^xsd:nonNegativeInteger ;
-                                        owl:onClass :SmallImage
-                                      ] ,
-                                      [ rdf:type owl:Restriction ;
-                                        owl:onProperty :hasImage ;
-                                        owl:maxQualifiedCardinality "14"^^xsd:nonNegativeInteger ;
-                                        owl:onClass :SmallImage
-                                      ] ,
-                                      [ rdf:type owl:Restriction ;
-                                        owl:onProperty :maxCompletionTime ;
-                                        owl:someValuesFrom [ rdf:type rdfs:Datatype ;
-                                                             owl:onDatatype xsd:long ;
-                                                             owl:withRestrictions ( [ xsd:maxInclusive "1800"^^xsd:long
-                                                                                    ]
-                                                                                  )
-                                                           ]
-                                      ] ,
-                                      [ rdf:type owl:Restriction ;
-                                        owl:onProperty :hasDifficulty ;
-                                        owl:hasValue "hard"
-                                      ] .
-
-
-###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#FindTheSoundMediumGame
-:FindTheSoundMediumGame rdf:type owl:Class ;
-                        rdfs:subClassOf :FindTheSound ,
-                                        [ rdf:type owl:Restriction ;
-                                          owl:onProperty :hasImage ;
-                                          owl:minQualifiedCardinality "6"^^xsd:nonNegativeInteger ;
-                                          owl:onClass :SmallImage
-                                        ] ,
-                                        [ rdf:type owl:Restriction ;
-                                          owl:onProperty :hasImage ;
-                                          owl:maxQualifiedCardinality "10"^^xsd:nonNegativeInteger ;
-                                          owl:onClass :SmallImage
-                                        ] ,
-                                        [ rdf:type owl:Restriction ;
-                                          owl:onProperty :maxCompletionTime ;
-                                          owl:someValuesFrom [ rdf:type rdfs:Datatype ;
-                                                               owl:onDatatype xsd:long ;
-                                                               owl:withRestrictions ( [ xsd:maxInclusive "1800"^^xsd:long
-                                                                                      ]
-                                                                                    )
-                                                             ]
-                                        ] ,
-                                        [ rdf:type owl:Restriction ;
-                                          owl:onProperty :hasDifficulty ;
-                                          owl:hasValue "medium"
-                                        ] .
-
-
-###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#FiveDigit
-:FiveDigit rdf:type owl:Class ;
-           rdfs:subClassOf :Number .
-
-
-###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#FourDigit
-:FourDigit rdf:type owl:Class ;
-           rdfs:subClassOf :Number .
+              rdfs:subClassOf :Game .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#Game
 :Game rdf:type owl:Class ;
-      owl:disjointWith :GameObject ;
-      owl:hasKey ( :hasId
-                 ) .
+      rdfs:subClassOf owl:Thing ;
+      owl:disjointWith :GameObject .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#GameObject
 :GameObject rdf:type owl:Class ;
-            owl:hasKey ( :hasId
-                       ) .
+            rdfs:subClassOf owl:Thing .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#HardAntonymsGame
 :HardAntonymsGame rdf:type owl:Class ;
-                  rdfs:subClassOf :AntonymsGame ,
+                  rdfs:subClassOf :Antonyms ,
                                   [ rdf:type owl:Restriction ;
-                                    owl:onProperty :hasWord ;
-                                    owl:minQualifiedCardinality "10"^^xsd:nonNegativeInteger ;
-                                    owl:onClass :Word
+                                    owl:onProperty :hasMainWord ;
+                                    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                    owl:onClass :AntonymWord
                                   ] ,
                                   [ rdf:type owl:Restriction ;
                                     owl:onProperty :hasWord ;
-                                    owl:maxQualifiedCardinality "15"^^xsd:nonNegativeInteger ;
+                                    owl:qualifiedCardinality "10"^^xsd:nonNegativeInteger ;
                                     owl:onClass :Word
                                   ] ,
                                   [ rdf:type owl:Restriction ;
                                     owl:onProperty :maxCompletionTime ;
                                     owl:someValuesFrom [ rdf:type rdfs:Datatype ;
-                                                         owl:onDatatype xsd:long ;
-                                                         owl:withRestrictions ( [ xsd:maxInclusive "1800"^^xsd:long
+                                                         owl:onDatatype xsd:integer ;
+                                                         owl:withRestrictions ( [ xsd:maxInclusive 1800
                                                                                 ]
                                                                               )
                                                        ]
@@ -1024,29 +955,26 @@
                                    owl:someValuesFrom :MathOperator
                                  ] ,
                                  [ rdf:type owl:Restriction ;
-                                   owl:onProperty :hasHiddenNumber ;
-                                   owl:allValuesFrom [ rdf:type owl:Class ;
-                                                       owl:unionOf ( :ThreeDigit
-                                                                     :TwoDigit
-                                                                   )
-                                                     ]
+                                   owl:onProperty :hasNumber ;
+                                   owl:allValuesFrom :UpToFifty
                                  ] ,
                                  [ rdf:type owl:Restriction ;
-                                   owl:onProperty :hasShownNumber ;
-                                   owl:allValuesFrom [ rdf:type owl:Class ;
-                                                       owl:unionOf ( :ThreeDigit
-                                                                     :TwoDigit
-                                                                   )
-                                                     ]
+                                   owl:onProperty :hasMathOperation ;
+                                   owl:maxQualifiedCardinality "5"^^xsd:nonNegativeInteger ;
+                                   owl:onClass :MathOperator
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :maxCompletionTime ;
+                                   owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                        owl:onDatatype xsd:integer ;
+                                                        owl:withRestrictions ( [ xsd:maxInclusive 1800
+                                                                               ]
+                                                                             )
+                                                      ]
                                  ] ,
                                  [ rdf:type owl:Restriction ;
                                    owl:onProperty :hasDifficulty ;
                                    owl:hasValue "hard"
-                                 ] ,
-                                 [ rdf:type owl:Restriction ;
-                                   owl:onProperty :maxCompletionTime ;
-                                   owl:maxQualifiedCardinality "1800"^^xsd:nonNegativeInteger ;
-                                   owl:onDataRange xsd:long
                                  ] .
 
 
@@ -1054,79 +982,88 @@
 :HardChronologicalOrder rdf:type owl:Class ;
                         rdfs:subClassOf :ChronologicalOrder ,
                                         [ rdf:type owl:Restriction ;
-                                          owl:onProperty :hasImage ;
+                                          owl:onProperty :hasEndingImage ;
+                                          owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                          owl:onClass :ChronologicalImage
+                                        ] ,
+                                        [ rdf:type owl:Restriction ;
+                                          owl:onProperty :hasMediumImage ;
                                           owl:qualifiedCardinality "6"^^xsd:nonNegativeInteger ;
                                           owl:onClass :ChronologicalImage
                                         ] ,
                                         [ rdf:type owl:Restriction ;
-                                          owl:onProperty :hasDifficulty ;
-                                          owl:hasValue "hard"
+                                          owl:onProperty :hasStartingImage ;
+                                          owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                          owl:onClass :ChronologicalImage
                                         ] ,
                                         [ rdf:type owl:Restriction ;
                                           owl:onProperty :maxCompletionTime ;
-                                          owl:maxQualifiedCardinality "18000"^^xsd:nonNegativeInteger ;
-                                          owl:onDataRange xsd:long
-                                        ] .
-
-
-###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#HardFindManyAntonymGame
-:HardFindManyAntonymGame rdf:type owl:Class ;
-                         rdfs:subClassOf :HardAntonymsGame ,
-                                         [ rdf:type owl:Restriction ;
-                                           owl:onProperty :hasAntonym ;
-                                           owl:qualifiedCardinality "3"^^xsd:nonNegativeInteger ;
-                                           owl:onClass :Word
-                                         ] ;
-                         owl:disjointWith :HardFindOneAntonymGame .
-
-
-###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#HardFindManySynonymGame
-:HardFindManySynonymGame rdf:type owl:Class ;
-                         rdfs:subClassOf :HardSynonymsGame ,
-                                         [ rdf:type owl:Restriction ;
-                                           owl:onProperty :hasSynonim ;
-                                           owl:qualifiedCardinality "3"^^xsd:nonNegativeInteger ;
-                                           owl:onClass :Word
-                                         ] ;
-                         owl:disjointWith :HardFindOneSynonymGame .
-
-
-###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#HardFindOneAntonymGame
-:HardFindOneAntonymGame rdf:type owl:Class ;
-                        rdfs:subClassOf :HardAntonymsGame ,
+                                          owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                               owl:onDatatype xsd:integer ;
+                                                               owl:withRestrictions ( [ xsd:maxInclusive 1800
+                                                                                      ]
+                                                                                    )
+                                                             ]
+                                        ] ,
                                         [ rdf:type owl:Restriction ;
-                                          owl:onProperty :hasAntonym ;
-                                          owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                          owl:onClass :Word
+                                          owl:onProperty :hasDifficulty ;
+                                          owl:hasValue "hard"
                                         ] .
 
 
-###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#HardFindOneSynonymGame
-:HardFindOneSynonymGame rdf:type owl:Class ;
-                        rdfs:subClassOf :HardSynonymsGame ,
-                                        [ rdf:type owl:Restriction ;
-                                          owl:onProperty :hasSynonim ;
-                                          owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                          owl:onClass :Word
-                                        ] .
+###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#HardFindTheSound
+:HardFindTheSound rdf:type owl:Class ;
+                  rdfs:subClassOf :FindTheSound ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty :hasSmallImage ;
+                                    owl:minQualifiedCardinality "10"^^xsd:nonNegativeInteger ;
+                                    owl:onClass :SmallImage
+                                  ] ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty :hasSound ;
+                                    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                    owl:onClass :Sound
+                                  ] ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty :hasSmallImage ;
+                                    owl:maxQualifiedCardinality "14"^^xsd:nonNegativeInteger ;
+                                    owl:onClass :SmallImage
+                                  ] ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty :maxCompletionTime ;
+                                    owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                         owl:onDatatype xsd:integer ;
+                                                         owl:withRestrictions ( [ xsd:maxInclusive 1800
+                                                                                ]
+                                                                              )
+                                                       ]
+                                  ] ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty :hasDifficulty ;
+                                    owl:hasValue "hard"
+                                  ] .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#HardMemoryCards
 :HardMemoryCards rdf:type owl:Class ;
                  rdfs:subClassOf :MemoryCards ,
                                  [ rdf:type owl:Restriction ;
-                                   owl:onProperty :hasImage ;
+                                   owl:onProperty :hasSmallImage ;
                                    owl:qualifiedCardinality "12"^^xsd:nonNegativeInteger ;
-                                   owl:onClass :SmallImage
+                                   owl:onClass :SimilarImage
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :maxCompletionTime ;
+                                   owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                        owl:onDatatype xsd:integer ;
+                                                        owl:withRestrictions ( [ xsd:maxInclusive 1800
+                                                                               ]
+                                                                             )
+                                                      ]
                                  ] ,
                                  [ rdf:type owl:Restriction ;
                                    owl:onProperty :hasDifficulty ;
                                    owl:hasValue "hard"
-                                 ] ,
-                                 [ rdf:type owl:Restriction ;
-                                   owl:onProperty :maxCompletionTime ;
-                                   owl:maxQualifiedCardinality "18000"^^xsd:nonNegativeInteger ;
-                                   owl:onDataRange xsd:long
                                  ] .
 
 
@@ -1134,13 +1071,21 @@
 :HardObservation rdf:type owl:Class ;
                  rdfs:subClassOf :Observation ,
                                  [ rdf:type owl:Restriction ;
-                                   owl:onProperty :hasDifficulty ;
-                                   owl:hasValue "hard"
+                                   owl:onProperty :hasSmallImage ;
+                                   owl:someValuesFrom :SimilarImage
                                  ] ,
                                  [ rdf:type owl:Restriction ;
                                    owl:onProperty :maxCompletionTime ;
-                                   owl:maxQualifiedCardinality "1800"^^xsd:nonNegativeInteger ;
-                                   owl:onDataRange xsd:long
+                                   owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                        owl:onDatatype xsd:integer ;
+                                                        owl:withRestrictions ( [ xsd:maxInclusive 1800
+                                                                               ]
+                                                                             )
+                                                      ]
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :hasDifficulty ;
+                                   owl:hasValue "hard"
                                  ] .
 
 
@@ -1163,6 +1108,16 @@
                               owl:onClass :Piece
                             ] ,
                             [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasBigImage ;
+                              owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                              owl:onClass :BigImage
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasPiece ;
+                              owl:qualifiedCardinality "4"^^xsd:nonNegativeInteger ;
+                              owl:onClass :CornerPiece
+                            ] ,
+                            [ rdf:type owl:Restriction ;
                               owl:onProperty :hasPiece ;
                               owl:maxQualifiedCardinality "24"^^xsd:nonNegativeInteger ;
                               owl:onClass :BorderLinePiece
@@ -1178,13 +1133,17 @@
                               owl:onClass :Piece
                             ] ,
                             [ rdf:type owl:Restriction ;
-                              owl:onProperty :hasDifficulty ;
-                              owl:hasValue "hard"
+                              owl:onProperty :maxCompletionTime ;
+                              owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                   owl:onDatatype xsd:integer ;
+                                                   owl:withRestrictions ( [ xsd:maxInclusive 1800
+                                                                          ]
+                                                                        )
+                                                 ]
                             ] ,
                             [ rdf:type owl:Restriction ;
-                              owl:onProperty :maxCompletionTime ;
-                              owl:maxQualifiedCardinality "18000"^^xsd:nonNegativeInteger ;
-                              owl:onDataRange xsd:long
+                              owl:onProperty :hasDifficulty ;
+                              owl:hasValue "hard"
                             ] .
 
 
@@ -1192,54 +1151,48 @@
 :HardRecall rdf:type owl:Class ;
             rdfs:subClassOf :Recall ,
                             [ rdf:type owl:Restriction ;
-                              owl:onProperty :hasShownNumber ;
-                              owl:minQualifiedCardinality "8"^^xsd:nonNegativeInteger ;
-                              owl:onClass :SixDigit
+                              owl:onProperty :hasNumber ;
+                              owl:qualifiedCardinality "10"^^xsd:nonNegativeInteger ;
+                              owl:onClass :SimilarNumber
                             ] ,
                             [ rdf:type owl:Restriction ;
                               owl:onProperty :isRecallNumber ;
                               owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                              owl:onClass :SixDigit
+                              owl:onClass :Million
                             ] ,
                             [ rdf:type owl:Restriction ;
-                              owl:onProperty :hasShownNumber ;
-                              owl:maxQualifiedCardinality "10"^^xsd:nonNegativeInteger ;
-                              owl:onClass :SixDigit
+                              owl:onProperty :maxCompletionTime ;
+                              owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                   owl:onDatatype xsd:integer ;
+                                                   owl:withRestrictions ( [ xsd:maxInclusive 1800
+                                                                          ]
+                                                                        )
+                                                 ]
                             ] ,
                             [ rdf:type owl:Restriction ;
                               owl:onProperty :hasDifficulty ;
                               owl:hasValue "hard"
-                            ] ,
-                            [ rdf:type owl:Restriction ;
-                              owl:onProperty :displayTime ;
-                              owl:maxQualifiedCardinality "1800"^^xsd:nonNegativeInteger ;
-                              owl:onDataRange xsd:long
-                            ] ,
-                            [ rdf:type owl:Restriction ;
-                              owl:onProperty :maxCompletionTime ;
-                              owl:maxQualifiedCardinality "1800"^^xsd:nonNegativeInteger ;
-                              owl:onDataRange xsd:long
                             ] .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#HardSynonymsGame
 :HardSynonymsGame rdf:type owl:Class ;
-                  rdfs:subClassOf :SynonimsGame ,
+                  rdfs:subClassOf :Synonims ,
                                   [ rdf:type owl:Restriction ;
-                                    owl:onProperty :hasWord ;
-                                    owl:minQualifiedCardinality "10"^^xsd:nonNegativeInteger ;
-                                    owl:onClass :Word
+                                    owl:onProperty :hasMainWord ;
+                                    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                    owl:onClass :SynonimWord
                                   ] ,
                                   [ rdf:type owl:Restriction ;
                                     owl:onProperty :hasWord ;
-                                    owl:maxQualifiedCardinality "15"^^xsd:nonNegativeInteger ;
+                                    owl:qualifiedCardinality "10"^^xsd:nonNegativeInteger ;
                                     owl:onClass :Word
                                   ] ,
                                   [ rdf:type owl:Restriction ;
                                     owl:onProperty :maxCompletionTime ;
                                     owl:someValuesFrom [ rdf:type rdfs:Datatype ;
-                                                         owl:onDatatype xsd:long ;
-                                                         owl:withRestrictions ( [ xsd:maxInclusive "1800"^^xsd:long
+                                                         owl:onDatatype xsd:integer ;
+                                                         owl:withRestrictions ( [ xsd:maxInclusive 1800
                                                                                 ]
                                                                               )
                                                        ]
@@ -1250,18 +1203,25 @@
                                   ] .
 
 
+###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#HundrendThousands
+:HundrendThousands rdf:type owl:Class ;
+                   rdfs:subClassOf :Number ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :hasNumberValue ;
+                                     owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                          owl:onDatatype xsd:positiveInteger ;
+                                                          owl:withRestrictions ( [ xsd:minInclusive "100000"^^xsd:positiveInteger
+                                                                                 ]
+                                                                                 [ xsd:maxInclusive "999999"^^xsd:positiveInteger
+                                                                                 ]
+                                                                               )
+                                                        ]
+                                   ] .
+
+
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#Image
 :Image rdf:type owl:Class ;
        rdfs:subClassOf :GameObject .
-
-
-###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#ImageGames
-:ImageGames rdf:type owl:Class ;
-            rdfs:subClassOf :Game ,
-                            [ rdf:type owl:Restriction ;
-                              owl:onProperty :hasImage ;
-                              owl:someValuesFrom :Image
-                            ] .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#InteriorPiece
@@ -1290,11 +1250,6 @@
                                ] .
 
 
-###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#LogicalOrder
-:LogicalOrder rdf:type owl:Class ;
-              rdfs:subClassOf :Game .
-
-
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#LogicalOrderBlocks
 :LogicalOrderBlocks rdf:type owl:Class ;
                     rdfs:subClassOf :GameObject .
@@ -1307,22 +1262,22 @@
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#MediumAntonymsGame
 :MediumAntonymsGame rdf:type owl:Class ;
-                    rdfs:subClassOf :AntonymsGame ,
+                    rdfs:subClassOf :Antonyms ,
                                     [ rdf:type owl:Restriction ;
-                                      owl:onProperty :hasWord ;
-                                      owl:minQualifiedCardinality "6"^^xsd:nonNegativeInteger ;
-                                      owl:onClass :Word
+                                      owl:onProperty :hasMainWord ;
+                                      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                      owl:onClass :AntonymWord
                                     ] ,
                                     [ rdf:type owl:Restriction ;
                                       owl:onProperty :hasWord ;
-                                      owl:maxQualifiedCardinality "10"^^xsd:nonNegativeInteger ;
+                                      owl:qualifiedCardinality "8"^^xsd:nonNegativeInteger ;
                                       owl:onClass :Word
                                     ] ,
                                     [ rdf:type owl:Restriction ;
                                       owl:onProperty :maxCompletionTime ;
                                       owl:someValuesFrom [ rdf:type rdfs:Datatype ;
-                                                           owl:onDatatype xsd:long ;
-                                                           owl:withRestrictions ( [ xsd:maxInclusive "1800"^^xsd:long
+                                                           owl:onDatatype xsd:integer ;
+                                                           owl:withRestrictions ( [ xsd:maxInclusive 1800
                                                                                   ]
                                                                                 )
                                                          ]
@@ -1337,30 +1292,34 @@
 :MediumCalculation rdf:type owl:Class ;
                    rdfs:subClassOf :Calculation ,
                                    [ rdf:type owl:Restriction ;
-                                     owl:onProperty :hasHiddenNumber ;
-                                     owl:someValuesFrom :TwoDigit
-                                   ] ,
-                                   [ rdf:type owl:Restriction ;
-                                     owl:onProperty :hasShownNumber ;
-                                     owl:someValuesFrom :TwoDigit
-                                   ] ,
-                                   [ rdf:type owl:Restriction ;
                                      owl:onProperty :hasMathOperation ;
                                      owl:allValuesFrom [ rdf:type owl:Class ;
                                                          owl:unionOf ( :Division
-                                                                       :Equation
                                                                        :Multiplication
                                                                      )
                                                        ]
                                    ] ,
                                    [ rdf:type owl:Restriction ;
-                                     owl:onProperty :hasDifficulty ;
-                                     owl:hasValue "medium"
+                                     owl:onProperty :hasNumber ;
+                                     owl:allValuesFrom :UpToTen
+                                   ] ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :hasMathOperation ;
+                                     owl:maxQualifiedCardinality "5"^^xsd:nonNegativeInteger ;
+                                     owl:onClass :MathOperator
                                    ] ,
                                    [ rdf:type owl:Restriction ;
                                      owl:onProperty :maxCompletionTime ;
-                                     owl:maxQualifiedCardinality "1800"^^xsd:nonNegativeInteger ;
-                                     owl:onDataRange xsd:long
+                                     owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                          owl:onDatatype xsd:integer ;
+                                                          owl:withRestrictions ( [ xsd:maxInclusive 1800
+                                                                                 ]
+                                                                               )
+                                                        ]
+                                   ] ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :hasDifficulty ;
+                                     owl:hasValue "medium"
                                    ] .
 
 
@@ -1368,61 +1327,66 @@
 :MediumChronologicalOrder rdf:type owl:Class ;
                           rdfs:subClassOf :ChronologicalOrder ,
                                           [ rdf:type owl:Restriction ;
-                                            owl:onProperty :hasImage ;
+                                            owl:onProperty :hasEndingImage ;
+                                            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                            owl:onClass :ChronologicalImage
+                                          ] ,
+                                          [ rdf:type owl:Restriction ;
+                                            owl:onProperty :hasMediumImage ;
                                             owl:qualifiedCardinality "4"^^xsd:nonNegativeInteger ;
                                             owl:onClass :ChronologicalImage
                                           ] ,
                                           [ rdf:type owl:Restriction ;
-                                            owl:onProperty :hasDifficulty ;
-                                            owl:hasValue "medium"
+                                            owl:onProperty :hasStartingImage ;
+                                            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                            owl:onClass :ChronologicalImage
                                           ] ,
                                           [ rdf:type owl:Restriction ;
                                             owl:onProperty :maxCompletionTime ;
-                                            owl:maxQualifiedCardinality "18000"^^xsd:nonNegativeInteger ;
-                                            owl:onDataRange xsd:long
-                                          ] .
-
-
-###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#MediumFindManyAntonymGame
-:MediumFindManyAntonymGame rdf:type owl:Class ;
-                           rdfs:subClassOf :MediumAntonymsGame ,
-                                           [ rdf:type owl:Restriction ;
-                                             owl:onProperty :hasAntonym ;
-                                             owl:qualifiedCardinality "3"^^xsd:nonNegativeInteger ;
-                                             owl:onClass :Word
-                                           ] ;
-                           owl:disjointWith :MediumFindOneAntonymGame .
-
-
-###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#MediumFindManySynonymGame
-:MediumFindManySynonymGame rdf:type owl:Class ;
-                           rdfs:subClassOf :MediumSynonymsGame ,
-                                           [ rdf:type owl:Restriction ;
-                                             owl:onProperty :hasSynonim ;
-                                             owl:qualifiedCardinality "3"^^xsd:nonNegativeInteger ;
-                                             owl:onClass :Word
-                                           ] ;
-                           owl:disjointWith :MediumFindOneSynonymGame .
-
-
-###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#MediumFindOneAntonymGame
-:MediumFindOneAntonymGame rdf:type owl:Class ;
-                          rdfs:subClassOf :MediumAntonymsGame ,
+                                            owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                                 owl:onDatatype xsd:integer ;
+                                                                 owl:withRestrictions ( [ xsd:maxInclusive 1800
+                                                                                        ]
+                                                                                      )
+                                                               ]
+                                          ] ,
                                           [ rdf:type owl:Restriction ;
-                                            owl:onProperty :hasAntonym ;
-                                            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                            owl:onClass :Word
+                                            owl:onProperty :hasDifficulty ;
+                                            owl:hasValue "medium"
                                           ] .
 
 
-###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#MediumFindOneSynonymGame
-:MediumFindOneSynonymGame rdf:type owl:Class ;
-                          rdfs:subClassOf :MediumSynonymsGame ,
-                                          [ rdf:type owl:Restriction ;
-                                            owl:onProperty :hasSynonim ;
-                                            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                            owl:onClass :Word
-                                          ] .
+###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#MediumFindTheSound
+:MediumFindTheSound rdf:type owl:Class ;
+                    rdfs:subClassOf :FindTheSound ,
+                                    [ rdf:type owl:Restriction ;
+                                      owl:onProperty :hasSmallImage ;
+                                      owl:minQualifiedCardinality "6"^^xsd:nonNegativeInteger ;
+                                      owl:onClass :SmallImage
+                                    ] ,
+                                    [ rdf:type owl:Restriction ;
+                                      owl:onProperty :hasSound ;
+                                      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                      owl:onClass :Sound
+                                    ] ,
+                                    [ rdf:type owl:Restriction ;
+                                      owl:onProperty :hasSmallImage ;
+                                      owl:maxQualifiedCardinality "10"^^xsd:nonNegativeInteger ;
+                                      owl:onClass :SmallImage
+                                    ] ,
+                                    [ rdf:type owl:Restriction ;
+                                      owl:onProperty :maxCompletionTime ;
+                                      owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                           owl:onDatatype xsd:integer ;
+                                                           owl:withRestrictions ( [ xsd:maxInclusive 1800
+                                                                                  ]
+                                                                                )
+                                                         ]
+                                    ] ,
+                                    [ rdf:type owl:Restriction ;
+                                      owl:onProperty :hasDifficulty ;
+                                      owl:hasValue "medium"
+                                    ] .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#MediumImage
@@ -1445,18 +1409,22 @@
 :MediumMemoryCards rdf:type owl:Class ;
                    rdfs:subClassOf :MemoryCards ,
                                    [ rdf:type owl:Restriction ;
-                                     owl:onProperty :hasImage ;
+                                     owl:onProperty :hasSmallImage ;
                                      owl:qualifiedCardinality "8"^^xsd:nonNegativeInteger ;
-                                     owl:onClass :SmallImage
+                                     owl:onClass :SimilarImage
+                                   ] ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :maxCompletionTime ;
+                                     owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                          owl:onDatatype xsd:integer ;
+                                                          owl:withRestrictions ( [ xsd:maxInclusive 1800
+                                                                                 ]
+                                                                               )
+                                                        ]
                                    ] ,
                                    [ rdf:type owl:Restriction ;
                                      owl:onProperty :hasDifficulty ;
                                      owl:hasValue "medium"
-                                   ] ,
-                                   [ rdf:type owl:Restriction ;
-                                     owl:onProperty :maxCompletionTime ;
-                                     owl:maxQualifiedCardinality "18000"^^xsd:nonNegativeInteger ;
-                                     owl:onDataRange xsd:long
                                    ] .
 
 
@@ -1464,13 +1432,21 @@
 :MediumObservation rdf:type owl:Class ;
                    rdfs:subClassOf :Observation ,
                                    [ rdf:type owl:Restriction ;
-                                     owl:onProperty :hasDifficulty ;
-                                     owl:hasValue "medium"
+                                     owl:onProperty :hasSmallImage ;
+                                     owl:someValuesFrom :SimilarImage
                                    ] ,
                                    [ rdf:type owl:Restriction ;
                                      owl:onProperty :maxCompletionTime ;
-                                     owl:maxQualifiedCardinality "1800"^^xsd:nonNegativeInteger ;
-                                     owl:onDataRange xsd:long
+                                     owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                          owl:onDatatype xsd:integer ;
+                                                          owl:withRestrictions ( [ xsd:maxInclusive 1800
+                                                                                 ]
+                                                                               )
+                                                        ]
+                                   ] ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :hasDifficulty ;
+                                     owl:hasValue "medium"
                                    ] .
 
 
@@ -1493,6 +1469,16 @@
                                 owl:onClass :Piece
                               ] ,
                               [ rdf:type owl:Restriction ;
+                                owl:onProperty :hasBigImage ;
+                                owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                owl:onClass :BigImage
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :hasPiece ;
+                                owl:qualifiedCardinality "4"^^xsd:nonNegativeInteger ;
+                                owl:onClass :CornerPiece
+                              ] ,
+                              [ rdf:type owl:Restriction ;
                                 owl:onProperty :hasPiece ;
                                 owl:maxQualifiedCardinality "9"^^xsd:nonNegativeInteger ;
                                 owl:onClass :InteriorPiece
@@ -1508,13 +1494,17 @@
                                 owl:onClass :Piece
                               ] ,
                               [ rdf:type owl:Restriction ;
-                                owl:onProperty :hasDifficulty ;
-                                owl:hasValue "medium"
+                                owl:onProperty :maxCompletionTime ;
+                                owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                     owl:onDatatype xsd:integer ;
+                                                     owl:withRestrictions ( [ xsd:maxInclusive 1800
+                                                                            ]
+                                                                          )
+                                                   ]
                               ] ,
                               [ rdf:type owl:Restriction ;
-                                owl:onProperty :maxCompletionTime ;
-                                owl:maxQualifiedCardinality "18000"^^xsd:nonNegativeInteger ;
-                                owl:onDataRange xsd:long
+                                owl:onProperty :hasDifficulty ;
+                                owl:hasValue "medium"
                               ] .
 
 
@@ -1522,54 +1512,48 @@
 :MediumRecall rdf:type owl:Class ;
               rdfs:subClassOf :Recall ,
                               [ rdf:type owl:Restriction ;
-                                owl:onProperty :hasShownNumber ;
-                                owl:minQualifiedCardinality "6"^^xsd:nonNegativeInteger ;
-                                owl:onClass :FiveDigit
+                                owl:onProperty :hasNumber ;
+                                owl:qualifiedCardinality "8"^^xsd:nonNegativeInteger ;
+                                owl:onClass :SimilarNumber
                               ] ,
                               [ rdf:type owl:Restriction ;
                                 owl:onProperty :isRecallNumber ;
                                 owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                owl:onClass :FiveDigit
+                                owl:onClass :HundrendThousands
                               ] ,
                               [ rdf:type owl:Restriction ;
-                                owl:onProperty :hasShownNumber ;
-                                owl:maxQualifiedCardinality "8"^^xsd:nonNegativeInteger ;
-                                owl:onClass :FiveDigit
+                                owl:onProperty :maxCompletionTime ;
+                                owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                     owl:onDatatype xsd:integer ;
+                                                     owl:withRestrictions ( [ xsd:maxInclusive 1800
+                                                                            ]
+                                                                          )
+                                                   ]
                               ] ,
                               [ rdf:type owl:Restriction ;
                                 owl:onProperty :hasDifficulty ;
                                 owl:hasValue "medium"
-                              ] ,
-                              [ rdf:type owl:Restriction ;
-                                owl:onProperty :displayTime ;
-                                owl:maxQualifiedCardinality "1800"^^xsd:nonNegativeInteger ;
-                                owl:onDataRange xsd:long
-                              ] ,
-                              [ rdf:type owl:Restriction ;
-                                owl:onProperty :maxCompletionTime ;
-                                owl:maxQualifiedCardinality "1800"^^xsd:nonNegativeInteger ;
-                                owl:onDataRange xsd:long
                               ] .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#MediumSynonymsGame
 :MediumSynonymsGame rdf:type owl:Class ;
-                    rdfs:subClassOf :SynonimsGame ,
+                    rdfs:subClassOf :Synonims ,
                                     [ rdf:type owl:Restriction ;
-                                      owl:onProperty :hasWord ;
-                                      owl:minQualifiedCardinality "10"^^xsd:nonNegativeInteger ;
-                                      owl:onClass :Word
+                                      owl:onProperty :hasMainWord ;
+                                      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                      owl:onClass :SynonimWord
                                     ] ,
                                     [ rdf:type owl:Restriction ;
                                       owl:onProperty :hasWord ;
-                                      owl:maxQualifiedCardinality "10"^^xsd:nonNegativeInteger ;
+                                      owl:qualifiedCardinality "8"^^xsd:nonNegativeInteger ;
                                       owl:onClass :Word
                                     ] ,
                                     [ rdf:type owl:Restriction ;
                                       owl:onProperty :maxCompletionTime ;
                                       owl:someValuesFrom [ rdf:type rdfs:Datatype ;
-                                                           owl:onDatatype xsd:long ;
-                                                           owl:withRestrictions ( [ xsd:maxInclusive "1800"^^xsd:long
+                                                           owl:onDatatype xsd:integer ;
+                                                           owl:withRestrictions ( [ xsd:maxInclusive 1800
                                                                                   ]
                                                                                 )
                                                          ]
@@ -1582,11 +1566,23 @@
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#MemoryCards
 :MemoryCards rdf:type owl:Class ;
-             rdfs:subClassOf :ImageGames ,
-                             [ rdf:type owl:Restriction ;
-                               owl:onProperty :hasImage ;
-                               owl:someValuesFrom :SmallImage
-                             ] .
+             rdfs:subClassOf :Game .
+
+
+###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#Million
+:Million rdf:type owl:Class ;
+         rdfs:subClassOf :Number ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :hasNumberValue ;
+                           owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                owl:onDatatype xsd:positiveInteger ;
+                                                owl:withRestrictions ( [ xsd:minInclusive "1000000"^^xsd:positiveInteger
+                                                                       ]
+                                                                       [ xsd:maxInclusive "9999999"^^xsd:positiveInteger
+                                                                       ]
+                                                                     )
+                                              ]
+                         ] .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#Movement
@@ -1598,6 +1594,21 @@
 :Multiplication rdf:type owl:Class ;
                 rdfs:subClassOf :MathOperator ,
                                 [ rdf:type owl:Restriction ;
+                                  owl:onProperty :hasMultiplicant ;
+                                  owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                  owl:onClass :Number
+                                ] ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty :hasMultiplier ;
+                                  owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                  owl:onClass :Number
+                                ] ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty :hasProduct ;
+                                  owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                  owl:onClass :Number
+                                ] ,
+                                [ rdf:type owl:Restriction ;
                                   owl:onProperty :hasSymbol ;
                                   owl:hasValue "*"
                                 ] .
@@ -1608,23 +1619,9 @@
         rdfs:subClassOf :GameObject .
 
 
-###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#NumberGames
-:NumberGames rdf:type owl:Class ;
-             rdfs:subClassOf :Game .
-
-
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#Observation
 :Observation rdf:type owl:Class ;
-             rdfs:subClassOf :ImageGames ,
-                             [ rdf:type owl:Restriction ;
-                               owl:onProperty :hasImage ;
-                               owl:someValuesFrom :SmallImage
-                             ] .
-
-
-###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#OneDigit
-:OneDigit rdf:type owl:Class ;
-          rdfs:subClassOf :Number .
+             rdfs:subClassOf :Game .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#Piece
@@ -1636,47 +1633,40 @@
                        ] .
 
 
-###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#PieceGames
-:PieceGames rdf:type owl:Class ;
-            rdfs:subClassOf :ImageGames ,
-                            [ rdf:type owl:Restriction ;
-                              owl:onProperty :hasPiece ;
-                              owl:someValuesFrom :Piece
-                            ] .
-
-
-###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#PolygonObj
-:PolygonObj rdf:type owl:Class ;
-            rdfs:subClassOf :SmallImage .
-
-
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#Puzzle
 :Puzzle rdf:type owl:Class ;
-        rdfs:subClassOf :PieceGames ,
-                        [ rdf:type owl:Restriction ;
-                          owl:onProperty :hasImage ;
-                          owl:someValuesFrom :BigImage
-                        ] ,
-                        [ rdf:type owl:Restriction ;
-                          owl:onProperty :hasPiece ;
-                          owl:qualifiedCardinality "4"^^xsd:nonNegativeInteger ;
-                          owl:onClass :CornerPiece
-                        ] .
+        rdfs:subClassOf :Game .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#Recall
 :Recall rdf:type owl:Class ;
-        rdfs:subClassOf :NumberGames .
+        rdfs:subClassOf :Game .
 
 
-###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#RectangularObj
-:RectangularObj rdf:type owl:Class ;
-                rdfs:subClassOf :SmallImage .
+###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#SimilarImage
+:SimilarImage rdf:type owl:Class ;
+              owl:equivalentClass [ owl:intersectionOf ( :SmallImage
+                                                         [ rdf:type owl:Restriction ;
+                                                           owl:onProperty :isSameWith ;
+                                                           owl:someValuesFrom :SmallImage
+                                                         ]
+                                                       ) ;
+                                    rdf:type owl:Class
+                                  ] ;
+              rdfs:subClassOf :Image .
 
 
-###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#SixDigit
-:SixDigit rdf:type owl:Class ;
-          rdfs:subClassOf :Number .
+###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#SimilarNumber
+:SimilarNumber rdf:type owl:Class ;
+               owl:equivalentClass [ owl:intersectionOf ( :Number
+                                                          [ rdf:type owl:Restriction ;
+                                                            owl:onProperty :hasSimilarNumber ;
+                                                            owl:someValuesFrom :Number
+                                                          ]
+                                                        ) ;
+                                     rdf:type owl:Class
+                                   ] ;
+               rdfs:subClassOf :GameObject .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#SmallImage
@@ -1698,70 +1688,108 @@
        rdfs:subClassOf :GameObject .
 
 
-###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#SoundGames
-:SoundGames rdf:type owl:Class ;
-            rdfs:subClassOf :Game ,
-                            [ rdf:type owl:Restriction ;
-                              owl:onProperty :hasSound ;
-                              owl:someValuesFrom :Sound
-                            ] .
+###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#SoundImage
+:SoundImage rdf:type owl:Class ;
+            owl:equivalentClass [ owl:intersectionOf ( :Sound
+                                                       [ rdf:type owl:Restriction ;
+                                                         owl:onProperty :isAssociatedWithImage ;
+                                                         owl:someValuesFrom :SmallImage
+                                                       ]
+                                                     ) ;
+                                  rdf:type owl:Class
+                                ] ;
+            rdfs:subClassOf :GameObject .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#Substraction
 :Substraction rdf:type owl:Class ;
               rdfs:subClassOf :MathOperator ,
                               [ rdf:type owl:Restriction ;
+                                owl:onProperty :hasDifference ;
+                                owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                owl:onClass :Number
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :hasMinuend ;
+                                owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                owl:onClass :Number
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :hasSubtrahend ;
+                                owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                owl:onClass :Number
+                              ] ,
+                              [ rdf:type owl:Restriction ;
                                 owl:onProperty :hasSymbol ;
                                 owl:hasValue "-"
                               ] .
 
 
-###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#SynonimAntonymsGame
-:SynonimAntonymsGame rdf:type owl:Class ;
-                     owl:equivalentClass [ rdf:type owl:Class ;
-                                           owl:unionOf ( :AntonymsGame
-                                                         :SynonimsGame
-                                                       )
-                                         ] ;
-                     rdfs:subClassOf :WordGames .
+###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#SynonimWord
+:SynonimWord rdf:type owl:Class ;
+             owl:equivalentClass [ owl:intersectionOf ( :Word
+                                                        [ rdf:type owl:Restriction ;
+                                                          owl:onProperty :hasSynonim ;
+                                                          owl:someValuesFrom :Word
+                                                        ]
+                                                      ) ;
+                                   rdf:type owl:Class
+                                 ] ;
+             rdfs:subClassOf :GameObject .
 
 
-###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#SynonimsGame
-:SynonimsGame rdf:type owl:Class ;
-              rdfs:subClassOf :WordGames ,
-                              [ rdf:type owl:Restriction ;
-                                owl:onProperty :hasSynonim ;
-                                owl:someValuesFrom :Word
-                              ] ,
-                              [ rdf:type owl:Restriction ;
-                                owl:onProperty :hasMainWord ;
-                                owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                owl:onClass :Word
-                              ] .
+###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#Synonims
+:Synonims rdf:type owl:Class ;
+          rdfs:subClassOf :Game .
 
 
-###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#ThreeDigit
-:ThreeDigit rdf:type owl:Class ;
-            rdfs:subClassOf :Number .
+###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#Thousands
+:Thousands rdf:type owl:Class ;
+           rdfs:subClassOf :Number ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty :hasNumberValue ;
+                             owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                  owl:onDatatype xsd:positiveInteger ;
+                                                  owl:withRestrictions ( [ xsd:minInclusive "1000"^^xsd:positiveInteger
+                                                                         ]
+                                                                         [ xsd:maxInclusive "9999"^^xsd:positiveInteger
+                                                                         ]
+                                                                       )
+                                                ]
+                           ] .
 
 
-###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#TwoDigit
-:TwoDigit rdf:type owl:Class ;
-          rdfs:subClassOf :Number .
+###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#UpToFifty
+:UpToFifty rdf:type owl:Class ;
+           rdfs:subClassOf :Number ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty :hasNumberValue ;
+                             owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                  owl:onDatatype xsd:positiveInteger ;
+                                                  owl:withRestrictions ( [ xsd:maxInclusive "50"^^xsd:positiveInteger
+                                                                         ]
+                                                                       )
+                                                ]
+                           ] .
+
+
+###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#UpToTen
+:UpToTen rdf:type owl:Class ;
+         rdfs:subClassOf :Number ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :hasNumberValue ;
+                           owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                owl:onDatatype xsd:positiveInteger ;
+                                                owl:withRestrictions ( [ xsd:maxInclusive "10"^^xsd:positiveInteger
+                                                                       ]
+                                                                     )
+                                              ]
+                         ] .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#Word
 :Word rdf:type owl:Class ;
       rdfs:subClassOf :GameObject .
-
-
-###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#WordGames
-:WordGames rdf:type owl:Class ;
-           rdfs:subClassOf :Game ,
-                           [ rdf:type owl:Restriction ;
-                             owl:onProperty :hasWord ;
-                             owl:someValuesFrom :Word
-                           ] .
 
 
 #################################################################
@@ -1771,7 +1799,6 @@
 [ rdf:type owl:AllDisjointClasses ;
   owl:members ( :Addition
                 :Division
-                :Equation
                 :Multiplication
                 :Substraction
               )
@@ -1779,17 +1806,32 @@
 
 
 [ rdf:type owl:AllDisjointClasses ;
-  owl:members ( :Block
-                :BlocksState
-                :Movement
+  owl:members ( :Antonyms
+                :BlockMovementGame
+                :Calculation
+                :ChronologicalOrder
+                :FindTheSound
+                :MemoryCards
+                :Observation
+                :Puzzle
+                :Recall
+                :Synonims
               )
 ] .
 
 
 [ rdf:type owl:AllDisjointClasses ;
-  owl:members ( :CircleObj
-                :PolygonObj
-                :RectangularObj
+  owl:members ( :BigImage
+                :MediumImage
+                :SimilarImage
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :EasyAntonymsGame
+                :HardAntonymsGame
+                :MediumAntonymsGame
               )
 ] .
 
@@ -1811,9 +1853,17 @@
 
 
 [ rdf:type owl:AllDisjointClasses ;
-  owl:members ( :EasyMemoryCards
-                :HardMemoryCards
-                :MediumMemoryCards
+  owl:members ( :EasyFindTheSound
+                :HardFindTheSound
+                :MediumFindTheSound
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :EasyObservation
+                :HardObservation
+                :MediumObservation
               )
 ] .
 
@@ -1822,53 +1872,6 @@
   owl:members ( :EasyPuzzle
                 :HardPuzzle
                 :MediumPuzzle
-              )
-] .
-
-
-[ rdf:type owl:AllDisjointClasses ;
-  owl:members ( :EasyRecall
-                :HardRecall
-                :MediumRecall
-              )
-] .
-
-
-[ rdf:type owl:AllDisjointClasses ;
-  owl:members ( :EasySynonymsGame
-                :HardSynonymsGame
-                :MediumSynonymsGame
-              )
-] .
-
-
-[ rdf:type owl:AllDisjointClasses ;
-  owl:members ( :FindTheSoundEasyGame
-                :FindTheSoundHardGame
-                :FindTheSoundMediumGame
-              )
-] .
-
-
-[ rdf:type owl:AllDisjointClasses ;
-  owl:members ( :FiveDigit
-                :FourDigit
-                :OneDigit
-                :SixDigit
-                :ThreeDigit
-                :TwoDigit
-              )
-] .
-
-
-[ rdf:type owl:AllDisjointClasses ;
-  owl:members ( :Game
-                :Image
-                :MathOperator
-                :Number
-                :Piece
-                :Sound
-                :Word
               )
 ] .
 
@@ -1885,117 +1888,22 @@
 ] .
 
 
-[ rdf:type owl:AllDisjointClasses ;
-  owl:members ( :ImageGames
-                :LogicalOrder
-                :NumberGames
-                :SoundGames
-                :WordGames
-              )
-] .
-
-
-[ rdf:type owl:AllDisjointClasses ;
-  owl:members ( :MemoryCards
-                :Observation
-                :PieceGames
-              )
-] .
-
-
-[ rdf:type owl:AllDisjointProperties ;
-  owl:members ( :connectsWith
-                :hasBlock
-                :hasBlockState
-                :hasDifference
-                :hasEndingImage
-                :hasImage
-                :hasMathOperation
-                :hasMovement
-                :hasNextState
-                :hasNumber
-                :hasPiece
-                :hasQuotient
-                :hasRelatedImage
-                :hasSimilarNumber
-                :hasSound
-                :hasStartingImage
-                :hasSum
-                :hasTotal
-                :hasWord
-                :isAssociatedWithImage
-                :isBefore
-                :isEqualNumber
-                :isRecallNumber
-                :isSameWith
-              )
-] .
-
-
 [ rdf:type owl:AllDisjointProperties ;
   owl:members ( :displayTime
                 :hasDifficulty
-                :hasId
+                :hasGameId
                 :hasLevel
                 :hasNumberValue
+                :hasObjectId
+                :hasPlayer
                 :hasSymbol
-                :imageDescription
                 :imageLocation
-                :imageObject
                 :imageSize
-                :isCurrentLevel
+                :isCompletedIn
                 :isWord
                 :maxCompletionTime
                 :movementName
                 :soundLocation
-              )
-] .
-
-
-[ rdf:type owl:AllDisjointProperties ;
-  owl:members ( :displayTime
-                :hasDifficulty
-                :hasId
-                :hasLevel
-                :hasNumberValue
-                :hasSymbol
-                :imageDescription
-                :imageLocation
-                :imageObject
-                :imageSize
-                :isCurrentLevel
-                :maxCompletionTime
-                :movementName
-                :soundLocation
-              )
-] .
-
-
-[ rdf:type owl:AllDisjointProperties ;
-  owl:members ( :displayTime
-                :hasDifficulty
-                :hasId
-                :hasLevel
-                :hasNumberValue
-                :hasSymbol
-                :imageDescription
-                :imageLocation
-                :imageObject
-                :imageSize
-                :isCurrentLevel
-                :maxCompletionTime
-                :soundLocation
-              )
-] .
-
-
-[ rdf:type owl:AllDisjointProperties ;
-  owl:members ( :hasFiveDigitValue
-                :hasFourDigitValue
-                :hasOneDigitValue
-                :hasSixDigitValue
-                :hasThreeDigitValue
-                :hasTwoDigitValue
               )
 ] .
 
