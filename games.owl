@@ -307,7 +307,7 @@
              rdfs:subPropertyOf owl:topDataProperty ;
              rdf:type owl:FunctionalProperty ;
              rdfs:domain :Recall ;
-             rdfs:range xsd:string .
+             rdfs:range xsd:positiveInteger .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasDifficulty
@@ -402,7 +402,7 @@
                    rdfs:subPropertyOf owl:topDataProperty ;
                    rdf:type owl:FunctionalProperty ;
                    rdfs:domain :Game ;
-                   rdfs:range xsd:integer .
+                   rdfs:range xsd:positiveInteger .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#movementName
@@ -870,6 +870,10 @@
                                                  ]
                             ] ,
                             [ rdf:type owl:Restriction ;
+                              owl:onProperty :displayTime ;
+                              owl:hasValue 5
+                            ] ,
+                            [ rdf:type owl:Restriction ;
                               owl:onProperty :hasDifficulty ;
                               owl:hasValue "easy"
                             ] .
@@ -1170,6 +1174,10 @@
                                                  ]
                             ] ,
                             [ rdf:type owl:Restriction ;
+                              owl:onProperty :displayTime ;
+                              owl:hasValue 3
+                            ] ,
+                            [ rdf:type owl:Restriction ;
                               owl:onProperty :hasDifficulty ;
                               owl:hasValue "hard"
                             ] .
@@ -1221,7 +1229,12 @@
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#Image
 :Image rdf:type owl:Class ;
-       rdfs:subClassOf :GameObject .
+       rdfs:subClassOf :GameObject ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :imageLocation ;
+                         owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                         owl:onDataRange xsd:string
+                       ] .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#InteriorPiece
@@ -1531,6 +1544,10 @@
                                                    ]
                               ] ,
                               [ rdf:type owl:Restriction ;
+                                owl:onProperty :displayTime ;
+                                owl:hasValue 5
+                              ] ,
+                              [ rdf:type owl:Restriction ;
                                 owl:onProperty :hasDifficulty ;
                                 owl:hasValue "medium"
                               ] .
@@ -1685,7 +1702,11 @@
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#Sound
 :Sound rdf:type owl:Class ;
-       rdfs:subClassOf :GameObject .
+       rdfs:subClassOf :GameObject ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :soundLocation ;
+                         owl:someValuesFrom xsd:string
+                       ] .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#SoundImage
@@ -1789,7 +1810,12 @@
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#Word
 :Word rdf:type owl:Class ;
-      rdfs:subClassOf :GameObject .
+      rdfs:subClassOf :GameObject ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :isWord ;
+                        owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                        owl:onDataRange xsd:string
+                      ] .
 
 
 #################################################################
