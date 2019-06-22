@@ -678,8 +678,8 @@
                                                                    [ rdf:type owl:Restriction ;
                                                                      owl:onProperty :maxCompletionTime ;
                                                                      owl:someValuesFrom [ rdf:type rdfs:Datatype ;
-                                                                                          owl:onDatatype xsd:integer ;
-                                                                                          owl:withRestrictions ( [ xsd:maxInclusive 1800
+                                                                                          owl:onDatatype xsd:positiveInteger ;
+                                                                                          owl:withRestrictions ( [ xsd:maxInclusive "1800"^^xsd:positiveInteger
                                                                                                                  ]
                                                                                                                )
                                                                                         ]
@@ -758,8 +758,7 @@
                                                           ) ;
                                        rdf:type owl:Class
                                      ] ;
-                 rdfs:subClassOf :MemoryCards ,
-                                 [ rdf:type owl:Restriction ;
+                 rdfs:subClassOf [ rdf:type owl:Restriction ;
                                    owl:onProperty :hasImage ;
                                    owl:qualifiedCardinality "6"^^xsd:nonNegativeInteger ;
                                    owl:onClass :SimilarImage
@@ -819,11 +818,6 @@
                               owl:onProperty :hasPiece ;
                               owl:maxQualifiedCardinality "4"^^xsd:nonNegativeInteger ;
                               owl:onClass :BorderLinePiece
-                            ] ,
-                            [ rdf:type owl:Restriction ;
-                              owl:onProperty :hasPiece ;
-                              owl:maxQualifiedCardinality "9"^^xsd:nonNegativeInteger ;
-                              owl:onClass :Piece
                             ] .
 
 
@@ -970,8 +964,8 @@
                                                                    [ rdf:type owl:Restriction ;
                                                                      owl:onProperty :maxCompletionTime ;
                                                                      owl:someValuesFrom [ rdf:type rdfs:Datatype ;
-                                                                                          owl:onDatatype xsd:integer ;
-                                                                                          owl:withRestrictions ( [ xsd:maxInclusive 1800
+                                                                                          owl:onDatatype xsd:positiveInteger ;
+                                                                                          owl:withRestrictions ( [ xsd:maxInclusive "1800"^^xsd:positiveInteger
                                                                                                                  ]
                                                                                                                )
                                                                                         ]
@@ -1118,11 +1112,6 @@
                             ] ,
                             [ rdf:type owl:Restriction ;
                               owl:onProperty :hasPiece ;
-                              owl:minQualifiedCardinality "25"^^xsd:nonNegativeInteger ;
-                              owl:onClass :Piece
-                            ] ,
-                            [ rdf:type owl:Restriction ;
-                              owl:onProperty :hasPiece ;
                               owl:maxQualifiedCardinality "24"^^xsd:nonNegativeInteger ;
                               owl:onClass :BorderLinePiece
                             ] ,
@@ -1130,11 +1119,6 @@
                               owl:onProperty :hasPiece ;
                               owl:maxQualifiedCardinality "36"^^xsd:nonNegativeInteger ;
                               owl:onClass :InteriorPiece
-                            ] ,
-                            [ rdf:type owl:Restriction ;
-                              owl:onProperty :hasPiece ;
-                              owl:maxQualifiedCardinality "64"^^xsd:nonNegativeInteger ;
-                              owl:onClass :Piece
                             ] .
 
 
@@ -1343,8 +1327,8 @@
                                                                      [ rdf:type owl:Restriction ;
                                                                        owl:onProperty :maxCompletionTime ;
                                                                        owl:someValuesFrom [ rdf:type rdfs:Datatype ;
-                                                                                            owl:onDatatype xsd:integer ;
-                                                                                            owl:withRestrictions ( [ xsd:maxInclusive 1800
+                                                                                            owl:onDatatype xsd:positiveInteger ;
+                                                                                            owl:withRestrictions ( [ xsd:maxInclusive "1800"^^xsd:positiveInteger
                                                                                                                    ]
                                                                                                                  )
                                                                                           ]
@@ -1491,11 +1475,6 @@
                               ] ,
                               [ rdf:type owl:Restriction ;
                                 owl:onProperty :hasPiece ;
-                                owl:minQualifiedCardinality "12"^^xsd:nonNegativeInteger ;
-                                owl:onClass :Piece
-                              ] ,
-                              [ rdf:type owl:Restriction ;
-                                owl:onProperty :hasPiece ;
                                 owl:maxQualifiedCardinality "9"^^xsd:nonNegativeInteger ;
                                 owl:onClass :InteriorPiece
                               ] ,
@@ -1503,11 +1482,6 @@
                                 owl:onProperty :hasPiece ;
                                 owl:maxQualifiedCardinality "12"^^xsd:nonNegativeInteger ;
                                 owl:onClass :BorderLinePiece
-                              ] ,
-                              [ rdf:type owl:Restriction ;
-                                owl:onProperty :hasPiece ;
-                                owl:maxQualifiedCardinality "25"^^xsd:nonNegativeInteger ;
-                                owl:onClass :Piece
                               ] .
 
 
@@ -1674,14 +1648,6 @@
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#SimilarNumber
 :SimilarNumber rdf:type owl:Class ;
-               owl:equivalentClass [ owl:intersectionOf ( :Number
-                                                          [ rdf:type owl:Restriction ;
-                                                            owl:onProperty :hasSimilarNumber ;
-                                                            owl:someValuesFrom :Number
-                                                          ]
-                                                        ) ;
-                                     rdf:type owl:Class
-                                   ] ;
                rdfs:subClassOf :Number ,
                                [ rdf:type owl:Restriction ;
                                  owl:onProperty :hasSimilarNumber ;
