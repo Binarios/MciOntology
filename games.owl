@@ -653,32 +653,75 @@
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#DBorderBlock
 :DBorderBlock rdf:type owl:Class ;
-              owl:equivalentClass [ owl:intersectionOf ( :LabyrinthBlock
+              owl:equivalentClass [ owl:intersectionOf ( :OneBorderBlock
                                                          [ rdf:type owl:Restriction ;
                                                            owl:onProperty :hasBorder ;
                                                            owl:hasValue "D"
                                                          ]
                                                        ) ;
                                     rdf:type owl:Class
-                                  ] .
+                                  ] ;
+              rdfs:subClassOf [ rdf:type owl:Class ;
+                                owl:unionOf ( :DLBorderBlock
+                                              :DLUBorderBlock
+                                              :NoBorderBlock
+                                              :UDBorderBlock
+                                              [ rdf:type owl:Restriction ;
+                                                owl:onProperty :hasConnectingBlock ;
+                                                owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                owl:onClass :OneBorderBlock
+                                              ]
+                                            )
+                              ] .
+
+
+###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#DLBorderBlock
+:DLBorderBlock rdf:type owl:Class ;
+               owl:equivalentClass [ owl:intersectionOf ( :TwoBorderBlock
+                                                          [ rdf:type owl:Restriction ;
+                                                            owl:onProperty :hasBorder ;
+                                                            owl:hasValue "D"
+                                                          ]
+                                                          [ rdf:type owl:Restriction ;
+                                                            owl:onProperty :hasBorder ;
+                                                            owl:hasValue "L"
+                                                          ]
+                                                        ) ;
+                                     rdf:type owl:Class
+                                   ] ;
+               rdfs:subClassOf [ rdf:type owl:Class ;
+                                 owl:unionOf ( :LUBorderBlock
+                                               :LURBorderBlock
+                                               :NoBorderBlock
+                                               :RBorderBlock
+                                               :UBorderBlock
+                                               [ rdf:type owl:Restriction ;
+                                                 owl:onProperty :hasConnectingBlock ;
+                                                 owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                 owl:onClass :LBorderBlock
+                                               ]
+                                             )
+                               ] .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#DLUBorderBlock
 :DLUBorderBlock rdf:type owl:Class ;
-                owl:equivalentClass [ owl:intersectionOf ( :LBorderBlock
-                                                           :UBorderBlock
+                owl:equivalentClass [ owl:intersectionOf ( :ThreeBorderBlock
+                                                           [ rdf:type owl:Restriction ;
+                                                             owl:onProperty :hasBorder ;
+                                                             owl:hasValue "D"
+                                                           ]
+                                                           [ rdf:type owl:Restriction ;
+                                                             owl:onProperty :hasBorder ;
+                                                             owl:hasValue "L"
+                                                           ]
+                                                           [ rdf:type owl:Restriction ;
+                                                             owl:onProperty :hasBorder ;
+                                                             owl:hasValue "U"
+                                                           ]
                                                          ) ;
                                       rdf:type owl:Class
                                     ] .
-
-
-###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#DRBorderBlock
-:DRBorderBlock rdf:type owl:Class ;
-               owl:equivalentClass [ owl:intersectionOf ( :DBorderBlock
-                                                          :RBorderBlock
-                                                        ) ;
-                                     rdf:type owl:Class
-                                   ] .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#DiagonialBlock
@@ -1449,39 +1492,72 @@
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#LBorderBlock
 :LBorderBlock rdf:type owl:Class ;
-              owl:equivalentClass [ owl:intersectionOf ( :LabyrinthBlock
+              owl:equivalentClass [ owl:intersectionOf ( :OneBorderBlock
                                                          [ rdf:type owl:Restriction ;
                                                            owl:onProperty :hasBorder ;
                                                            owl:hasValue "L"
                                                          ]
                                                        ) ;
                                     rdf:type owl:Class
-                                  ] .
+                                  ] ;
+              rdfs:subClassOf [ rdf:type owl:Class ;
+                                owl:unionOf ( :LUBorderBlock
+                                              :LURBorderBlock
+                                              :NoBorderBlock
+                                              :RLBorderBlock
+                                              [ rdf:type owl:Restriction ;
+                                                owl:onProperty :hasConnectingBlock ;
+                                                owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                owl:onClass :OneBorderBlock
+                                              ]
+                                            )
+                              ] .
 
 
-###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#LDBorderBlock
-:LDBorderBlock rdf:type owl:Class ;
-               owl:equivalentClass [ owl:intersectionOf ( :DBorderBlock
-                                                          :LBorderBlock
+###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#LUBorderBlock
+:LUBorderBlock rdf:type owl:Class ;
+               owl:equivalentClass [ owl:intersectionOf ( :TwoBorderBlock
+                                                          [ rdf:type owl:Restriction ;
+                                                            owl:onProperty :hasBorder ;
+                                                            owl:hasValue "L"
+                                                          ]
+                                                          [ rdf:type owl:Restriction ;
+                                                            owl:onProperty :hasBorder ;
+                                                            owl:hasValue "U"
+                                                          ]
                                                         ) ;
                                      rdf:type owl:Class
-                                   ] .
-
-
-###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#LRBorderBlock
-:LRBorderBlock rdf:type owl:Class ;
-               owl:equivalentClass [ owl:intersectionOf ( :LBorderBlock
-                                                          :RBorderBlock
-                                                        ) ;
-                                     rdf:type owl:Class
-                                   ] .
+                                   ] ;
+               rdfs:subClassOf [ rdf:type owl:Class ;
+                                 owl:unionOf ( :DBorderBlock
+                                               :RBorderBlock
+                                               :RDBorderBlock
+                                               :UBorderBlock
+                                               :URDBorderBlock
+                                               [ rdf:type owl:Restriction ;
+                                                 owl:onProperty :hasConnectingBlock ;
+                                                 owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                 owl:onClass :NoBorderBlock
+                                               ]
+                                             )
+                               ] .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#LURBorderBlock
 :LURBorderBlock rdf:type owl:Class ;
-                owl:equivalentClass [ owl:intersectionOf ( :LBorderBlock
-                                                           :RBorderBlock
-                                                           :UBorderBlock
+                owl:equivalentClass [ owl:intersectionOf ( :ThreeBorderBlock
+                                                           [ rdf:type owl:Restriction ;
+                                                             owl:onProperty :hasBorder ;
+                                                             owl:hasValue "L"
+                                                           ]
+                                                           [ rdf:type owl:Restriction ;
+                                                             owl:onProperty :hasBorder ;
+                                                             owl:hasValue "R"
+                                                           ]
+                                                           [ rdf:type owl:Restriction ;
+                                                             owl:onProperty :hasBorder ;
+                                                             owl:hasValue "U"
+                                                           ]
                                                          ) ;
                                       rdf:type owl:Class
                                     ] .
@@ -1946,14 +2022,12 @@
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#OneBorderBlock
 :OneBorderBlock rdf:type owl:Class ;
-                owl:equivalentClass [ rdf:type owl:Class ;
-                                      owl:unionOf ( :DBorderBlock
-                                                    :LBorderBlock
-                                                    :RBorderBlock
-                                                    :UBorderBlock
-                                                  )
-                                    ] ;
-                rdfs:subClassOf :LabyrinthBlock .
+                rdfs:subClassOf :LabyrinthBlock ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty :hasBorder ;
+                                  owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                  owl:onDataRange xsd:string
+                                ] .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#Piece
@@ -1978,33 +2052,102 @@
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#RBorderBlock
 :RBorderBlock rdf:type owl:Class ;
-              owl:equivalentClass [ owl:intersectionOf ( :LabyrinthBlock
+              owl:equivalentClass [ owl:intersectionOf ( :OneBorderBlock
                                                          [ rdf:type owl:Restriction ;
                                                            owl:onProperty :hasBorder ;
                                                            owl:hasValue "R"
                                                          ]
                                                        ) ;
                                     rdf:type owl:Class
-                                  ] .
+                                  ] ;
+              rdfs:subClassOf [ rdf:type owl:Class ;
+                                owl:unionOf ( :NoBorderBlock
+                                              :RDBorderBlock
+                                              :RDLBorderBlock
+                                              :RLBorderBlock
+                                              [ rdf:type owl:Restriction ;
+                                                owl:onProperty :hasConnectingBlock ;
+                                                owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                owl:onClass :OneBorderBlock
+                                              ]
+                                            )
+                              ] .
+
+
+###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#RDBorderBlock
+:RDBorderBlock rdf:type owl:Class ;
+               owl:equivalentClass [ owl:intersectionOf ( :TwoBorderBlock
+                                                          [ rdf:type owl:Restriction ;
+                                                            owl:onProperty :hasBorder ;
+                                                            owl:hasValue "D"
+                                                          ]
+                                                          [ rdf:type owl:Restriction ;
+                                                            owl:onProperty :hasBorder ;
+                                                            owl:hasValue "R"
+                                                          ]
+                                                        ) ;
+                                     rdf:type owl:Class
+                                   ] ;
+               rdfs:subClassOf [ rdf:type owl:Class ;
+                                 owl:unionOf ( :DBorderBlock
+                                               :DLUBorderBlock
+                                               :LBorderBlock
+                                               :RDBorderBlock
+                                               :UBorderBlock
+                                               [ rdf:type owl:Restriction ;
+                                                 owl:onProperty :hasConnectingBlock ;
+                                                 owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                 owl:onClass :NoBorderBlock
+                                               ]
+                                             )
+                               ] .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#RDLBorderBlock
 :RDLBorderBlock rdf:type owl:Class ;
-                owl:equivalentClass [ owl:intersectionOf ( :DBorderBlock
-                                                           :LBorderBlock
-                                                           :RBorderBlock
+                owl:equivalentClass [ owl:intersectionOf ( :ThreeBorderBlock
+                                                           [ rdf:type owl:Restriction ;
+                                                             owl:onProperty :hasBorder ;
+                                                             owl:hasValue "D"
+                                                           ]
+                                                           [ rdf:type owl:Restriction ;
+                                                             owl:onProperty :hasBorder ;
+                                                             owl:hasValue "L"
+                                                           ]
+                                                           [ rdf:type owl:Restriction ;
+                                                             owl:onProperty :hasBorder ;
+                                                             owl:hasValue "R"
+                                                           ]
                                                          ) ;
                                       rdf:type owl:Class
                                     ] .
 
 
-###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#RUBorderBlock
-:RUBorderBlock rdf:type owl:Class ;
-               owl:equivalentClass [ owl:intersectionOf ( :RBorderBlock
-                                                          :UBorderBlock
+###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#RLBorderBlock
+:RLBorderBlock rdf:type owl:Class ;
+               owl:equivalentClass [ owl:intersectionOf ( :TwoBorderBlock
+                                                          [ rdf:type owl:Restriction ;
+                                                            owl:onProperty :hasBorder ;
+                                                            owl:hasValue "L"
+                                                          ]
+                                                          [ rdf:type owl:Restriction ;
+                                                            owl:onProperty :hasBorder ;
+                                                            owl:hasValue "R"
+                                                          ]
                                                         ) ;
                                      rdf:type owl:Class
-                                   ] .
+                                   ] ;
+               rdfs:subClassOf [ rdf:type owl:Class ;
+                                 owl:unionOf ( :LURBorderBlock
+                                               :OneBorderBlock
+                                               :RDLBorderBlock
+                                               [ rdf:type owl:Restriction ;
+                                                 owl:onProperty :hasConnectingBlock ;
+                                                 owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                 owl:onClass :NoBorderBlock
+                                               ]
+                                             )
+                               ] .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#Recall
@@ -2123,65 +2266,119 @@
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#ThreeBorderBlock
 :ThreeBorderBlock rdf:type owl:Class ;
-                  owl:equivalentClass [ rdf:type owl:Class ;
-                                        owl:unionOf ( :DLUBorderBlock
-                                                      :LURBorderBlock
-                                                      :RDLBorderBlock
-                                                      :URDBorderBlock
-                                                    )
-                                      ] ;
-                  rdfs:subClassOf :LabyrinthBlock .
+                  rdfs:subClassOf :LabyrinthBlock ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty :hasBorder ;
+                                    owl:qualifiedCardinality "3"^^xsd:nonNegativeInteger ;
+                                    owl:onDataRange xsd:string
+                                  ] .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#TwoBorderBlock
 :TwoBorderBlock rdf:type owl:Class ;
-                owl:equivalentClass [ rdf:type owl:Class ;
-                                      owl:unionOf ( :DRBorderBlock
-                                                    :LDBorderBlock
-                                                    :LRBorderBlock
-                                                    :RUBorderBlock
-                                                    :UDBorderBlock
-                                                    :ULBorderBlock
-                                                  )
-                                    ] ;
-                rdfs:subClassOf :LabyrinthBlock .
+                rdfs:subClassOf :LabyrinthBlock ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty :hasBorder ;
+                                  owl:qualifiedCardinality "2"^^xsd:nonNegativeInteger ;
+                                  owl:onDataRange xsd:string
+                                ] .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#UBorderBlock
 :UBorderBlock rdf:type owl:Class ;
-              owl:equivalentClass [ owl:intersectionOf ( :LabyrinthBlock
+              owl:equivalentClass [ owl:intersectionOf ( :OneBorderBlock
                                                          [ rdf:type owl:Restriction ;
                                                            owl:onProperty :hasBorder ;
                                                            owl:hasValue "U"
                                                          ]
                                                        ) ;
                                     rdf:type owl:Class
-                                  ] .
+                                  ] ;
+              rdfs:subClassOf [ rdf:type owl:Class ;
+                                owl:unionOf ( :NoBorderBlock
+                                              :UDBorderBlock
+                                              :URBorderBlock
+                                              :URDBorderBlock
+                                              [ rdf:type owl:Restriction ;
+                                                owl:onProperty :hasConnectingBlock ;
+                                                owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                owl:onClass :OneBorderBlock
+                                              ]
+                                            )
+                              ] .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#UDBorderBlock
 :UDBorderBlock rdf:type owl:Class ;
-               owl:equivalentClass [ owl:intersectionOf ( :DBorderBlock
-                                                          :UBorderBlock
+               owl:equivalentClass [ owl:intersectionOf ( :TwoBorderBlock
+                                                          [ rdf:type owl:Restriction ;
+                                                            owl:onProperty :hasBorder ;
+                                                            owl:hasValue "D"
+                                                          ]
+                                                          [ rdf:type owl:Restriction ;
+                                                            owl:onProperty :hasBorder ;
+                                                            owl:hasValue "U"
+                                                          ]
                                                         ) ;
                                      rdf:type owl:Class
-                                   ] .
+                                   ] ;
+               rdfs:subClassOf [ rdf:type owl:Class ;
+                                 owl:unionOf ( :DLUBorderBlock
+                                               :OneBorderBlock
+                                               :URDBorderBlock
+                                               [ rdf:type owl:Restriction ;
+                                                 owl:onProperty :hasConnectingBlock ;
+                                                 owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                 owl:onClass :NoBorderBlock
+                                               ]
+                                             )
+                               ] .
 
 
-###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#ULBorderBlock
-:ULBorderBlock rdf:type owl:Class ;
-               owl:equivalentClass [ owl:intersectionOf ( :LBorderBlock
-                                                          :UBorderBlock
+###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#URBorderBlock
+:URBorderBlock rdf:type owl:Class ;
+               owl:equivalentClass [ owl:intersectionOf ( :TwoBorderBlock
+                                                          [ rdf:type owl:Restriction ;
+                                                            owl:onProperty :hasBorder ;
+                                                            owl:hasValue "R"
+                                                          ]
+                                                          [ rdf:type owl:Restriction ;
+                                                            owl:onProperty :hasBorder ;
+                                                            owl:hasValue "U"
+                                                          ]
                                                         ) ;
                                      rdf:type owl:Class
-                                   ] .
+                                   ] ;
+               rdfs:subClassOf [ rdf:type owl:Class ;
+                                 owl:unionOf ( :DBorderBlock
+                                               :LBorderBlock
+                                               :RBorderBlock
+                                               :RDBorderBlock
+                                               :RDLBorderBlock
+                                               [ rdf:type owl:Restriction ;
+                                                 owl:onProperty :hasConnectingBlock ;
+                                                 owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                 owl:onClass :NoBorderBlock
+                                               ]
+                                             )
+                               ] .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#URDBorderBlock
 :URDBorderBlock rdf:type owl:Class ;
-                owl:equivalentClass [ owl:intersectionOf ( :DBorderBlock
-                                                           :RBorderBlock
-                                                           :UBorderBlock
+                owl:equivalentClass [ owl:intersectionOf ( :ThreeBorderBlock
+                                                           [ rdf:type owl:Restriction ;
+                                                             owl:onProperty :hasBorder ;
+                                                             owl:hasValue "D"
+                                                           ]
+                                                           [ rdf:type owl:Restriction ;
+                                                             owl:onProperty :hasBorder ;
+                                                             owl:hasValue "R"
+                                                           ]
+                                                           [ rdf:type owl:Restriction ;
+                                                             owl:onProperty :hasBorder ;
+                                                             owl:hasValue "U"
+                                                           ]
                                                          ) ;
                                       rdf:type owl:Class
                                     ] .
@@ -2300,6 +2497,26 @@
 
 
 [ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :DBorderBlock
+                :LBorderBlock
+                :RBorderBlock
+                :UBorderBlock
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :DLBorderBlock
+                :LUBorderBlock
+                :RDBorderBlock
+                :RLBorderBlock
+                :UDBorderBlock
+                :URBorderBlock
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
   owl:members ( :EasyAntonymsGame
                 :HardAntonymsGame
                 :MediumAntonymsGame
@@ -2335,6 +2552,15 @@
   owl:members ( :EasyPuzzle
                 :HardPuzzle
                 :MediumPuzzle
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :NoBorderBlock
+                :OneBorderBlock
+                :ThreeBorderBlock
+                :TwoBorderBlock
               )
 ] .
 
