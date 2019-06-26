@@ -22,7 +22,7 @@
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasAnswer
 :hasAnswer rdf:type owl:ObjectProperty ;
-           rdfs:subPropertyOf owl:topObjectProperty ;
+           rdfs:subPropertyOf :hasChoice ;
            rdf:type owl:FunctionalProperty ;
            rdfs:domain :Question ;
            rdfs:range :Word .
@@ -69,7 +69,6 @@
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasChoice
 :hasChoice rdf:type owl:ObjectProperty ;
            rdfs:subPropertyOf owl:topObjectProperty ;
-           rdfs:domain :Question ;
            rdfs:range :Word .
 
 
@@ -155,10 +154,12 @@
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasImageDescription
 :hasImageDescription rdf:type owl:ObjectProperty ;
                      rdfs:subPropertyOf :hasImage ;
-                     rdf:type owl:FunctionalProperty ;
-                     rdfs:domain :Question ;
-                     rdfs:range :Image ;
-                     owl:propertyDisjointWith :hasObservation .
+                     rdfs:domain [ rdf:type owl:Class ;
+                                   owl:unionOf ( :Observation
+                                                 :Question
+                                               )
+                                 ] ;
+                     rdfs:range :ImageWord .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasMainWord
@@ -222,13 +223,6 @@
                                      )
                        ] ;
            rdfs:range :Number .
-
-
-###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasObservation
-:hasObservation rdf:type owl:ObjectProperty ;
-                rdfs:subPropertyOf :hasImage ;
-                rdfs:domain :Observation ;
-                rdfs:range :ImageWord .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasPiece
@@ -1735,6 +1729,16 @@
        rdfs:subClassOf :GameObject .
 
 
+###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#ImageQuestion
+:ImageQuestion rdf:type owl:Class ;
+               rdfs:subClassOf :Question ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :hasImageDescription ;
+                                 owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                 owl:onClass :ImageWord
+                               ] .
+
+
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#ImageSound
 :ImageSound rdf:type owl:Class ;
             rdfs:subClassOf :Image ,
@@ -2418,7 +2422,7 @@
 :Observation rdf:type owl:Class ;
              rdfs:subClassOf :Game ,
                              [ rdf:type owl:Restriction ;
-                               owl:onProperty :hasObservation ;
+                               owl:onProperty :hasImageDescription ;
                                owl:someValuesFrom :ImageWord
                              ] .
 
@@ -2480,7 +2484,7 @@
                           ] ,
                           [ rdf:type owl:Restriction ;
                             owl:onProperty :hasChoice ;
-                            owl:qualifiedCardinality "4"^^xsd:nonNegativeInteger ;
+                            owl:qualifiedCardinality "3"^^xsd:nonNegativeInteger ;
                             owl:onClass :Word
                           ] .
 
@@ -2915,15 +2919,12 @@
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#WordQuestions
 :WordQuestions rdf:type owl:Class ;
-               owl:equivalentClass [ owl:intersectionOf ( :Question
-                                                          [ rdf:type owl:Restriction ;
-                                                            owl:onProperty :hasQuestionDescription ;
-                                                            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                            owl:onDataRange xsd:string
-                                                          ]
-                                                        ) ;
-                                     rdf:type owl:Class
-                                   ] .
+               rdfs:subClassOf :Question ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :hasQuestionDescription ;
+                                 owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                 owl:onDataRange xsd:string
+                               ] .
 
 
 #################################################################
@@ -3059,7 +3060,6 @@
 
 [ rdf:type owl:AllDisjointProperties ;
   owl:members ( :hasAddend
-                :hasAnswer
                 :hasAntonym
                 :hasBlock
                 :hasCategory
