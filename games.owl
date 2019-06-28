@@ -327,6 +327,7 @@
          rdfs:subPropertyOf owl:topObjectProperty ;
          rdfs:domain [ rdf:type owl:Class ;
                        owl:unionOf ( :Antonyms
+                                     :Observation
                                      :Synonims
                                      :WordPuzzle
                                    )
@@ -1145,6 +1146,11 @@
                                    owl:onProperty :hasImage ;
                                    owl:qualifiedCardinality "12"^^xsd:nonNegativeInteger ;
                                    owl:onClass :ImageWord
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :hasWord ;
+                                   owl:qualifiedCardinality "3"^^xsd:nonNegativeInteger ;
+                                   owl:onClass :Word
                                  ] .
 
 
@@ -1635,6 +1641,10 @@
                                 ] ;
             rdfs:subClassOf [ rdf:type owl:Restriction ;
                               owl:onProperty :hasNumber ;
+                              owl:allValuesFrom :Million
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasNumber ;
                               owl:qualifiedCardinality "10"^^xsd:nonNegativeInteger ;
                               owl:onClass :SimilarNumber
                             ] ,
@@ -1863,12 +1873,12 @@
                            [ rdf:type owl:Restriction ;
                              owl:onProperty :hasEndingBlock ;
                              owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                             owl:onClass :Block
+                             owl:onClass :LabyrinthBlock
                            ] ,
                            [ rdf:type owl:Restriction ;
                              owl:onProperty :hasStartingBlock ;
                              owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                             owl:onClass :Block
+                             owl:onClass :LabyrinthBlock
                            ] .
 
 
@@ -2238,6 +2248,10 @@
                                   ] ;
               rdfs:subClassOf [ rdf:type owl:Restriction ;
                                 owl:onProperty :hasNumber ;
+                                owl:allValuesFrom :HundrendThousands
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :hasNumber ;
                                 owl:qualifiedCardinality "8"^^xsd:nonNegativeInteger ;
                                 owl:onClass :SimilarNumber
                               ] ,
@@ -2420,11 +2434,7 @@
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#Observation
 :Observation rdf:type owl:Class ;
-             rdfs:subClassOf :Game ,
-                             [ rdf:type owl:Restriction ;
-                               owl:onProperty :hasImageDescription ;
-                               owl:someValuesFrom :ImageWord
-                             ] .
+             rdfs:subClassOf :Game .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#OneBorderBlock
