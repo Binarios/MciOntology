@@ -577,7 +577,9 @@
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasWidth
 :hasWidth rdf:type owl:DatatypeProperty ;
           rdfs:subPropertyOf owl:topDataProperty ;
-          rdf:type owl:FunctionalProperty .
+          rdf:type owl:FunctionalProperty ;
+          rdfs:domain :LogicalOrderGame ;
+          rdfs:range xsd:positiveInteger .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#isCompletedIn
@@ -661,7 +663,7 @@
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#Block
 :Block rdf:type owl:Class ;
-       rdfs:subClassOf :GameObject .
+       rdfs:subClassOf :Object .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#BorderLinePiece
@@ -709,7 +711,7 @@
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#Character
 :Character rdf:type owl:Class ;
-           rdfs:subClassOf :GameObject ,
+           rdfs:subClassOf :Object ,
                            [ rdf:type owl:Restriction ;
                              owl:onProperty :hasStringValue ;
                              owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
@@ -1264,12 +1266,7 @@
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#Game
 :Game rdf:type owl:Class ;
       rdfs:subClassOf owl:Thing ;
-      owl:disjointWith :GameObject .
-
-
-###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#GameObject
-:GameObject rdf:type owl:Class ;
-            rdfs:subClassOf owl:Thing .
+      owl:disjointWith :Object .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#HardAntonymsGame
@@ -1698,12 +1695,12 @@
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#Image
 :Image rdf:type owl:Class ;
-       rdfs:subClassOf :GameObject .
+       rdfs:subClassOf :Object .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#ImagePair
 :ImagePair rdf:type owl:Class ;
-           rdfs:subClassOf :GameObject ,
+           rdfs:subClassOf :Object ,
                            [ rdf:type owl:Restriction ;
                              owl:onProperty :hasImage ;
                              owl:qualifiedCardinality "2"^^xsd:nonNegativeInteger ;
@@ -1867,7 +1864,7 @@
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#MathOperator
 :MathOperator rdf:type owl:Class ;
-              rdfs:subClassOf :GameObject .
+              rdfs:subClassOf :Object .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#MediumAntonymsGame
@@ -2382,7 +2379,7 @@
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#Number
 :Number rdf:type owl:Class ;
-        rdfs:subClassOf :GameObject .
+        rdfs:subClassOf :Object .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#NumberOrder
@@ -2392,6 +2389,11 @@
                                owl:onProperty :hasNumber ;
                                owl:allValuesFrom :UpToThousand
                              ] .
+
+
+###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#Object
+:Object rdf:type owl:Class ;
+        rdfs:subClassOf owl:Thing .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#Observation
@@ -2424,7 +2426,7 @@
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#Piece
 :Piece rdf:type owl:Class ;
-       rdfs:subClassOf :GameObject .
+       rdfs:subClassOf :Object .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#Puzzle
@@ -2444,7 +2446,7 @@
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#Question
 :Question rdf:type owl:Class ;
-          rdfs:subClassOf :GameObject .
+          rdfs:subClassOf :Object .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#Questions
@@ -2617,7 +2619,7 @@
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#Sound
 :Sound rdf:type owl:Class ;
-       rdfs:subClassOf :GameObject .
+       rdfs:subClassOf :Object .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#StationaryBlock
@@ -2862,7 +2864,7 @@
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#Word
 :Word rdf:type owl:Class ;
-      rdfs:subClassOf :GameObject ,
+      rdfs:subClassOf :Object ,
                       [ rdf:type owl:Restriction ;
                         owl:onProperty :hasCharacter ;
                         owl:someValuesFrom :Character
