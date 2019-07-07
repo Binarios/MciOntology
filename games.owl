@@ -1528,6 +1528,11 @@
                                    owl:onClass :ImageWord
                                  ] ,
                                  [ rdf:type owl:Restriction ;
+                                   owl:onProperty :hasWord ;
+                                   owl:qualifiedCardinality "3"^^xsd:nonNegativeInteger ;
+                                   owl:onClass :Word
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
                                    owl:onProperty :maxCompletionTime ;
                                    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                    owl:onDataRange [ rdf:type rdfs:Datatype ;
@@ -2133,6 +2138,11 @@
                                      owl:onProperty :hasImage ;
                                      owl:qualifiedCardinality "16"^^xsd:nonNegativeInteger ;
                                      owl:onClass :ImageWord
+                                   ] ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :hasWord ;
+                                     owl:qualifiedCardinality "3"^^xsd:nonNegativeInteger ;
+                                     owl:onClass :Word
                                    ] ,
                                    [ rdf:type owl:Restriction ;
                                      owl:onProperty :maxCompletionTime ;
