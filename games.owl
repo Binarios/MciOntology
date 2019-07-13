@@ -379,6 +379,12 @@
 #    Data properties
 #################################################################
 
+###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#completedDate
+:completedDate rdf:type owl:DatatypeProperty ;
+               rdfs:domain :Game ;
+               rdfs:range xsd:string .
+
+
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#displayTime
 :displayTime rdf:type owl:DatatypeProperty ;
              rdfs:subPropertyOf owl:topDataProperty ;
@@ -3068,6 +3074,31 @@
                 :isBefore
                 :isGreaterThan
                 :isLesserThan
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointProperties ;
+  owl:members ( :completedDate
+                :displayTime
+                :hasAssetPath
+                :hasBorder
+                :hasDiagonalMovent
+                :hasDifficulty
+                :hasGameId
+                :hasHeight
+                :hasLevel
+                :hasMovement
+                :hasNumberValue
+                :hasPlayer
+                :hasQuestionDescription
+                :hasStep
+                :hasStringValue
+                :hasSymbol
+                :hasWidth
+                :isCompletedIn
+                :isMovingBlock
+                :maxCompletionTime
               )
 ] .
 
