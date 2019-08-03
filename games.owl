@@ -383,6 +383,7 @@
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#completedDate
 :completedDate rdf:type owl:DatatypeProperty ;
+               rdfs:subPropertyOf owl:topDataProperty ;
                rdfs:domain :Game ;
                rdfs:range xsd:string .
 
@@ -405,7 +406,7 @@
                                           :Word
                                         )
                           ] ;
-              rdfs:range xsd:string .
+              rdfs:range xsd:anyURI .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasBorder
@@ -556,7 +557,11 @@
 :hasStringValue rdf:type owl:DatatypeProperty ;
                 rdfs:subPropertyOf owl:topDataProperty ;
                 rdf:type owl:FunctionalProperty ;
-                rdfs:domain :Character ;
+                rdfs:domain [ rdf:type owl:Class ;
+                              owl:unionOf ( :Character
+                                            :Word
+                                          )
+                            ] ;
                 rdfs:range xsd:string .
 
 
@@ -639,14 +644,14 @@
                           ] .
 
 
-###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#AntonymWords
-:AntonymWords rdf:type owl:Class ;
-              rdfs:subClassOf :Word ,
-                              [ rdf:type owl:Restriction ;
-                                owl:onProperty :hasAntonym ;
-                                owl:someValuesFrom :Word
-                              ] ;
-              owl:disjointWith :SynonimWords .
+###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#AntonymWord
+:AntonymWord rdf:type owl:Class ;
+             rdfs:subClassOf :Word ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :hasAntonym ;
+                               owl:someValuesFrom :Word
+                             ] ;
+             owl:disjointWith :SynonimWord .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#Antonyms
@@ -655,7 +660,7 @@
                           [ rdf:type owl:Restriction ;
                             owl:onProperty :hasMainWord ;
                             owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                            owl:onClass :AntonymWords
+                            owl:onClass :AntonymWord
                           ] .
 
 
@@ -882,7 +887,7 @@
                   rdfs:subClassOf [ rdf:type owl:Restriction ;
                                     owl:onProperty :hasWord ;
                                     owl:qualifiedCardinality "3"^^xsd:nonNegativeInteger ;
-                                    owl:onClass :AntonymWords
+                                    owl:onClass :AntonymWord
                                   ] .
 
 
@@ -952,7 +957,7 @@
                                       ] ;
                   rdfs:subClassOf [ rdf:type owl:Restriction ;
                                     owl:onProperty :hasImage ;
-                                    owl:maxQualifiedCardinality "6"^^xsd:nonNegativeInteger ;
+                                    owl:qualifiedCardinality "6"^^xsd:nonNegativeInteger ;
                                     owl:onClass :ImageSound
                                   ] .
 
@@ -1182,7 +1187,7 @@
                   rdfs:subClassOf [ rdf:type owl:Restriction ;
                                     owl:onProperty :hasWord ;
                                     owl:qualifiedCardinality "3"^^xsd:nonNegativeInteger ;
-                                    owl:onClass :SynonimWords
+                                    owl:onClass :SynonimWord
                                   ] .
 
 
@@ -1240,7 +1245,7 @@
                   rdfs:subClassOf [ rdf:type owl:Restriction ;
                                     owl:onProperty :hasWord ;
                                     owl:qualifiedCardinality "5"^^xsd:nonNegativeInteger ;
-                                    owl:onClass :AntonymWords
+                                    owl:onClass :AntonymWord
                                   ] .
 
 
@@ -1551,7 +1556,7 @@
                   rdfs:subClassOf [ rdf:type owl:Restriction ;
                                     owl:onProperty :hasWord ;
                                     owl:qualifiedCardinality "5"^^xsd:nonNegativeInteger ;
-                                    owl:onClass :SynonimWords
+                                    owl:onClass :SynonimWord
                                   ] .
 
 
@@ -1586,15 +1591,14 @@
                    rdfs:subClassOf :Number ,
                                    [ rdf:type owl:Restriction ;
                                      owl:onProperty :hasNumberValue ;
-                                     owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                     owl:onDataRange [ rdf:type rdfs:Datatype ;
-                                                       owl:onDatatype xsd:positiveInteger ;
-                                                       owl:withRestrictions ( [ xsd:minInclusive "100000"^^xsd:positiveInteger
-                                                                              ]
-                                                                              [ xsd:maxInclusive "999999"^^xsd:positiveInteger
-                                                                              ]
-                                                                            )
-                                                     ]
+                                     owl:allValuesFrom [ rdf:type rdfs:Datatype ;
+                                                         owl:onDatatype xsd:positiveInteger ;
+                                                         owl:withRestrictions ( [ xsd:minInclusive "100000"^^xsd:positiveInteger
+                                                                                ]
+                                                                                [ xsd:maxInclusive "999999"^^xsd:positiveInteger
+                                                                                ]
+                                                                              )
+                                                       ]
                                    ] .
 
 
@@ -1779,7 +1783,7 @@
                     rdfs:subClassOf [ rdf:type owl:Restriction ;
                                       owl:onProperty :hasWord ;
                                       owl:qualifiedCardinality "4"^^xsd:nonNegativeInteger ;
-                                      owl:onClass :AntonymWords
+                                      owl:onClass :AntonymWord
                                     ] .
 
 
@@ -2099,7 +2103,7 @@
                     rdfs:subClassOf [ rdf:type owl:Restriction ;
                                       owl:onProperty :hasWord ;
                                       owl:qualifiedCardinality "4"^^xsd:nonNegativeInteger ;
-                                      owl:onClass :SynonimWords
+                                      owl:onClass :SynonimWord
                                     ] .
 
 
@@ -2150,15 +2154,14 @@
          rdfs:subClassOf :Number ,
                          [ rdf:type owl:Restriction ;
                            owl:onProperty :hasNumberValue ;
-                           owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                           owl:onDataRange [ rdf:type rdfs:Datatype ;
-                                             owl:onDatatype xsd:positiveInteger ;
-                                             owl:withRestrictions ( [ xsd:minInclusive "1000000"^^xsd:positiveInteger
-                                                                    ]
-                                                                    [ xsd:maxInclusive "9999999"^^xsd:positiveInteger
-                                                                    ]
-                                                                  )
-                                           ]
+                           owl:allValuesFrom [ rdf:type rdfs:Datatype ;
+                                               owl:onDatatype xsd:positiveInteger ;
+                                               owl:withRestrictions ( [ xsd:minInclusive "1000000"^^xsd:positiveInteger
+                                                                      ]
+                                                                      [ xsd:maxInclusive "9999999"^^xsd:positiveInteger
+                                                                      ]
+                                                                    )
+                                             ]
                          ] .
 
 
@@ -2208,7 +2211,12 @@
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#Number
 :Number rdf:type owl:Class ;
-        rdfs:subClassOf :Object .
+        rdfs:subClassOf :Object ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :hasNumberValue ;
+                          owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                          owl:onDataRange xsd:positiveInteger
+                        ] .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#NumberOrder
@@ -2475,13 +2483,13 @@
                               ] .
 
 
-###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#SynonimWords
-:SynonimWords rdf:type owl:Class ;
-              rdfs:subClassOf :Word ,
-                              [ rdf:type owl:Restriction ;
-                                owl:onProperty :hasSynonim ;
-                                owl:someValuesFrom :Word
-                              ] .
+###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#SynonimWord
+:SynonimWord rdf:type owl:Class ;
+             rdfs:subClassOf :Word ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :hasSynonim ;
+                               owl:someValuesFrom :Word
+                             ] .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#Synonims
@@ -2499,15 +2507,14 @@
            rdfs:subClassOf :Number ,
                            [ rdf:type owl:Restriction ;
                              owl:onProperty :hasNumberValue ;
-                             owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                             owl:onDataRange [ rdf:type rdfs:Datatype ;
-                                               owl:onDatatype xsd:positiveInteger ;
-                                               owl:withRestrictions ( [ xsd:minInclusive "1000"^^xsd:positiveInteger
-                                                                      ]
-                                                                      [ xsd:maxInclusive "9999"^^xsd:positiveInteger
-                                                                      ]
-                                                                    )
-                                             ]
+                             owl:allValuesFrom [ rdf:type rdfs:Datatype ;
+                                                 owl:onDatatype xsd:positiveInteger ;
+                                                 owl:withRestrictions ( [ xsd:minInclusive "1000"^^xsd:positiveInteger
+                                                                        ]
+                                                                        [ xsd:maxInclusive "9999"^^xsd:positiveInteger
+                                                                        ]
+                                                                      )
+                                               ]
                            ] .
 
 
@@ -2627,13 +2634,12 @@
            rdfs:subClassOf :Number ,
                            [ rdf:type owl:Restriction ;
                              owl:onProperty :hasNumberValue ;
-                             owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                             owl:onDataRange [ rdf:type rdfs:Datatype ;
-                                               owl:onDatatype xsd:positiveInteger ;
-                                               owl:withRestrictions ( [ xsd:maxInclusive "50"^^xsd:positiveInteger
-                                                                      ]
-                                                                    )
-                                             ]
+                             owl:allValuesFrom [ rdf:type rdfs:Datatype ;
+                                                 owl:onDatatype xsd:positiveInteger ;
+                                                 owl:withRestrictions ( [ xsd:maxInclusive "50"^^xsd:positiveInteger
+                                                                        ]
+                                                                      )
+                                               ]
                            ] .
 
 
@@ -2642,13 +2648,12 @@
          rdfs:subClassOf :Number ,
                          [ rdf:type owl:Restriction ;
                            owl:onProperty :hasNumberValue ;
-                           owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                           owl:onDataRange [ rdf:type rdfs:Datatype ;
-                                             owl:onDatatype xsd:positiveInteger ;
-                                             owl:withRestrictions ( [ xsd:maxInclusive "10"^^xsd:positiveInteger
-                                                                    ]
-                                                                  )
-                                           ]
+                           owl:allValuesFrom [ rdf:type rdfs:Datatype ;
+                                               owl:onDatatype xsd:positiveInteger ;
+                                               owl:withRestrictions ( [ xsd:maxInclusive "10"^^xsd:positiveInteger
+                                                                      ]
+                                                                    )
+                                             ]
                          ] .
 
 
@@ -2657,13 +2662,12 @@
               rdfs:subClassOf :Number ,
                               [ rdf:type owl:Restriction ;
                                 owl:onProperty :hasNumberValue ;
-                                owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                owl:onDataRange [ rdf:type rdfs:Datatype ;
-                                                  owl:onDatatype xsd:positiveInteger ;
-                                                  owl:withRestrictions ( [ xsd:maxInclusive "1000"^^xsd:positiveInteger
-                                                                         ]
-                                                                       )
-                                                ]
+                                owl:allValuesFrom [ rdf:type rdfs:Datatype ;
+                                                    owl:onDatatype xsd:positiveInteger ;
+                                                    owl:withRestrictions ( [ xsd:maxInclusive "1000"^^xsd:positiveInteger
+                                                                           ]
+                                                                         )
+                                                  ]
                               ] .
 
 
@@ -2673,6 +2677,11 @@
                       [ rdf:type owl:Restriction ;
                         owl:onProperty :hasCharacter ;
                         owl:someValuesFrom :Character
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :hasStringValue ;
+                        owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                        owl:onDataRange xsd:string
                       ] .
 
 
@@ -2953,28 +2962,6 @@
                 :hasDifficulty
                 :hasGameId
                 :hasHeight
-                :hasLevel
-                :hasMovement
-                :hasNumberValue
-                :hasPlayer
-                :hasQuestionDescription
-                :hasStep
-                :hasStringValue
-                :hasSymbol
-                :isCompletedIn
-                :isMovingBlock
-                :maxCompletionTime
-              )
-] .
-
-
-[ rdf:type owl:AllDisjointProperties ;
-  owl:members ( :displayTime
-                :hasAssetPath
-                :hasBorder
-                :hasDiagonalMovent
-                :hasDifficulty
-                :hasGameId
                 :hasLevel
                 :hasMovement
                 :hasNumberValue
