@@ -403,7 +403,6 @@
               rdfs:domain [ rdf:type owl:Class ;
                             owl:unionOf ( :Image
                                           :Sound
-                                          :Word
                                         )
                           ] ;
               rdfs:range xsd:anyURI .
@@ -474,14 +473,6 @@
                           ] .
 
 
-###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasGameId
-:hasGameId rdf:type owl:DatatypeProperty ;
-           rdfs:subPropertyOf owl:topDataProperty ;
-           rdf:type owl:FunctionalProperty ;
-           rdfs:domain :Game ;
-           rdfs:range xsd:string .
-
-
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasHeight
 :hasHeight rdf:type owl:DatatypeProperty ;
            owl:equivalentProperty :hasWidth ;
@@ -489,6 +480,18 @@
            rdf:type owl:FunctionalProperty ;
            rdfs:domain :LogicalOrder ;
            rdfs:range xsd:positiveInteger .
+
+
+###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasId
+:hasId rdf:type owl:DatatypeProperty ;
+       rdfs:subPropertyOf owl:topDataProperty ;
+       rdf:type owl:FunctionalProperty ;
+       rdfs:domain [ rdf:type owl:Class ;
+                     owl:unionOf ( :Game
+                                   :Object
+                                 )
+                   ] ;
+       rdfs:range xsd:string .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasLevel
@@ -557,11 +560,7 @@
 :hasStringValue rdf:type owl:DatatypeProperty ;
                 rdfs:subPropertyOf owl:topDataProperty ;
                 rdf:type owl:FunctionalProperty ;
-                rdfs:domain [ rdf:type owl:Class ;
-                              owl:unionOf ( :Character
-                                            :Word
-                                          )
-                            ] ;
+                rdfs:domain :Character ;
                 rdfs:range xsd:string .
 
 
@@ -599,7 +598,7 @@
 :isCompletedIn rdf:type owl:DatatypeProperty ;
                rdfs:subPropertyOf owl:topDataProperty ;
                rdfs:domain :Game ;
-               rdfs:range xsd:string .
+               rdfs:range xsd:positiveInteger .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#isMovingBlock
@@ -2677,11 +2676,6 @@
                       [ rdf:type owl:Restriction ;
                         owl:onProperty :hasCharacter ;
                         owl:someValuesFrom :Character
-                      ] ,
-                      [ rdf:type owl:Restriction ;
-                        owl:onProperty :hasStringValue ;
-                        owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                        owl:onDataRange xsd:string
                       ] .
 
 
@@ -2960,8 +2954,8 @@
                 :hasBorder
                 :hasDiagonalMovent
                 :hasDifficulty
-                :hasGameId
                 :hasHeight
+                :hasId
                 :hasLevel
                 :hasMovement
                 :hasNumberValue
