@@ -219,7 +219,6 @@
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasNextCharacter
 :hasNextCharacter rdf:type owl:ObjectProperty ;
                   rdfs:subPropertyOf owl:topObjectProperty ;
-                  rdf:type owl:ReflexiveProperty ;
                   rdfs:domain :Character ;
                   rdfs:range :Character .
 
@@ -677,7 +676,7 @@
          rdfs:subClassOf :Word ,
                          [ rdf:type owl:Restriction ;
                            owl:onProperty :hasCharacter ;
-                           owl:minQualifiedCardinality "6"^^xsd:nonNegativeInteger ;
+                           owl:qualifiedCardinality "6"^^xsd:nonNegativeInteger ;
                            owl:onClass :Character
                          ] .
 
@@ -689,7 +688,7 @@
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#BorderLinePiece
 :BorderLinePiece rdf:type owl:Class ;
-                 rdfs:subClassOf :BorderPiece ,
+                 rdfs:subClassOf :Piece ,
                                  [ rdf:type owl:Class ;
                                    owl:unionOf ( [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
                                                                           owl:onProperty :hasConnectingPiece ;
@@ -715,14 +714,7 @@
                                    owl:onProperty :hasConnectingPiece ;
                                    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                    owl:onClass :InteriorPiece
-                                 ] ;
-                 owl:disjointWith :CornerPiece .
-
-
-###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#BorderPiece
-:BorderPiece rdf:type owl:Class ;
-             rdfs:subClassOf :Piece ;
-             owl:disjointWith :InteriorPiece .
+                                 ] .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#Calculation
@@ -776,10 +768,14 @@
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#CornerPiece
 :CornerPiece rdf:type owl:Class ;
-             rdfs:subClassOf :BorderPiece ,
+             rdfs:subClassOf :Piece ,
                              [ rdf:type owl:Restriction ;
-                               owl:onProperty :hasConnectingPiece ;
-                               owl:allValuesFrom :BorderPiece
+                               owl:onProperty :hasConnectingBlock ;
+                               owl:allValuesFrom [ rdf:type owl:Class ;
+                                                   owl:unionOf ( :BorderLinePiece
+                                                                 :CornerBlock
+                                                               )
+                                                 ]
                              ] .
 
 
@@ -1766,7 +1762,7 @@
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#LabyrinthBlock
 :LabyrinthBlock rdf:type owl:Class ;
-                rdfs:subClassOf :Block .
+                rdfs:subClassOf :Object .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#LogicalOrder
@@ -2743,12 +2739,36 @@
   owl:members ( :Block
                 :Character
                 :Image
+                :ImagePair
+                :LabyrinthBlock
                 :MathOperator
                 :Number
                 :Piece
                 :Question
                 :Sound
                 :Word
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Block
+                :Character
+                :Image
+                :MathOperator
+                :Number
+                :Piece
+                :Question
+                :Sound
+                :Word
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :BorderLinePiece
+                :CornerPiece
+                :InteriorPiece
               )
 ] .
 
@@ -2911,14 +2931,6 @@
 ] .
 
 
-[ rdf:type owl:AllDisjointClasses ;
-  owl:members ( :LabyrinthBlock
-                :MovingBlock
-                :StationaryBlock
-              )
-] .
-
-
 [ rdf:type owl:AllDisjointProperties ;
   owl:members ( :hasAddend
                 :hasAntonym
@@ -2940,48 +2952,6 @@
                 :hasMultiplier
                 :hasNextBlock
                 :hasNextCharacter
-                :hasNumber
-                :hasPiece
-                :hasProduct
-                :hasQuestion
-                :hasQuotient
-                :hasSimilarNumber
-                :hasSound
-                :hasStartingBlock
-                :hasSubtrahend
-                :hasSum
-                :hasSynonim
-                :hasWord
-                :isAssociatedWithImage
-                :isAssociatedWithSound
-                :isAssociatedWithWord
-                :isBefore
-                :isGreaterThan
-                :isLesserThan
-              )
-] .
-
-
-[ rdf:type owl:AllDisjointProperties ;
-  owl:members ( :hasAddend
-                :hasAntonym
-                :hasBlock
-                :hasCategory
-                :hasCharacter
-                :hasChoice
-                :hasConnectingBlock
-                :hasConnectingPiece
-                :hasDifference
-                :hasDividend
-                :hasDivisor
-                :hasEndingBlock
-                :hasImage
-                :hasImagePair
-                :hasMathOperation
-                :hasMinuend
-                :hasMultiplicant
-                :hasMultiplier
-                :hasNextBlock
                 :hasNumber
                 :hasPiece
                 :hasProduct
