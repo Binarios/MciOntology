@@ -216,6 +216,14 @@
               rdfs:range :MovingBlock .
 
 
+###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasNextCharacter
+:hasNextCharacter rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf owl:topObjectProperty ;
+                  rdf:type owl:ReflexiveProperty ;
+                  rdfs:domain :Character ;
+                  rdfs:range :Character .
+
+
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasNumber
 :hasNumber rdf:type owl:ObjectProperty ;
            rdfs:subPropertyOf owl:topObjectProperty ;
@@ -371,8 +379,9 @@
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#isLesserThan
-:isLesserThan rdf:type owl:ObjectProperty ,
-                       owl:IrreflexiveProperty ;
+:isLesserThan rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf owl:topObjectProperty ;
+              rdf:type owl:IrreflexiveProperty ;
               rdfs:domain :Number ;
               rdfs:range :Number .
 
@@ -724,6 +733,11 @@
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#Character
 :Character rdf:type owl:Class ;
            rdfs:subClassOf :Object ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty :hasNextCharacter ;
+                             owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                             owl:onClass :Character
+                           ] ,
                            [ rdf:type owl:Restriction ;
                              owl:onProperty :hasStringValue ;
                              owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
@@ -2901,6 +2915,49 @@
   owl:members ( :LabyrinthBlock
                 :MovingBlock
                 :StationaryBlock
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointProperties ;
+  owl:members ( :hasAddend
+                :hasAntonym
+                :hasBlock
+                :hasCategory
+                :hasCharacter
+                :hasChoice
+                :hasConnectingBlock
+                :hasConnectingPiece
+                :hasDifference
+                :hasDividend
+                :hasDivisor
+                :hasEndingBlock
+                :hasImage
+                :hasImagePair
+                :hasMathOperation
+                :hasMinuend
+                :hasMultiplicant
+                :hasMultiplier
+                :hasNextBlock
+                :hasNextCharacter
+                :hasNumber
+                :hasPiece
+                :hasProduct
+                :hasQuestion
+                :hasQuotient
+                :hasSimilarNumber
+                :hasSound
+                :hasStartingBlock
+                :hasSubtrahend
+                :hasSum
+                :hasSynonim
+                :hasWord
+                :isAssociatedWithImage
+                :isAssociatedWithSound
+                :isAssociatedWithWord
+                :isBefore
+                :isGreaterThan
+                :isLesserThan
               )
 ] .
 
