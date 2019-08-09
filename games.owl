@@ -60,12 +60,6 @@
              rdfs:range :Word .
 
 
-###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasCharacter
-:hasCharacter rdf:type owl:ObjectProperty ;
-              rdfs:subPropertyOf owl:topObjectProperty ;
-              rdfs:domain :Word .
-
-
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasChoice
 :hasChoice rdf:type owl:ObjectProperty ;
            rdfs:subPropertyOf owl:topObjectProperty ;
@@ -218,11 +212,6 @@
               rdf:type owl:IrreflexiveProperty ;
               rdfs:domain :MovingBlock ;
               rdfs:range :MovingBlock .
-
-
-###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasNextCharacter
-:hasNextCharacter rdf:type owl:ObjectProperty ;
-                  rdfs:subPropertyOf owl:topObjectProperty .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasNumber
@@ -740,7 +729,8 @@
                                     [ rdf:type owl:Restriction ;
                                       owl:onProperty :isBefore ;
                                       owl:someValuesFrom :Image
-                                    ] .
+                                    ] ;
+                    owl:disjointWith :ImageSound .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#ChronologicalOrder
@@ -1146,6 +1136,22 @@
                             ] .
 
 
+###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#EasyQuestions
+:EasyQuestions rdf:type owl:Class ;
+               owl:equivalentClass [ owl:intersectionOf ( :Questions
+                                                          [ rdf:type owl:Restriction ;
+                                                            owl:onProperty :hasDifficulty ;
+                                                            owl:hasValue "easy"
+                                                          ]
+                                                          [ rdf:type owl:Restriction ;
+                                                            owl:onProperty :maxCompletionTime ;
+                                                            owl:hasValue 180000
+                                                          ]
+                                                        ) ;
+                                     rdf:type owl:Class
+                                   ] .
+
+
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#EasyRecall
 :EasyRecall rdf:type owl:Class ;
             owl:equivalentClass [ owl:intersectionOf ( :Recall
@@ -1513,6 +1519,22 @@
                             ] .
 
 
+###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#HardQuestions
+:HardQuestions rdf:type owl:Class ;
+               owl:equivalentClass [ owl:intersectionOf ( :Questions
+                                                          [ rdf:type owl:Restriction ;
+                                                            owl:onProperty :hasDifficulty ;
+                                                            owl:hasValue "hard"
+                                                          ]
+                                                          [ rdf:type owl:Restriction ;
+                                                            owl:onProperty :maxCompletionTime ;
+                                                            owl:hasValue 180000
+                                                          ]
+                                                        ) ;
+                                     rdf:type owl:Class
+                                   ] .
+
+
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#HardRecall
 :HardRecall rdf:type owl:Class ;
             owl:equivalentClass [ owl:intersectionOf ( :Recall
@@ -1636,7 +1658,8 @@
                                  owl:onProperty :hasImage ;
                                  owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                  owl:onClass :Image
-                               ] .
+                               ] ;
+               owl:disjointWith :WordQuestions .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#ImageSound
@@ -2058,6 +2081,22 @@
                               ] .
 
 
+###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#MediumQuestions
+:MediumQuestions rdf:type owl:Class ;
+                 owl:equivalentClass [ owl:intersectionOf ( :Questions
+                                                            [ rdf:type owl:Restriction ;
+                                                              owl:onProperty :hasDifficulty ;
+                                                              owl:hasValue "medium"
+                                                            ]
+                                                            [ rdf:type owl:Restriction ;
+                                                              owl:onProperty :maxCompletionTime ;
+                                                              owl:hasValue 180000
+                                                            ]
+                                                          ) ;
+                                       rdf:type owl:Class
+                                     ] .
+
+
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#MediumRecall
 :MediumRecall rdf:type owl:Class ;
               owl:equivalentClass [ owl:intersectionOf ( :Recall
@@ -2305,10 +2344,6 @@
                              owl:onProperty :hasQuestion ;
                              owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                              owl:onClass :Question
-                           ] ,
-                           [ rdf:type owl:Restriction ;
-                             owl:onProperty :maxCompletionTime ;
-                             owl:hasValue 180000
                            ] .
 
 
@@ -2706,11 +2741,29 @@
                 :Labyrinth
                 :LogicalOrder
                 :MemoryCards
+                :NumberOrder
                 :Observation
                 :Puzzle
                 :Questions
                 :Recall
                 :Synonims
+                :WordPuzzle
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Block
+                :Image
+                :ImagePair
+                :LabyrinthBlock
+                :MathOperator
+                :Number
+                :ObservationObj
+                :Piece
+                :Question
+                :Sound
+                :Word
               )
 ] .
 
@@ -2849,6 +2902,14 @@
 
 
 [ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :EasyQuestions
+                :HardQuestions
+                :MediumQuestions
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
   owl:members ( :EasyRecall
                 :HardRecall
                 :MediumRecall
@@ -2868,95 +2929,6 @@
   owl:members ( :EasyWordPuzzle
                 :HardWordPuzzle
                 :MediumWordPuzzle
-              )
-] .
-
-
-[ rdf:type owl:AllDisjointProperties ;
-  owl:members ( :hasAddend
-                :hasAntonym
-                :hasBlock
-                :hasCategory
-                :hasCharacter
-                :hasChoice
-                :hasConnectingBlock
-                :hasConnectingPiece
-                :hasDifference
-                :hasDividend
-                :hasDivisor
-                :hasEndingBlock
-                :hasImage
-                :hasImagePair
-                :hasImageSubject
-                :hasImageTitle
-                :hasMathOperation
-                :hasMinuend
-                :hasMultiplicant
-                :hasMultiplier
-                :hasNextBlock
-                :hasNextCharacter
-                :hasNumber
-                :hasObservation
-                :hasPiece
-                :hasProduct
-                :hasQuestion
-                :hasQuotient
-                :hasSimilarNumber
-                :hasSound
-                :hasStartingBlock
-                :hasSubtrahend
-                :hasSum
-                :hasSynonim
-                :hasWord
-                :isAssociatedWithImage
-                :isAssociatedWithSound
-                :isBefore
-                :isGreaterThan
-                :isLesserThan
-              )
-] .
-
-
-[ rdf:type owl:AllDisjointProperties ;
-  owl:members ( :hasAddend
-                :hasAntonym
-                :hasBlock
-                :hasCategory
-                :hasCharacter
-                :hasChoice
-                :hasConnectingBlock
-                :hasConnectingPiece
-                :hasDifference
-                :hasDividend
-                :hasDivisor
-                :hasEndingBlock
-                :hasImage
-                :hasImagePair
-                :hasImageSubject
-                :hasImageTitle
-                :hasMathOperation
-                :hasMinuend
-                :hasMultiplicant
-                :hasMultiplier
-                :hasNextBlock
-                :hasNextCharacter
-                :hasNumber
-                :hasPiece
-                :hasProduct
-                :hasQuestion
-                :hasQuotient
-                :hasSimilarNumber
-                :hasSound
-                :hasStartingBlock
-                :hasSubtrahend
-                :hasSum
-                :hasSynonim
-                :hasWord
-                :isAssociatedWithImage
-                :isAssociatedWithSound
-                :isBefore
-                :isGreaterThan
-                :isLesserThan
               )
 ] .
 
