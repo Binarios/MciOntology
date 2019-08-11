@@ -460,11 +460,11 @@
                rdfs:domain :Game ;
                rdfs:range [ rdf:type rdfs:Datatype ;
                             owl:oneOf [ rdf:type rdf:List ;
-                                        rdf:first "easy" ;
+                                        rdf:first "EASY" ;
                                         rdf:rest [ rdf:type rdf:List ;
-                                                   rdf:first "hard" ;
+                                                   rdf:first "HARD" ;
                                                    rdf:rest [ rdf:type rdf:List ;
-                                                              rdf:first "medium" ;
+                                                              rdf:first "MEDIUM" ;
                                                               rdf:rest rdf:nil
                                                             ]
                                                  ]
@@ -871,7 +871,7 @@
                   owl:equivalentClass [ owl:intersectionOf ( :Antonyms
                                                              [ rdf:type owl:Restriction ;
                                                                owl:onProperty :hasDifficulty ;
-                                                               owl:hasValue "easy"
+                                                               owl:hasValue "EASY"
                                                              ]
                                                              [ rdf:type owl:Restriction ;
                                                                owl:onProperty :maxCompletionTime ;
@@ -892,7 +892,7 @@
                  owl:equivalentClass [ owl:intersectionOf ( :Calculation
                                                             [ rdf:type owl:Restriction ;
                                                               owl:onProperty :hasDifficulty ;
-                                                              owl:hasValue "easy"
+                                                              owl:hasValue "EASY"
                                                             ]
                                                             [ rdf:type owl:Restriction ;
                                                               owl:onProperty :maxCompletionTime ;
@@ -921,7 +921,7 @@
                         owl:equivalentClass [ owl:intersectionOf ( :ChronologicalOrder
                                                                    [ rdf:type owl:Restriction ;
                                                                      owl:onProperty :hasDifficulty ;
-                                                                     owl:hasValue "easy"
+                                                                     owl:hasValue "EASY"
                                                                    ]
                                                                    [ rdf:type owl:Restriction ;
                                                                      owl:onProperty :maxCompletionTime ;
@@ -942,7 +942,7 @@
                   owl:equivalentClass [ owl:intersectionOf ( :FindTheSound
                                                              [ rdf:type owl:Restriction ;
                                                                owl:onProperty :hasDifficulty ;
-                                                               owl:hasValue "easy"
+                                                               owl:hasValue "EASY"
                                                              ]
                                                              [ rdf:type owl:Restriction ;
                                                                owl:onProperty :maxCompletionTime ;
@@ -963,7 +963,7 @@
                   owl:equivalentClass [ owl:intersectionOf ( :HidingBlocks
                                                              [ rdf:type owl:Restriction ;
                                                                owl:onProperty :hasDifficulty ;
-                                                               owl:hasValue "easy"
+                                                               owl:hasValue "EASY"
                                                              ]
                                                              [ rdf:type owl:Restriction ;
                                                                owl:onProperty :maxCompletionTime ;
@@ -989,7 +989,7 @@
                owl:equivalentClass [ owl:intersectionOf ( :Labyrinth
                                                           [ rdf:type owl:Restriction ;
                                                             owl:onProperty :hasDifficulty ;
-                                                            owl:hasValue "easy"
+                                                            owl:hasValue "EASY"
                                                           ]
                                                           [ rdf:type owl:Restriction ;
                                                             owl:onProperty :maxCompletionTime ;
@@ -1010,7 +1010,7 @@
                   owl:equivalentClass [ owl:intersectionOf ( :LogicalOrder
                                                              [ rdf:type owl:Restriction ;
                                                                owl:onProperty :hasDifficulty ;
-                                                               owl:hasValue "easy"
+                                                               owl:hasValue "EASY"
                                                              ]
                                                              [ rdf:type owl:Restriction ;
                                                                owl:onProperty :hasHeight ;
@@ -1048,7 +1048,7 @@
                  owl:equivalentClass [ owl:intersectionOf ( :MemoryCards
                                                             [ rdf:type owl:Restriction ;
                                                               owl:onProperty :hasDifficulty ;
-                                                              owl:hasValue "easy"
+                                                              owl:hasValue "EASY"
                                                             ]
                                                             [ rdf:type owl:Restriction ;
                                                               owl:onProperty :maxCompletionTime ;
@@ -1069,7 +1069,7 @@
                  owl:equivalentClass [ owl:intersectionOf ( :NumberOrder
                                                             [ rdf:type owl:Restriction ;
                                                               owl:onProperty :hasDifficulty ;
-                                                              owl:hasValue "easy"
+                                                              owl:hasValue "EASY"
                                                             ]
                                                             [ rdf:type owl:Restriction ;
                                                               owl:onProperty :maxCompletionTime ;
@@ -1090,7 +1090,7 @@
                  owl:equivalentClass [ owl:intersectionOf ( :Observation
                                                             [ rdf:type owl:Restriction ;
                                                               owl:onProperty :hasDifficulty ;
-                                                              owl:hasValue "easy"
+                                                              owl:hasValue "EASY"
                                                             ]
                                                             [ rdf:type owl:Restriction ;
                                                               owl:onProperty :hasTotalImages ;
@@ -1115,7 +1115,7 @@
             owl:equivalentClass [ owl:intersectionOf ( :Puzzle
                                                        [ rdf:type owl:Restriction ;
                                                          owl:onProperty :hasDifficulty ;
-                                                         owl:hasValue "easy"
+                                                         owl:hasValue "EASY"
                                                        ]
                                                        [ rdf:type owl:Restriction ;
                                                          owl:onProperty :maxCompletionTime ;
@@ -1141,7 +1141,7 @@
                owl:equivalentClass [ owl:intersectionOf ( :Questions
                                                           [ rdf:type owl:Restriction ;
                                                             owl:onProperty :hasDifficulty ;
-                                                            owl:hasValue "easy"
+                                                            owl:hasValue "EASY"
                                                           ]
                                                           [ rdf:type owl:Restriction ;
                                                             owl:onProperty :maxCompletionTime ;
@@ -1161,7 +1161,7 @@
                                                        ]
                                                        [ rdf:type owl:Restriction ;
                                                          owl:onProperty :hasDifficulty ;
-                                                         owl:hasValue "easy"
+                                                         owl:hasValue "EASY"
                                                        ]
                                                        [ rdf:type owl:Restriction ;
                                                          owl:onProperty :maxCompletionTime ;
@@ -1186,7 +1186,7 @@
                   owl:equivalentClass [ owl:intersectionOf ( :Synonims
                                                              [ rdf:type owl:Restriction ;
                                                                owl:onProperty :hasDifficulty ;
-                                                               owl:hasValue "easy"
+                                                               owl:hasValue "EASY"
                                                              ]
                                                              [ rdf:type owl:Restriction ;
                                                                owl:onProperty :maxCompletionTime ;
@@ -1207,7 +1207,7 @@
                 owl:equivalentClass [ owl:intersectionOf ( :WordPuzzle
                                                            [ rdf:type owl:Restriction ;
                                                              owl:onProperty :hasDifficulty ;
-                                                             owl:hasValue "easy"
+                                                             owl:hasValue "EASY"
                                                            ]
                                                            [ rdf:type owl:Restriction ;
                                                              owl:onProperty :hasWordLength ;
@@ -1243,7 +1243,7 @@
                   owl:equivalentClass [ owl:intersectionOf ( :Antonyms
                                                              [ rdf:type owl:Restriction ;
                                                                owl:onProperty :hasDifficulty ;
-                                                               owl:hasValue "hard"
+                                                               owl:hasValue "HARD"
                                                              ]
                                                              [ rdf:type owl:Restriction ;
                                                                owl:onProperty :maxCompletionTime ;
@@ -1264,7 +1264,7 @@
                  owl:equivalentClass [ owl:intersectionOf ( :Calculation
                                                             [ rdf:type owl:Restriction ;
                                                               owl:onProperty :hasDifficulty ;
-                                                              owl:hasValue "hard"
+                                                              owl:hasValue "HARD"
                                                             ]
                                                             [ rdf:type owl:Restriction ;
                                                               owl:onProperty :maxCompletionTime ;
@@ -1289,7 +1289,7 @@
                         owl:equivalentClass [ owl:intersectionOf ( :ChronologicalOrder
                                                                    [ rdf:type owl:Restriction ;
                                                                      owl:onProperty :hasDifficulty ;
-                                                                     owl:hasValue "hard"
+                                                                     owl:hasValue "HARD"
                                                                    ]
                                                                    [ rdf:type owl:Restriction ;
                                                                      owl:onProperty :maxCompletionTime ;
@@ -1310,7 +1310,7 @@
                   owl:equivalentClass [ owl:intersectionOf ( :FindTheSound
                                                              [ rdf:type owl:Restriction ;
                                                                owl:onProperty :hasDifficulty ;
-                                                               owl:hasValue "hard"
+                                                               owl:hasValue "HARD"
                                                              ]
                                                              [ rdf:type owl:Restriction ;
                                                                owl:onProperty :maxCompletionTime ;
@@ -1336,7 +1336,7 @@
                   owl:equivalentClass [ owl:intersectionOf ( :HidingBlocks
                                                              [ rdf:type owl:Restriction ;
                                                                owl:onProperty :hasDifficulty ;
-                                                               owl:hasValue "hard"
+                                                               owl:hasValue "HARD"
                                                              ]
                                                              [ rdf:type owl:Restriction ;
                                                                owl:onProperty :maxCompletionTime ;
@@ -1362,7 +1362,7 @@
                owl:equivalentClass [ owl:intersectionOf ( :Labyrinth
                                                           [ rdf:type owl:Restriction ;
                                                             owl:onProperty :hasDifficulty ;
-                                                            owl:hasValue "hard"
+                                                            owl:hasValue "HARD"
                                                           ]
                                                           [ rdf:type owl:Restriction ;
                                                             owl:onProperty :maxCompletionTime ;
@@ -1388,7 +1388,7 @@
                   owl:equivalentClass [ owl:intersectionOf ( :LogicalOrder
                                                              [ rdf:type owl:Restriction ;
                                                                owl:onProperty :hasDifficulty ;
-                                                               owl:hasValue "hard"
+                                                               owl:hasValue "HARD"
                                                              ]
                                                              [ rdf:type owl:Restriction ;
                                                                owl:onProperty :hasHeight ;
@@ -1421,7 +1421,7 @@
                  owl:equivalentClass [ owl:intersectionOf ( :MemoryCards
                                                             [ rdf:type owl:Restriction ;
                                                               owl:onProperty :hasDifficulty ;
-                                                              owl:hasValue "hard"
+                                                              owl:hasValue "HARD"
                                                             ]
                                                             [ rdf:type owl:Restriction ;
                                                               owl:onProperty :maxCompletionTime ;
@@ -1442,7 +1442,7 @@
                  owl:equivalentClass [ owl:intersectionOf ( :NumberOrder
                                                             [ rdf:type owl:Restriction ;
                                                               owl:onProperty :hasDifficulty ;
-                                                              owl:hasValue "hard"
+                                                              owl:hasValue "HARD"
                                                             ]
                                                             [ rdf:type owl:Restriction ;
                                                               owl:onProperty :maxCompletionTime ;
@@ -1463,7 +1463,7 @@
                  owl:equivalentClass [ owl:intersectionOf ( :Observation
                                                             [ rdf:type owl:Restriction ;
                                                               owl:onProperty :hasDifficulty ;
-                                                              owl:hasValue "hard"
+                                                              owl:hasValue "HARD"
                                                             ]
                                                             [ rdf:type owl:Restriction ;
                                                               owl:onProperty :hasTotalImages ;
@@ -1488,7 +1488,7 @@
             owl:equivalentClass [ owl:intersectionOf ( :Puzzle
                                                        [ rdf:type owl:Restriction ;
                                                          owl:onProperty :hasDifficulty ;
-                                                         owl:hasValue "hard"
+                                                         owl:hasValue "HARD"
                                                        ]
                                                        [ rdf:type owl:Restriction ;
                                                          owl:onProperty :maxCompletionTime ;
@@ -1524,7 +1524,7 @@
                owl:equivalentClass [ owl:intersectionOf ( :Questions
                                                           [ rdf:type owl:Restriction ;
                                                             owl:onProperty :hasDifficulty ;
-                                                            owl:hasValue "hard"
+                                                            owl:hasValue "HARD"
                                                           ]
                                                           [ rdf:type owl:Restriction ;
                                                             owl:onProperty :maxCompletionTime ;
@@ -1544,7 +1544,7 @@
                                                        ]
                                                        [ rdf:type owl:Restriction ;
                                                          owl:onProperty :hasDifficulty ;
-                                                         owl:hasValue "hard"
+                                                         owl:hasValue "HARD"
                                                        ]
                                                        [ rdf:type owl:Restriction ;
                                                          owl:onProperty :maxCompletionTime ;
@@ -1569,7 +1569,7 @@
                   owl:equivalentClass [ owl:intersectionOf ( :Synonims
                                                              [ rdf:type owl:Restriction ;
                                                                owl:onProperty :hasDifficulty ;
-                                                               owl:hasValue "hard"
+                                                               owl:hasValue "HARD"
                                                              ]
                                                              [ rdf:type owl:Restriction ;
                                                                owl:onProperty :maxCompletionTime ;
@@ -1590,7 +1590,7 @@
                 owl:equivalentClass [ owl:intersectionOf ( :WordPuzzle
                                                            [ rdf:type owl:Restriction ;
                                                              owl:onProperty :hasDifficulty ;
-                                                             owl:hasValue "hard"
+                                                             owl:hasValue "HARD"
                                                            ]
                                                            [ rdf:type owl:Restriction ;
                                                              owl:onProperty :hasWordLength ;
@@ -1796,7 +1796,7 @@
                     owl:equivalentClass [ owl:intersectionOf ( :Antonyms
                                                                [ rdf:type owl:Restriction ;
                                                                  owl:onProperty :hasDifficulty ;
-                                                                 owl:hasValue "medium"
+                                                                 owl:hasValue "MEDIUM"
                                                                ]
                                                                [ rdf:type owl:Restriction ;
                                                                  owl:onProperty :maxCompletionTime ;
@@ -1817,7 +1817,7 @@
                    owl:equivalentClass [ owl:intersectionOf ( :Calculation
                                                               [ rdf:type owl:Restriction ;
                                                                 owl:onProperty :hasDifficulty ;
-                                                                owl:hasValue "medium"
+                                                                owl:hasValue "MEDIUM"
                                                               ]
                                                               [ rdf:type owl:Restriction ;
                                                                 owl:onProperty :maxCompletionTime ;
@@ -1846,7 +1846,7 @@
                           owl:equivalentClass [ owl:intersectionOf ( :ChronologicalOrder
                                                                      [ rdf:type owl:Restriction ;
                                                                        owl:onProperty :hasDifficulty ;
-                                                                       owl:hasValue "medium"
+                                                                       owl:hasValue "MEDIUM"
                                                                      ]
                                                                      [ rdf:type owl:Restriction ;
                                                                        owl:onProperty :maxCompletionTime ;
@@ -1867,7 +1867,7 @@
                     owl:equivalentClass [ owl:intersectionOf ( :FindTheSound
                                                                [ rdf:type owl:Restriction ;
                                                                  owl:onProperty :hasDifficulty ;
-                                                                 owl:hasValue "medium"
+                                                                 owl:hasValue "MEDIUM"
                                                                ]
                                                                [ rdf:type owl:Restriction ;
                                                                  owl:onProperty :maxCompletionTime ;
@@ -1893,7 +1893,7 @@
                     owl:equivalentClass [ owl:intersectionOf ( :HidingBlocks
                                                                [ rdf:type owl:Restriction ;
                                                                  owl:onProperty :hasDifficulty ;
-                                                                 owl:hasValue "medium"
+                                                                 owl:hasValue "MEDIUM"
                                                                ]
                                                                [ rdf:type owl:Restriction ;
                                                                  owl:onProperty :maxCompletionTime ;
@@ -1919,7 +1919,7 @@
                  owl:equivalentClass [ owl:intersectionOf ( :Labyrinth
                                                             [ rdf:type owl:Restriction ;
                                                               owl:onProperty :hasDifficulty ;
-                                                              owl:hasValue "medium"
+                                                              owl:hasValue "MEDIUM"
                                                             ]
                                                             [ rdf:type owl:Restriction ;
                                                               owl:onProperty :maxCompletionTime ;
@@ -1945,7 +1945,7 @@
                     owl:equivalentClass [ owl:intersectionOf ( :LogicalOrder
                                                                [ rdf:type owl:Restriction ;
                                                                  owl:onProperty :hasDifficulty ;
-                                                                 owl:hasValue "medium"
+                                                                 owl:hasValue "MEDIUM"
                                                                ]
                                                                [ rdf:type owl:Restriction ;
                                                                  owl:onProperty :hasHeight ;
@@ -1983,7 +1983,7 @@
                    owl:equivalentClass [ owl:intersectionOf ( :MemoryCards
                                                               [ rdf:type owl:Restriction ;
                                                                 owl:onProperty :hasDifficulty ;
-                                                                owl:hasValue "medium"
+                                                                owl:hasValue "MEDIUM"
                                                               ]
                                                               [ rdf:type owl:Restriction ;
                                                                 owl:onProperty :maxCompletionTime ;
@@ -2004,7 +2004,7 @@
                    owl:equivalentClass [ owl:intersectionOf ( :NumberOrder
                                                               [ rdf:type owl:Restriction ;
                                                                 owl:onProperty :hasDifficulty ;
-                                                                owl:hasValue "medium"
+                                                                owl:hasValue "MEDIUM"
                                                               ]
                                                               [ rdf:type owl:Restriction ;
                                                                 owl:onProperty :maxCompletionTime ;
@@ -2025,7 +2025,7 @@
                    owl:equivalentClass [ owl:intersectionOf ( :Observation
                                                               [ rdf:type owl:Restriction ;
                                                                 owl:onProperty :hasDifficulty ;
-                                                                owl:hasValue "medium"
+                                                                owl:hasValue "MEDIUM"
                                                               ]
                                                               [ rdf:type owl:Restriction ;
                                                                 owl:onProperty :hasTotalImages ;
@@ -2050,7 +2050,7 @@
               owl:equivalentClass [ owl:intersectionOf ( :Puzzle
                                                          [ rdf:type owl:Restriction ;
                                                            owl:onProperty :hasDifficulty ;
-                                                           owl:hasValue "medium"
+                                                           owl:hasValue "MEDIUM"
                                                          ]
                                                          [ rdf:type owl:Restriction ;
                                                            owl:onProperty :maxCompletionTime ;
@@ -2086,7 +2086,7 @@
                  owl:equivalentClass [ owl:intersectionOf ( :Questions
                                                             [ rdf:type owl:Restriction ;
                                                               owl:onProperty :hasDifficulty ;
-                                                              owl:hasValue "medium"
+                                                              owl:hasValue "MEDIUM"
                                                             ]
                                                             [ rdf:type owl:Restriction ;
                                                               owl:onProperty :maxCompletionTime ;
@@ -2106,7 +2106,7 @@
                                                          ]
                                                          [ rdf:type owl:Restriction ;
                                                            owl:onProperty :hasDifficulty ;
-                                                           owl:hasValue "medium"
+                                                           owl:hasValue "MEDIUM"
                                                          ]
                                                          [ rdf:type owl:Restriction ;
                                                            owl:onProperty :maxCompletionTime ;
@@ -2131,7 +2131,7 @@
                     owl:equivalentClass [ owl:intersectionOf ( :Synonims
                                                                [ rdf:type owl:Restriction ;
                                                                  owl:onProperty :hasDifficulty ;
-                                                                 owl:hasValue "medium"
+                                                                 owl:hasValue "MEDIUM"
                                                                ]
                                                                [ rdf:type owl:Restriction ;
                                                                  owl:onProperty :maxCompletionTime ;
@@ -2152,7 +2152,7 @@
                   owl:equivalentClass [ owl:intersectionOf ( :WordPuzzle
                                                              [ rdf:type owl:Restriction ;
                                                                owl:onProperty :hasDifficulty ;
-                                                               owl:hasValue "medium"
+                                                               owl:hasValue "MEDIUM"
                                                              ]
                                                              [ rdf:type owl:Restriction ;
                                                                owl:onProperty :hasWordLength ;
@@ -2929,6 +2929,49 @@
   owl:members ( :EasyWordPuzzle
                 :HardWordPuzzle
                 :MediumWordPuzzle
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointProperties ;
+  owl:members ( :hasAddend
+                :hasAntonym
+                :hasBlock
+                :hasCategory
+                :hasChoice
+                :hasConnectingBlock
+                :hasConnectingPiece
+                :hasDifference
+                :hasDividend
+                :hasDivisor
+                :hasEndingBlock
+                :hasImage
+                :hasImagePair
+                :hasImageSubject
+                :hasImageTitle
+                :hasMathOperation
+                :hasMinuend
+                :hasMultiplicant
+                :hasMultiplier
+                :hasNextBlock
+                :hasNumber
+                :hasObservation
+                :hasPiece
+                :hasProduct
+                :hasQuestion
+                :hasQuotient
+                :hasSimilarNumber
+                :hasSound
+                :hasStartingBlock
+                :hasSubtrahend
+                :hasSum
+                :hasSynonim
+                :hasWord
+                :isAssociatedWithImage
+                :isAssociatedWithSound
+                :isBefore
+                :isGreaterThan
+                :isLesserThan
               )
 ] .
 
