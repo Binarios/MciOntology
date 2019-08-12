@@ -609,7 +609,11 @@
 :hasWordLength rdf:type owl:DatatypeProperty ;
                rdfs:subPropertyOf owl:topDataProperty ;
                rdf:type owl:FunctionalProperty ;
-               rdfs:domain :WordPuzzle ;
+               rdfs:domain [ rdf:type owl:Class ;
+                             owl:unionOf ( :Word
+                                           :WordPuzzle
+                                         )
+                           ] ;
                rdfs:range xsd:positiveInteger .
 
 
