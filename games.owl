@@ -233,11 +233,27 @@
                 rdfs:range :ObservationObj .
 
 
+###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasOrderedImage
+:hasOrderedImage rdf:type owl:ObjectProperty ,
+                          owl:IrreflexiveProperty ;
+                 rdfs:domain :ChronologicalOrder ;
+                 rdfs:range :OrderedImage .
+
+
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasPiece
 :hasPiece rdf:type owl:ObjectProperty ;
           rdfs:subPropertyOf owl:topObjectProperty ;
           rdfs:domain :Puzzle ;
           rdfs:range :Piece .
+
+
+###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasPreviousImage
+:hasPreviousImage rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf owl:topObjectProperty ;
+                  rdf:type owl:FunctionalProperty ,
+                           owl:IrreflexiveProperty ;
+                  rdfs:domain :OrderedImage ;
+                  rdfs:range :OrderedImage .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasProduct
@@ -341,15 +357,6 @@
                        rdfs:range :Sound .
 
 
-###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#isBefore
-:isBefore rdf:type owl:ObjectProperty ;
-          rdfs:subPropertyOf owl:topObjectProperty ;
-          rdf:type owl:SymmetricProperty ,
-                   owl:IrreflexiveProperty ;
-          rdfs:domain :ChronologicalImage ;
-          rdfs:range :ChronologicalImage .
-
-
 #################################################################
 #    Data properties
 #################################################################
@@ -403,6 +410,13 @@
                                              ]
                                   ]
                       ] .
+
+
+###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasChronologicalOrder
+:hasChronologicalOrder rdf:type owl:DatatypeProperty ;
+                       rdfs:subPropertyOf owl:topDataProperty ;
+                       rdfs:domain :Image ;
+                       rdfs:range xsd:boolean .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasDiagonalMovent
@@ -737,16 +751,6 @@
              rdfs:subClassOf :Game .
 
 
-###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#ChronologicalImage
-:ChronologicalImage rdf:type owl:Class ;
-                    rdfs:subClassOf :Image ,
-                                    [ rdf:type owl:Restriction ;
-                                      owl:onProperty :isBefore ;
-                                      owl:someValuesFrom :Image
-                                    ] ;
-                    owl:disjointWith :ImageSound .
-
-
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#ChronologicalOrder
 :ChronologicalOrder rdf:type owl:Class ;
                     rdfs:subClassOf :Game .
@@ -945,9 +949,9 @@
                                               rdf:type owl:Class
                                             ] ;
                         rdfs:subClassOf [ rdf:type owl:Restriction ;
-                                          owl:onProperty :hasImage ;
+                                          owl:onProperty :hasOrderedImage ;
                                           owl:qualifiedCardinality "3"^^xsd:nonNegativeInteger ;
-                                          owl:onClass :ChronologicalImage
+                                          owl:onClass :OrderedImage
                                         ] .
 
 
@@ -1326,7 +1330,7 @@
                         rdfs:subClassOf [ rdf:type owl:Restriction ;
                                           owl:onProperty :hasImage ;
                                           owl:qualifiedCardinality "6"^^xsd:nonNegativeInteger ;
-                                          owl:onClass :ChronologicalImage
+                                          owl:onClass :Image
                                         ] .
 
 
@@ -1894,7 +1898,7 @@
                           rdfs:subClassOf [ rdf:type owl:Restriction ;
                                             owl:onProperty :hasImage ;
                                             owl:qualifiedCardinality "4"^^xsd:nonNegativeInteger ;
-                                            owl:onClass :ChronologicalImage
+                                            owl:onClass :Image
                                           ] .
 
 
@@ -2330,6 +2334,23 @@
                                   owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                   owl:onDataRange xsd:string
                                 ] .
+
+
+###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#OrderedImage
+:OrderedImage rdf:type owl:Class ;
+              owl:equivalentClass [ owl:intersectionOf ( :Image
+                                                         [ rdf:type owl:Restriction ;
+                                                           owl:onProperty :hasChronologicalOrder ;
+                                                           owl:hasValue "true"^^xsd:boolean
+                                                         ]
+                                                       ) ;
+                                    rdf:type owl:Class
+                                  ] ;
+              rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                owl:onProperty :hasPreviousImage ;
+                                owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                owl:onClass :Image
+                              ] .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#Piece
@@ -2961,6 +2982,47 @@
   owl:members ( :EasyWordPuzzle
                 :HardWordPuzzle
                 :MediumWordPuzzle
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointProperties ;
+  owl:members ( :hasAddend
+                :hasAntonym
+                :hasBlock
+                :hasCategory
+                :hasChoice
+                :hasConnectingBlock
+                :hasConnectingPiece
+                :hasDifference
+                :hasDividend
+                :hasDivisor
+                :hasEndingBlock
+                :hasImage
+                :hasImagePair
+                :hasImageSubject
+                :hasImageTitle
+                :hasMathOperation
+                :hasMinuend
+                :hasMultiplicant
+                :hasMultiplier
+                :hasNextBlock
+                :hasNumber
+                :hasObservation
+                :hasOrderedImage
+                :hasPiece
+                :hasPreviousImage
+                :hasProduct
+                :hasQuestion
+                :hasQuotient
+                :hasSound
+                :hasStartingBlock
+                :hasSubtrahend
+                :hasSum
+                :hasSynonym
+                :hasWord
+                :isAssociatedWithImage
+                :isAssociatedWithSound
               )
 ] .
 
