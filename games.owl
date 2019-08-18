@@ -419,6 +419,14 @@
                        rdfs:range xsd:boolean .
 
 
+###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasDescOrder
+:hasDescOrder rdf:type owl:DatatypeProperty ;
+              rdfs:subPropertyOf owl:topDataProperty ;
+              rdf:type owl:FunctionalProperty ;
+              rdfs:domain :NumberOrder ;
+              rdfs:range xsd:boolean .
+
+
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasDiagonalMovent
 :hasDiagonalMovent rdf:type owl:DatatypeProperty ;
                    rdfs:subPropertyOf owl:topDataProperty ;
@@ -516,6 +524,7 @@
                 rdfs:subPropertyOf owl:topDataProperty ;
                 rdfs:domain [ rdf:type owl:Class ;
                               owl:unionOf ( :Number
+                                            :NumberOrder
                                             :Recall
                                           )
                             ] ;
@@ -1086,6 +1095,10 @@
 :EasyNumberOrder rdf:type owl:Class ;
                  owl:equivalentClass [ owl:intersectionOf ( :NumberOrder
                                                             [ rdf:type owl:Restriction ;
+                                                              owl:onProperty :hasDescOrder ;
+                                                              owl:hasValue "false"^^xsd:boolean
+                                                            ]
+                                                            [ rdf:type owl:Restriction ;
                                                               owl:onProperty :hasDifficulty ;
                                                               owl:hasValue "EASY"
                                                             ]
@@ -1097,9 +1110,9 @@
                                        rdf:type owl:Class
                                      ] ;
                  rdfs:subClassOf [ rdf:type owl:Restriction ;
-                                   owl:onProperty :hasNumber ;
+                                   owl:onProperty :hasNumberValue ;
                                    owl:qualifiedCardinality "4"^^xsd:nonNegativeInteger ;
-                                   owl:onClass :Number
+                                   owl:onDataRange xsd:positiveInteger
                                  ] .
 
 
@@ -1470,6 +1483,10 @@
 :HardNumberOrder rdf:type owl:Class ;
                  owl:equivalentClass [ owl:intersectionOf ( :NumberOrder
                                                             [ rdf:type owl:Restriction ;
+                                                              owl:onProperty :hasDescOrder ;
+                                                              owl:hasValue "false"^^xsd:boolean
+                                                            ]
+                                                            [ rdf:type owl:Restriction ;
                                                               owl:onProperty :hasDifficulty ;
                                                               owl:hasValue "HARD"
                                                             ]
@@ -1481,9 +1498,9 @@
                                        rdf:type owl:Class
                                      ] ;
                  rdfs:subClassOf [ rdf:type owl:Restriction ;
-                                   owl:onProperty :hasNumber ;
+                                   owl:onProperty :hasNumberValue ;
                                    owl:qualifiedCardinality "6"^^xsd:nonNegativeInteger ;
-                                   owl:onClass :Number
+                                   owl:onDataRange xsd:positiveInteger
                                  ] .
 
 
@@ -2043,6 +2060,10 @@
 :MediumNumberOrder rdf:type owl:Class ;
                    owl:equivalentClass [ owl:intersectionOf ( :NumberOrder
                                                               [ rdf:type owl:Restriction ;
+                                                                owl:onProperty :hasDescOrder ;
+                                                                owl:hasValue "false"^^xsd:boolean
+                                                              ]
+                                                              [ rdf:type owl:Restriction ;
                                                                 owl:onProperty :hasDifficulty ;
                                                                 owl:hasValue "MEDIUM"
                                                               ]
@@ -2054,9 +2075,9 @@
                                          rdf:type owl:Class
                                        ] ;
                    rdfs:subClassOf [ rdf:type owl:Restriction ;
-                                     owl:onProperty :hasNumber ;
+                                     owl:onProperty :hasNumberValue ;
                                      owl:qualifiedCardinality "5"^^xsd:nonNegativeInteger ;
-                                     owl:onClass :Number
+                                     owl:onDataRange xsd:positiveInteger
                                    ] .
 
 
@@ -2297,8 +2318,13 @@
 :NumberOrder rdf:type owl:Class ;
              rdfs:subClassOf :Game ,
                              [ rdf:type owl:Restriction ;
-                               owl:onProperty :hasNumber ;
-                               owl:allValuesFrom :UpToThousand
+                               owl:onProperty :hasNumberValue ;
+                               owl:allValuesFrom [ rdf:type rdfs:Datatype ;
+                                                   owl:onDatatype xsd:positiveInteger ;
+                                                   owl:withRestrictions ( [ xsd:maxInclusive "1000"^^xsd:positiveInteger
+                                                                          ]
+                                                                        )
+                                                 ]
                              ] .
 
 
@@ -3023,6 +3049,36 @@
                 :hasWord
                 :isAssociatedWithImage
                 :isAssociatedWithSound
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointProperties ;
+  owl:members ( :completedDate
+                :displayTime
+                :hasAssetPath
+                :hasBorder
+                :hasChronologicalOrder
+                :hasDescOrder
+                :hasDiagonalMovent
+                :hasDifficulty
+                :hasId
+                :hasLevel
+                :hasMovement
+                :hasNumberValue
+                :hasPlayer
+                :hasQuestionDescription
+                :hasSimilarNumbers
+                :hasStep
+                :hasStringValue
+                :hasSymbol
+                :hasTotalImages
+                :hasWordLength
+                :isAntonym
+                :isCompletedIn
+                :isMovingBlock
+                :isSynonym
+                :maxCompletionTime
               )
 ] .
 
