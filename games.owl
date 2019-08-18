@@ -272,15 +272,6 @@
                  rdfs:range :Number .
 
 
-###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasSimilarNumber
-:hasSimilarNumber rdf:type owl:ObjectProperty ;
-                  rdfs:subPropertyOf owl:topObjectProperty ;
-                  rdf:type owl:SymmetricProperty ,
-                           owl:IrreflexiveProperty ;
-                  rdfs:domain :Number ;
-                  rdfs:range :Number .
-
-
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasSound
 :hasSound rdf:type owl:ObjectProperty ;
           rdfs:subPropertyOf owl:topObjectProperty ;
@@ -2489,15 +2480,6 @@
                           owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                           owl:onDataRange xsd:positiveInteger
                         ] .
-
-
-###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#SimilarNumber
-:SimilarNumber rdf:type owl:Class ;
-               rdfs:subClassOf :Number ,
-                               [ rdf:type owl:Restriction ;
-                                 owl:onProperty :hasSimilarNumber ;
-                                 owl:someValuesFrom :Number
-                               ] .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#Sound
