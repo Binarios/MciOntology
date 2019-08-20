@@ -153,22 +153,6 @@
           rdfs:range :Image .
 
 
-###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasImageSubject
-:hasImageSubject rdf:type owl:ObjectProperty ;
-                 rdfs:subPropertyOf owl:topObjectProperty ;
-                 rdf:type owl:FunctionalProperty ;
-                 rdfs:domain :Image ;
-                 rdfs:range :Word .
-
-
-###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasImageTitle
-:hasImageTitle rdf:type owl:ObjectProperty ;
-               rdfs:subPropertyOf owl:topObjectProperty ;
-               rdf:type owl:FunctionalProperty ;
-               rdfs:domain :Image ;
-               rdfs:range :Word .
-
-
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasMainWord
 :hasMainWord rdf:type owl:ObjectProperty ;
              rdfs:subPropertyOf :hasWord ;
@@ -264,8 +248,9 @@
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasOrderedImage
-:hasOrderedImage rdf:type owl:ObjectProperty ,
-                          owl:IrreflexiveProperty ;
+:hasOrderedImage rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf owl:topObjectProperty ;
+                 rdf:type owl:IrreflexiveProperty ;
                  rdfs:domain :ChronologicalOrder ;
                  rdfs:range :OrderedImage .
 
@@ -334,6 +319,18 @@
                   rdfs:range :LabyrinthBlock .
 
 
+###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasSubject
+:hasSubject rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf owl:topObjectProperty ;
+            rdf:type owl:FunctionalProperty ;
+            rdfs:domain [ rdf:type owl:Class ;
+                          owl:unionOf ( :Image
+                                        :Sound
+                                      )
+                        ] ;
+            rdfs:range :Word .
+
+
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasSubtrahend
 :hasSubtrahend rdf:type owl:ObjectProperty ;
                rdfs:subPropertyOf owl:topObjectProperty ;
@@ -357,6 +354,14 @@
                      owl:IrreflexiveProperty ;
             rdfs:domain :Word ;
             rdfs:range :Word .
+
+
+###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasTitle
+:hasTitle rdf:type owl:ObjectProperty ;
+          rdfs:subPropertyOf owl:topObjectProperty ;
+          rdf:type owl:FunctionalProperty ;
+          rdfs:domain :Image ;
+          rdfs:range :Word .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasWord
@@ -575,8 +580,9 @@
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasSimilarNumbers
-:hasSimilarNumbers rdf:type owl:DatatypeProperty ,
-                            owl:FunctionalProperty ;
+:hasSimilarNumbers rdf:type owl:DatatypeProperty ;
+                   rdfs:subPropertyOf owl:topDataProperty ;
+                   rdf:type owl:FunctionalProperty ;
                    rdfs:domain :Recall ;
                    rdfs:range xsd:boolean .
 
@@ -653,6 +659,7 @@
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#isAntonym
 :isAntonym rdf:type owl:DatatypeProperty ;
+           rdfs:subPropertyOf owl:topDataProperty ;
            rdfs:domain :Word ;
            rdfs:range xsd:boolean .
 
@@ -681,6 +688,7 @@
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#isSynonym
 :isSynonym rdf:type owl:DatatypeProperty ;
+           rdfs:subPropertyOf owl:topDataProperty ;
            rdfs:domain :Word ;
            rdfs:range xsd:boolean .
 
@@ -694,8 +702,9 @@
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#objectsPerCard
-:objectsPerCard rdf:type owl:DatatypeProperty ,
-                         owl:FunctionalProperty ;
+:objectsPerCard rdf:type owl:DatatypeProperty ;
+                rdfs:subPropertyOf owl:topDataProperty ;
+                rdf:type owl:FunctionalProperty ;
                 rdfs:domain :MemoryCards ;
                 rdfs:range xsd:positiveInteger .
 
@@ -1731,12 +1740,12 @@
 :Image rdf:type owl:Class ;
        rdfs:subClassOf :Object ,
                        [ rdf:type owl:Restriction ;
-                         owl:onProperty :hasImageSubject ;
+                         owl:onProperty :hasSubject ;
                          owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                          owl:onClass :Word
                        ] ,
                        [ rdf:type owl:Restriction ;
-                         owl:onProperty :hasImageTitle ;
+                         owl:onProperty :hasTitle ;
                          owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                          owl:onClass :Word
                        ] .
@@ -2581,9 +2590,9 @@
 :Sound rdf:type owl:Class ;
        rdfs:subClassOf :Object ,
                        [ rdf:type owl:Restriction ;
-                         owl:onProperty :hasAssociatedImage ;
+                         owl:onProperty :hasSubject ;
                          owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                         owl:onClass :Image
+                         owl:onClass :Word
                        ] .
 
 
@@ -3065,6 +3074,44 @@
 
 
 [ rdf:type owl:AllDisjointProperties ;
+  owl:members ( :hasAddend
+                :hasAntonym
+                :hasAssociatedImage
+                :hasAssociatedSound
+                :hasBlock
+                :hasCategory
+                :hasChoice
+                :hasConnectingBlock
+                :hasConnectingPiece
+                :hasDifference
+                :hasDividend
+                :hasDivisor
+                :hasEndingBlock
+                :hasMathOperation
+                :hasMinuend
+                :hasMultiplicant
+                :hasMultiplier
+                :hasNextBlock
+                :hasNumber
+                :hasObject
+                :hasObservation
+                :hasOrderedImage
+                :hasPiece
+                :hasPreviousImage
+                :hasProduct
+                :hasQuestion
+                :hasQuotient
+                :hasStartingBlock
+                :hasSubject
+                :hasSubtrahend
+                :hasSum
+                :hasSynonym
+                :hasTitle
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointProperties ;
   owl:members ( :hasImage
                 :hasSound
                 :hasWord
@@ -3098,67 +3145,6 @@
                 :isCompletedIn
                 :isMovingBlock
                 :isSoundAssociated
-                :isSynonym
-                :maxCompletionTime
-                :objectsPerCard
-              )
-] .
-
-
-[ rdf:type owl:AllDisjointProperties ;
-  owl:members ( :completedDate
-                :displayTime
-                :hasAssetPath
-                :hasBorder
-                :hasChronologicalOrder
-                :hasDescOrder
-                :hasDiagonalMovent
-                :hasDifficulty
-                :hasId
-                :hasLevel
-                :hasMovement
-                :hasNumberValue
-                :hasPlayer
-                :hasQuestionDescription
-                :hasSimilarNumbers
-                :hasStep
-                :hasStringValue
-                :hasSymbol
-                :hasTotalImages
-                :hasWordLength
-                :isAntonym
-                :isCompletedIn
-                :isMovingBlock
-                :isSynonym
-                :maxCompletionTime
-              )
-] .
-
-
-[ rdf:type owl:AllDisjointProperties ;
-  owl:members ( :completedDate
-                :displayTime
-                :hasAssetPath
-                :hasBorder
-                :hasChronologicalOrder
-                :hasDescOrder
-                :hasDiagonalMovent
-                :hasDifficulty
-                :hasId
-                :hasLevel
-                :hasMovement
-                :hasNumberValue
-                :hasPlayer
-                :hasQuestionDescription
-                :hasSimilarNumbers
-                :hasStep
-                :hasStringValue
-                :hasSymbol
-                :hasTotalImages
-                :hasWordLength
-                :isAntonym
-                :isCompletedIn
-                :isMovingBlock
                 :isSynonym
                 :maxCompletionTime
                 :objectsPerCard
