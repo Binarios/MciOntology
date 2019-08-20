@@ -126,12 +126,11 @@
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasImage
 :hasImage rdf:type owl:ObjectProperty ;
-          rdfs:subPropertyOf owl:topObjectProperty ;
+          rdfs:subPropertyOf :hasObject ;
           rdfs:domain [ rdf:type owl:Class ;
                         owl:unionOf ( :ChronologicalOrder
                                       :FindTheSound
                                       :ImagePair
-                                      :MemoryCards
                                       :ObservationObj
                                       :Puzzle
                                       :Question
@@ -226,6 +225,31 @@
            rdfs:range :Number .
 
 
+###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasObject
+:hasObject rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf owl:topObjectProperty ;
+           rdfs:domain [ rdf:type owl:Class ;
+                         owl:unionOf ( :Antonyms
+                                       :ChronologicalOrder
+                                       :FindTheSound
+                                       :ImagePair
+                                       :MemoryCards
+                                       :Observation
+                                       :ObservationObj
+                                       :Puzzle
+                                       :Question
+                                       :Synonyms
+                                       :WordPuzzle
+                                     )
+                       ] ;
+           rdfs:range [ rdf:type owl:Class ;
+                        owl:unionOf ( :Image
+                                      :Sound
+                                      :Word
+                                    )
+                      ] .
+
+
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasObservation
 :hasObservation rdf:type owl:ObjectProperty ;
                 rdfs:subPropertyOf owl:topObjectProperty ;
@@ -290,7 +314,7 @@
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasSound
 :hasSound rdf:type owl:ObjectProperty ;
-          rdfs:subPropertyOf owl:topObjectProperty ;
+          rdfs:subPropertyOf :hasObject ;
           rdf:type owl:FunctionalProperty ;
           rdfs:domain :FindTheSound ;
           rdfs:range :Sound .
@@ -331,7 +355,7 @@
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasWord
 :hasWord rdf:type owl:ObjectProperty ;
-         rdfs:subPropertyOf owl:topObjectProperty ;
+         rdfs:subPropertyOf :hasObject ;
          rdfs:domain [ rdf:type owl:Class ;
                        owl:unionOf ( :Antonyms
                                      :Observation
@@ -372,7 +396,11 @@
 :displayTime rdf:type owl:DatatypeProperty ;
              rdfs:subPropertyOf owl:topDataProperty ;
              rdf:type owl:FunctionalProperty ;
-             rdfs:domain :Recall ;
+             rdfs:domain [ rdf:type owl:Class ;
+                           owl:unionOf ( :MemoryCards
+                                         :Recall
+                                       )
+                         ] ;
              rdfs:range xsd:positiveInteger .
 
 
@@ -665,6 +693,13 @@
                    rdf:type owl:FunctionalProperty ;
                    rdfs:domain :Game ;
                    rdfs:range xsd:positiveInteger .
+
+
+###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#objectsPerCard
+:objectsPerCard rdf:type owl:DatatypeProperty ,
+                         owl:FunctionalProperty ;
+                rdfs:domain :MemoryCards ;
+                rdfs:range xsd:positiveInteger .
 
 
 #################################################################
@@ -1074,6 +1109,10 @@
 :EasyMemoryCards rdf:type owl:Class ;
                  owl:equivalentClass [ owl:intersectionOf ( :MemoryCards
                                                             [ rdf:type owl:Restriction ;
+                                                              owl:onProperty :displayTime ;
+                                                              owl:hasValue 3000
+                                                            ]
+                                                            [ rdf:type owl:Restriction ;
                                                               owl:onProperty :hasDifficulty ;
                                                               owl:hasValue "EASY"
                                                             ]
@@ -1081,13 +1120,17 @@
                                                               owl:onProperty :maxCompletionTime ;
                                                               owl:hasValue 180000
                                                             ]
+                                                            [ rdf:type owl:Restriction ;
+                                                              owl:onProperty :objectsPerCard ;
+                                                              owl:hasValue 2
+                                                            ]
                                                           ) ;
                                        rdf:type owl:Class
                                      ] ;
                  rdfs:subClassOf [ rdf:type owl:Restriction ;
-                                   owl:onProperty :hasImagePair ;
+                                   owl:onProperty :hasObject ;
                                    owl:qualifiedCardinality "3"^^xsd:nonNegativeInteger ;
-                                   owl:onClass :ImagePair
+                                   owl:onClass :Object
                                  ] .
 
 
@@ -1462,6 +1505,10 @@
 :HardMemoryCards rdf:type owl:Class ;
                  owl:equivalentClass [ owl:intersectionOf ( :MemoryCards
                                                             [ rdf:type owl:Restriction ;
+                                                              owl:onProperty :displayTime ;
+                                                              owl:hasValue 3000
+                                                            ]
+                                                            [ rdf:type owl:Restriction ;
                                                               owl:onProperty :hasDifficulty ;
                                                               owl:hasValue "HARD"
                                                             ]
@@ -1469,13 +1516,17 @@
                                                               owl:onProperty :maxCompletionTime ;
                                                               owl:hasValue 180000
                                                             ]
+                                                            [ rdf:type owl:Restriction ;
+                                                              owl:onProperty :objectsPerCard ;
+                                                              owl:hasValue 2
+                                                            ]
                                                           ) ;
                                        rdf:type owl:Class
                                      ] ;
                  rdfs:subClassOf [ rdf:type owl:Restriction ;
-                                   owl:onProperty :hasImagePair ;
+                                   owl:onProperty :hasObject ;
                                    owl:qualifiedCardinality "6"^^xsd:nonNegativeInteger ;
-                                   owl:onClass :ImagePair
+                                   owl:onClass :Object
                                  ] .
 
 
@@ -2039,6 +2090,10 @@
 :MediumMemoryCards rdf:type owl:Class ;
                    owl:equivalentClass [ owl:intersectionOf ( :MemoryCards
                                                               [ rdf:type owl:Restriction ;
+                                                                owl:onProperty :displayTime ;
+                                                                owl:hasValue 3000
+                                                              ]
+                                                              [ rdf:type owl:Restriction ;
                                                                 owl:onProperty :hasDifficulty ;
                                                                 owl:hasValue "MEDIUM"
                                                               ]
@@ -2046,13 +2101,17 @@
                                                                 owl:onProperty :maxCompletionTime ;
                                                                 owl:hasValue 180000
                                                               ]
+                                                              [ rdf:type owl:Restriction ;
+                                                                owl:onProperty :objectsPerCard ;
+                                                                owl:hasValue 2
+                                                              ]
                                                             ) ;
                                          rdf:type owl:Class
                                        ] ;
                    rdfs:subClassOf [ rdf:type owl:Restriction ;
-                                     owl:onProperty :hasImagePair ;
+                                     owl:onProperty :hasObject ;
                                      owl:qualifiedCardinality "4"^^xsd:nonNegativeInteger ;
-                                     owl:onClass :ImagePair
+                                     owl:onClass :Object
                                    ] .
 
 
@@ -2241,7 +2300,11 @@
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#MemoryCards
 :MemoryCards rdf:type owl:Class ;
-             rdfs:subClassOf :Game .
+             rdfs:subClassOf :Game ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :hasObject ;
+                               owl:allValuesFrom :Image
+                             ] .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#Million
@@ -3024,7 +3087,6 @@
                 :hasDividend
                 :hasDivisor
                 :hasEndingBlock
-                :hasImage
                 :hasImagePair
                 :hasImageSubject
                 :hasImageTitle
@@ -3034,6 +3096,7 @@
                 :hasMultiplier
                 :hasNextBlock
                 :hasNumber
+                :hasObject
                 :hasObservation
                 :hasOrderedImage
                 :hasPiece
@@ -3041,14 +3104,20 @@
                 :hasProduct
                 :hasQuestion
                 :hasQuotient
-                :hasSound
                 :hasStartingBlock
                 :hasSubtrahend
                 :hasSum
                 :hasSynonym
-                :hasWord
                 :isAssociatedWithImage
                 :isAssociatedWithSound
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointProperties ;
+  owl:members ( :hasImage
+                :hasSound
+                :hasWord
               )
 ] .
 
@@ -3088,6 +3157,8 @@
                 :displayTime
                 :hasAssetPath
                 :hasBorder
+                :hasChronologicalOrder
+                :hasDescOrder
                 :hasDiagonalMovent
                 :hasDifficulty
                 :hasId
@@ -3096,6 +3167,7 @@
                 :hasNumberValue
                 :hasPlayer
                 :hasQuestionDescription
+                :hasSimilarNumbers
                 :hasStep
                 :hasStringValue
                 :hasSymbol
@@ -3106,6 +3178,7 @@
                 :isMovingBlock
                 :isSynonym
                 :maxCompletionTime
+                :objectsPerCard
               )
 ] .
 
