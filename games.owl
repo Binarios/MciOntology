@@ -37,6 +37,21 @@
             rdfs:range :Word .
 
 
+###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasAssociatedImage
+:hasAssociatedImage rdf:type owl:ObjectProperty ;
+                    rdfs:subPropertyOf owl:topObjectProperty ;
+                    owl:inverseOf :hasAssociatedSound ;
+                    rdfs:domain :Sound ;
+                    rdfs:range :Image .
+
+
+###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasAssociatedSound
+:hasAssociatedSound rdf:type owl:ObjectProperty ;
+                    rdfs:subPropertyOf owl:topObjectProperty ;
+                    rdfs:domain :Image ;
+                    rdfs:range :Sound .
+
+
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasBlock
 :hasBlock rdf:type owl:ObjectProperty ;
           rdfs:subPropertyOf owl:topObjectProperty ;
@@ -130,20 +145,12 @@
           rdfs:domain [ rdf:type owl:Class ;
                         owl:unionOf ( :ChronologicalOrder
                                       :FindTheSound
-                                      :ImagePair
                                       :ObservationObj
                                       :Puzzle
                                       :Question
                                     )
                       ] ;
           rdfs:range :Image .
-
-
-###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasImagePair
-:hasImagePair rdf:type owl:ObjectProperty ;
-              rdfs:subPropertyOf owl:topObjectProperty ;
-              rdfs:domain :MemoryCards ;
-              rdfs:range :ImagePair .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasImageSubject
@@ -232,7 +239,6 @@
                          owl:unionOf ( :Antonyms
                                        :ChronologicalOrder
                                        :FindTheSound
-                                       :ImagePair
                                        :MemoryCards
                                        :Observation
                                        :ObservationObj
@@ -364,21 +370,6 @@
                                    )
                      ] ;
          rdfs:range :Word .
-
-
-###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#isAssociatedWithImage
-:isAssociatedWithImage rdf:type owl:ObjectProperty ;
-                       rdfs:subPropertyOf owl:topObjectProperty ;
-                       owl:inverseOf :isAssociatedWithSound ;
-                       rdfs:domain :Sound ;
-                       rdfs:range :Image .
-
-
-###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#isAssociatedWithSound
-:isAssociatedWithSound rdf:type owl:ObjectProperty ;
-                       rdfs:subPropertyOf owl:topObjectProperty ;
-                       rdfs:domain :Image ;
-                       rdfs:range :Sound .
 
 
 #################################################################
@@ -679,6 +670,13 @@
                rdf:type owl:FunctionalProperty ;
                rdfs:domain :Block ;
                rdfs:range xsd:boolean .
+
+
+###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#isSoundAssociated
+:isSoundAssociated rdf:type owl:DatatypeProperty ;
+                   rdfs:subPropertyOf owl:topDataProperty ;
+                   rdfs:domain :Image ;
+                   rdfs:range xsd:boolean .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#isSynonym
@@ -1406,12 +1404,7 @@
                                       ] ;
                   rdfs:subClassOf [ rdf:type owl:Restriction ;
                                     owl:onProperty :hasImage ;
-                                    owl:minQualifiedCardinality "10"^^xsd:nonNegativeInteger ;
-                                    owl:onClass :ImageSound
-                                  ] ,
-                                  [ rdf:type owl:Restriction ;
-                                    owl:onProperty :hasImage ;
-                                    owl:maxQualifiedCardinality "14"^^xsd:nonNegativeInteger ;
+                                    owl:qualifiedCardinality "12"^^xsd:nonNegativeInteger ;
                                     owl:onClass :ImageSound
                                   ] .
 
@@ -1749,16 +1742,6 @@
                        ] .
 
 
-###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#ImagePair
-:ImagePair rdf:type owl:Class ;
-           rdfs:subClassOf :Object ,
-                           [ rdf:type owl:Restriction ;
-                             owl:onProperty :hasImage ;
-                             owl:qualifiedCardinality "2"^^xsd:nonNegativeInteger ;
-                             owl:onClass :Image
-                           ] .
-
-
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#ImageQuestion
 :ImageQuestion rdf:type owl:Class ;
                rdfs:subClassOf :Question ,
@@ -1772,9 +1755,16 @@
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#ImageSound
 :ImageSound rdf:type owl:Class ;
-            rdfs:subClassOf :Image ,
-                            [ rdf:type owl:Restriction ;
-                              owl:onProperty :isAssociatedWithSound ;
+            owl:equivalentClass [ owl:intersectionOf ( :Image
+                                                       [ rdf:type owl:Restriction ;
+                                                         owl:onProperty :isSoundAssociated ;
+                                                         owl:hasValue "true"^^xsd:boolean
+                                                       ]
+                                                     ) ;
+                                  rdf:type owl:Class
+                                ] ;
+            rdfs:subClassOf [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasAssociatedSound ;
                               owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                               owl:onClass :Sound
                             ] .
@@ -1986,12 +1976,7 @@
                                         ] ;
                     rdfs:subClassOf [ rdf:type owl:Restriction ;
                                       owl:onProperty :hasImage ;
-                                      owl:minQualifiedCardinality "6"^^xsd:nonNegativeInteger ;
-                                      owl:onClass :ImageSound
-                                    ] ,
-                                    [ rdf:type owl:Restriction ;
-                                      owl:onProperty :hasImage ;
-                                      owl:maxQualifiedCardinality "10"^^xsd:nonNegativeInteger ;
+                                      owl:qualifiedCardinality "9"^^xsd:nonNegativeInteger ;
                                       owl:onClass :ImageSound
                                     ] .
 
@@ -2594,7 +2579,12 @@
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#Sound
 :Sound rdf:type owl:Class ;
-       rdfs:subClassOf :Object .
+       rdfs:subClassOf :Object ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :hasAssociatedImage ;
+                         owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                         owl:onClass :Image
+                       ] .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#StationaryBlock
@@ -2897,7 +2887,6 @@
 [ rdf:type owl:AllDisjointClasses ;
   owl:members ( :Block
                 :Image
-                :ImagePair
                 :LabyrinthBlock
                 :MathOperator
                 :Number
@@ -3076,48 +3065,42 @@
 
 
 [ rdf:type owl:AllDisjointProperties ;
-  owl:members ( :hasAddend
-                :hasAntonym
-                :hasBlock
-                :hasCategory
-                :hasChoice
-                :hasConnectingBlock
-                :hasConnectingPiece
-                :hasDifference
-                :hasDividend
-                :hasDivisor
-                :hasEndingBlock
-                :hasImagePair
-                :hasImageSubject
-                :hasImageTitle
-                :hasMathOperation
-                :hasMinuend
-                :hasMultiplicant
-                :hasMultiplier
-                :hasNextBlock
-                :hasNumber
-                :hasObject
-                :hasObservation
-                :hasOrderedImage
-                :hasPiece
-                :hasPreviousImage
-                :hasProduct
-                :hasQuestion
-                :hasQuotient
-                :hasStartingBlock
-                :hasSubtrahend
-                :hasSum
-                :hasSynonym
-                :isAssociatedWithImage
-                :isAssociatedWithSound
+  owl:members ( :hasImage
+                :hasSound
+                :hasWord
               )
 ] .
 
 
 [ rdf:type owl:AllDisjointProperties ;
-  owl:members ( :hasImage
-                :hasSound
-                :hasWord
+  owl:members ( :completedDate
+                :displayTime
+                :hasAssetPath
+                :hasBorder
+                :hasChronologicalOrder
+                :hasDescOrder
+                :hasDiagonalMovent
+                :hasDifficulty
+                :hasHeight
+                :hasId
+                :hasLevel
+                :hasMovement
+                :hasNumberValue
+                :hasPlayer
+                :hasQuestionDescription
+                :hasSimilarNumbers
+                :hasStep
+                :hasStringValue
+                :hasSymbol
+                :hasTotalImages
+                :hasWordLength
+                :isAntonym
+                :isCompletedIn
+                :isMovingBlock
+                :isSoundAssociated
+                :isSynonym
+                :maxCompletionTime
+                :objectsPerCard
               )
 ] .
 
