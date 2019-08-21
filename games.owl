@@ -674,8 +674,7 @@
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#isImageAssociated
 :isImageAssociated rdf:type owl:DatatypeProperty ;
                    rdfs:subPropertyOf owl:topDataProperty ;
-                   rdf:type owl:FunctionalProperty ;
-                   rdfs:domain :SoundImage ;
+                   rdfs:domain :Sound ;
                    rdfs:range xsd:boolean .
 
 
@@ -2604,23 +2603,6 @@
                        ] .
 
 
-###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#SoundImage
-:SoundImage rdf:type owl:Class ;
-            owl:equivalentClass [ owl:intersectionOf ( :Sound
-                                                       [ rdf:type owl:Restriction ;
-                                                         owl:onProperty :isImageAssociated ;
-                                                         owl:hasValue "true"^^xsd:boolean
-                                                       ]
-                                                     ) ;
-                                  rdf:type owl:Class
-                                ] ;
-            rdfs:subClassOf [ rdf:type owl:Restriction ;
-                              owl:onProperty :hasAssociatedImage ;
-                              owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                              owl:onClass :Image
-                            ] .
-
-
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#StationaryBlock
 :StationaryBlock rdf:type owl:Class ;
                  owl:equivalentClass [ owl:intersectionOf ( :Block
@@ -3169,39 +3151,6 @@
                 :isAntonym
                 :isCompletedIn
                 :isImageAssociated
-                :isMovingBlock
-                :isSoundAssociated
-                :isSynonym
-                :maxCompletionTime
-                :objectsPerCard
-              )
-] .
-
-
-[ rdf:type owl:AllDisjointProperties ;
-  owl:members ( :completedDate
-                :displayTime
-                :hasAssetPath
-                :hasBorder
-                :hasChronologicalOrder
-                :hasDescOrder
-                :hasDiagonalMovent
-                :hasDifficulty
-                :hasHeight
-                :hasId
-                :hasLevel
-                :hasMovement
-                :hasNumberValue
-                :hasPlayer
-                :hasQuestionDescription
-                :hasSimilarNumbers
-                :hasStep
-                :hasStringValue
-                :hasSymbol
-                :hasTotalImages
-                :hasWordLength
-                :isAntonym
-                :isCompletedIn
                 :isMovingBlock
                 :isSoundAssociated
                 :isSynonym
