@@ -67,11 +67,7 @@
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasCategory
 :hasCategory rdf:type owl:ObjectProperty ;
              rdfs:subPropertyOf owl:topObjectProperty ;
-             rdfs:domain [ rdf:type owl:Class ;
-                           owl:unionOf ( :Questions
-                                         :Word
-                                       )
-                         ] ;
+             rdfs:domain :Question ;
              rdfs:range :Word .
 
 
@@ -477,7 +473,11 @@
 :hasDifficulty rdf:type owl:DatatypeProperty ;
                rdfs:subPropertyOf owl:topDataProperty ;
                rdf:type owl:FunctionalProperty ;
-               rdfs:domain :Game ;
+               rdfs:domain [ rdf:type owl:Class ;
+                             owl:unionOf ( :Game
+                                           :Question
+                                         )
+                           ] ;
                rdfs:range [ rdf:type rdfs:Datatype ;
                             owl:oneOf [ rdf:type rdf:List ;
                                         rdf:first "EASY" ;
@@ -566,7 +566,6 @@
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasQuestionDescription
 :hasQuestionDescription rdf:type owl:DatatypeProperty ;
                         rdfs:subPropertyOf owl:topDataProperty ;
-                        rdf:type owl:FunctionalProperty ;
                         rdfs:domain :Question ;
                         rdfs:range xsd:string .
 
@@ -678,6 +677,13 @@
                    rdfs:range xsd:boolean .
 
 
+###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#isImageQuestion
+:isImageQuestion rdf:type owl:DatatypeProperty ;
+                 rdfs:subPropertyOf owl:topDataProperty ;
+                 rdfs:domain :Question ;
+                 rdfs:range xsd:boolean .
+
+
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#isMovingBlock
 :isMovingBlock rdf:type owl:DatatypeProperty ;
                rdfs:subPropertyOf owl:topDataProperty ;
@@ -698,6 +704,13 @@
            rdfs:subPropertyOf owl:topDataProperty ;
            rdfs:domain :Word ;
            rdfs:range xsd:boolean .
+
+
+###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#isTextQuestion
+:isTextQuestion rdf:type owl:DatatypeProperty ;
+                rdfs:subPropertyOf owl:topDataProperty ;
+                rdfs:domain :Question ;
+                rdfs:range xsd:boolean .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#maxCompletionTime
@@ -1760,13 +1773,20 @@
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#ImageQuestion
 :ImageQuestion rdf:type owl:Class ;
-               rdfs:subClassOf :Question ,
-                               [ rdf:type owl:Restriction ;
+               owl:equivalentClass [ owl:intersectionOf ( :Question
+                                                          [ rdf:type owl:Restriction ;
+                                                            owl:onProperty :isImageQuestion ;
+                                                            owl:hasValue "true"^^xsd:boolean
+                                                          ]
+                                                        ) ;
+                                     rdf:type owl:Class
+                                   ] ;
+               rdfs:subClassOf [ rdf:type owl:Restriction ;
                                  owl:onProperty :hasImage ;
                                  owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                  owl:onClass :Image
                                ] ;
-               owl:disjointWith :WordQuestions .
+               owl:disjointWith :WordQuestion .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#ImageSound
@@ -2857,14 +2877,21 @@
                             ] .
 
 
-###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#WordQuestions
-:WordQuestions rdf:type owl:Class ;
-               rdfs:subClassOf :Question ,
-                               [ rdf:type owl:Restriction ;
-                                 owl:onProperty :hasQuestionDescription ;
-                                 owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                 owl:onDataRange xsd:string
-                               ] .
+###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#WordQuestion
+:WordQuestion rdf:type owl:Class ;
+              owl:equivalentClass [ owl:intersectionOf ( :Question
+                                                         [ rdf:type owl:Restriction ;
+                                                           owl:onProperty :isTextQuestion ;
+                                                           owl:hasValue "true"^^xsd:boolean
+                                                         ]
+                                                       ) ;
+                                    rdf:type owl:Class
+                                  ] ;
+              rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                owl:onProperty :hasQuestionDescription ;
+                                owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                owl:onDataRange xsd:string
+                              ] .
 
 
 #################################################################
@@ -3122,40 +3149,6 @@
   owl:members ( :hasImage
                 :hasSound
                 :hasWord
-              )
-] .
-
-
-[ rdf:type owl:AllDisjointProperties ;
-  owl:members ( :completedDate
-                :displayTime
-                :hasAssetPath
-                :hasBorder
-                :hasChronologicalOrder
-                :hasDescOrder
-                :hasDiagonalMovent
-                :hasDifficulty
-                :hasHeight
-                :hasId
-                :hasLevel
-                :hasMovement
-                :hasNumberValue
-                :hasPlayer
-                :hasQuestionDescription
-                :hasSimilarNumbers
-                :hasStep
-                :hasStringValue
-                :hasSymbol
-                :hasTotalImages
-                :hasWordLength
-                :isAntonym
-                :isCompletedIn
-                :isImageAssociated
-                :isMovingBlock
-                :isSoundAssociated
-                :isSynonym
-                :maxCompletionTime
-                :objectsPerCard
               )
 ] .
 
