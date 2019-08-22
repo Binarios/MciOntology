@@ -67,7 +67,11 @@
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasCategory
 :hasCategory rdf:type owl:ObjectProperty ;
              rdfs:subPropertyOf owl:topObjectProperty ;
-             rdfs:domain :Question ;
+             rdfs:domain [ rdf:type owl:Class ;
+                           owl:unionOf ( :Question
+                                         :Questions
+                                       )
+                         ] ;
              rdfs:range :Word .
 
 
@@ -2485,7 +2489,11 @@
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#Question
 :Question rdf:type owl:Class ;
-          rdfs:subClassOf :Object .
+          rdfs:subClassOf :Object ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasCategory ;
+                            owl:someValuesFrom :Word
+                          ] .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#Questions
