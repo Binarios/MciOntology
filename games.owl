@@ -556,14 +556,6 @@
                         ] .
 
 
-###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasMovingBlocks
-:hasMovingBlocks rdf:type owl:DatatypeProperty ;
-                 rdfs:subPropertyOf owl:topDataProperty ;
-                 rdf:type owl:FunctionalProperty ;
-                 rdfs:domain :LogicalOrder ;
-                 rdfs:range xsd:positiveInteger .
-
-
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasNumberValue
 :hasNumberValue rdf:type owl:DatatypeProperty ;
                 rdfs:subPropertyOf owl:topDataProperty ;
@@ -676,6 +668,14 @@
                                           )
                             ] ;
                 rdfs:range xsd:positiveInteger .
+
+
+###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasTotalMovingBlocks
+:hasTotalMovingBlocks rdf:type owl:DatatypeProperty ;
+                      rdfs:subPropertyOf owl:topDataProperty ;
+                      rdf:type owl:FunctionalProperty ;
+                      rdfs:domain :LogicalOrder ;
+                      rdfs:range xsd:positiveInteger .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasTotalRows
@@ -1155,16 +1155,16 @@
                                                                owl:hasValue "EASY"
                                                              ]
                                                              [ rdf:type owl:Restriction ;
-                                                               owl:onProperty :hasMovingBlocks ;
-                                                               owl:hasValue 1
-                                                             ]
-                                                             [ rdf:type owl:Restriction ;
                                                                owl:onProperty :hasStep ;
                                                                owl:hasValue 1
                                                              ]
                                                              [ rdf:type owl:Restriction ;
                                                                owl:onProperty :hasTotalColumns ;
                                                                owl:hasValue 3
+                                                             ]
+                                                             [ rdf:type owl:Restriction ;
+                                                               owl:onProperty :hasTotalMovingBlocks ;
+                                                               owl:hasValue 1
                                                              ]
                                                              [ rdf:type owl:Restriction ;
                                                                owl:onProperty :hasTotalRows ;
@@ -1589,15 +1589,15 @@
                                                                owl:hasValue "HARD"
                                                              ]
                                                              [ rdf:type owl:Restriction ;
-                                                               owl:onProperty :hasMovingBlocks ;
-                                                               owl:hasValue 3
-                                                             ]
-                                                             [ rdf:type owl:Restriction ;
                                                                owl:onProperty :hasStep ;
                                                                owl:hasValue 1
                                                              ]
                                                              [ rdf:type owl:Restriction ;
                                                                owl:onProperty :hasTotalColumns ;
+                                                               owl:hasValue 3
+                                                             ]
+                                                             [ rdf:type owl:Restriction ;
+                                                               owl:onProperty :hasTotalMovingBlocks ;
                                                                owl:hasValue 3
                                                              ]
                                                              [ rdf:type owl:Restriction ;
@@ -2215,16 +2215,16 @@
                                                                  owl:hasValue "MEDIUM"
                                                                ]
                                                                [ rdf:type owl:Restriction ;
-                                                                 owl:onProperty :hasMovingBlocks ;
-                                                                 owl:hasValue 2
-                                                               ]
-                                                               [ rdf:type owl:Restriction ;
                                                                  owl:onProperty :hasStep ;
                                                                  owl:hasValue 1
                                                                ]
                                                                [ rdf:type owl:Restriction ;
                                                                  owl:onProperty :hasTotalColumns ;
                                                                  owl:hasValue 3
+                                                               ]
+                                                               [ rdf:type owl:Restriction ;
+                                                                 owl:onProperty :hasTotalMovingBlocks ;
+                                                                 owl:hasValue 2
                                                                ]
                                                                [ rdf:type owl:Restriction ;
                                                                  owl:onProperty :hasTotalRows ;
