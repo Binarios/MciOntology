@@ -72,6 +72,13 @@
              rdfs:range :BlockSet .
 
 
+###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasBorderLinePiece
+:hasBorderLinePiece rdf:type owl:ObjectProperty ;
+                    rdfs:subPropertyOf :hasPiece ;
+                    rdfs:domain :Puzzle ;
+                    rdfs:range :Piece .
+
+
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasCategory
 :hasCategory rdf:type owl:ObjectProperty ;
              rdfs:subPropertyOf owl:topObjectProperty ;
@@ -106,6 +113,13 @@
                              owl:IrreflexiveProperty ;
                     rdfs:domain :Piece ;
                     rdfs:range :Piece .
+
+
+###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasCornerPiece
+:hasCornerPiece rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf :hasPiece ;
+                rdfs:domain :Puzzle ;
+                rdfs:range :Piece .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasCorrectBlockSet
@@ -167,6 +181,13 @@
                                     )
                       ] ;
           rdfs:range :Image .
+
+
+###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasInteriorPiece
+:hasInteriorPiece rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf :hasPiece ;
+                  rdfs:domain :Puzzle ;
+                  rdfs:range :Piece .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasMainWord
@@ -410,8 +431,9 @@
 #################################################################
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#choices
-:choices rdf:type owl:DatatypeProperty ,
-                  owl:FunctionalProperty ;
+:choices rdf:type owl:DatatypeProperty ;
+         rdfs:subPropertyOf owl:topDataProperty ;
+         rdf:type owl:FunctionalProperty ;
          rdfs:domain :LogicalOrder ;
          rdfs:range xsd:positiveInteger .
 
@@ -486,6 +508,19 @@
                  rdfs:range xsd:positiveInteger .
 
 
+###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasColumns
+:hasColumns rdf:type owl:DatatypeProperty ;
+            rdfs:subPropertyOf owl:topDataProperty ;
+            rdf:type owl:FunctionalProperty ;
+            rdfs:domain [ rdf:type owl:Class ;
+                          owl:unionOf ( :HidingBlocks
+                                        :LogicalOrder
+                                        :Puzzle
+                                      )
+                        ] ;
+            rdfs:range xsd:positiveInteger .
+
+
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasDescOrder
 :hasDescOrder rdf:type owl:DatatypeProperty ;
               rdfs:subPropertyOf owl:topDataProperty ;
@@ -534,7 +569,7 @@
           rdfs:subPropertyOf owl:topDataProperty ;
           rdf:type owl:FunctionalProperty ;
           rdfs:domain :Game ;
-          rdfs:range xsd:string .
+          rdfs:range xsd:positiveInteger .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasMovement
@@ -583,8 +618,9 @@
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasOrder
-:hasOrder rdf:type owl:DatatypeProperty ,
-                   owl:FunctionalProperty ;
+:hasOrder rdf:type owl:DatatypeProperty ;
+          rdfs:subPropertyOf owl:topDataProperty ;
+          rdf:type owl:FunctionalProperty ;
           rdfs:domain :BlockSet ;
           rdfs:range xsd:positiveInteger .
 
@@ -618,6 +654,19 @@
               rdf:type owl:FunctionalProperty ;
               rdfs:domain :Block ;
               rdfs:range xsd:positiveInteger .
+
+
+###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasRows
+:hasRows rdf:type owl:DatatypeProperty ;
+         rdfs:subPropertyOf owl:topDataProperty ;
+         rdf:type owl:FunctionalProperty ;
+         rdfs:domain [ rdf:type owl:Class ;
+                       owl:unionOf ( :HidingBlocks
+                                     :LogicalOrder
+                                     :Puzzle
+                                   )
+                     ] ;
+         rdfs:range xsd:positiveInteger .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasSimilarNumbers
@@ -669,7 +718,7 @@
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasTotalColumns
 :hasTotalColumns rdf:type owl:DatatypeProperty ;
                  owl:equivalentProperty :hasTotalRows ;
-                 rdfs:subPropertyOf owl:topDataProperty ;
+                 rdfs:subPropertyOf :hasColumns ;
                  rdf:type owl:FunctionalProperty ;
                  rdfs:domain [ rdf:type owl:Class ;
                                owl:unionOf ( :HidingBlocks
@@ -701,7 +750,7 @@
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasTotalRows
 :hasTotalRows rdf:type owl:DatatypeProperty ;
-              rdfs:subPropertyOf owl:topDataProperty ;
+              rdfs:subPropertyOf :hasRows ;
               rdf:type owl:FunctionalProperty ;
               rdfs:domain [ rdf:type owl:Class ;
                             owl:unionOf ( :HidingBlocks
@@ -842,7 +891,17 @@
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#Block
 :Block rdf:type owl:Class ;
-       rdfs:subClassOf :Object .
+       rdfs:subClassOf :Object ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :hasColumnNumber ;
+                         owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                         owl:onDataRange xsd:positiveInteger
+                       ] ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :hasRowNumber ;
+                         owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                         owl:onDataRange xsd:positiveInteger
+                       ] .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#BlockSet
@@ -864,37 +923,6 @@
                             owl:onProperty :hasOrder ;
                             owl:someValuesFrom xsd:positiveInteger
                           ] .
-
-
-###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#BorderLinePiece
-:BorderLinePiece rdf:type owl:Class ;
-                 rdfs:subClassOf :Piece ,
-                                 [ rdf:type owl:Class ;
-                                   owl:unionOf ( [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
-                                                                          owl:onProperty :hasConnectingPiece ;
-                                                                          owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                                          owl:onClass :BorderLinePiece
-                                                                        ]
-                                                                        [ rdf:type owl:Restriction ;
-                                                                          owl:onProperty :hasConnectingPiece ;
-                                                                          owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                                          owl:onClass :CornerPiece
-                                                                        ]
-                                                                      ) ;
-                                                   rdf:type owl:Class
-                                                 ]
-                                                 [ rdf:type owl:Restriction ;
-                                                   owl:onProperty :hasConnectingPiece ;
-                                                   owl:qualifiedCardinality "2"^^xsd:nonNegativeInteger ;
-                                                   owl:onClass :BorderLinePiece
-                                                 ]
-                                               )
-                                 ] ,
-                                 [ rdf:type owl:Restriction ;
-                                   owl:onProperty :hasConnectingPiece ;
-                                   owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                   owl:onClass :InteriorPiece
-                                 ] .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#Calculation
@@ -919,19 +947,6 @@
                                owl:onProperty :hasConnectingBlock ;
                                owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                owl:onClass :UDBorderBlock
-                             ] .
-
-
-###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#CornerPiece
-:CornerPiece rdf:type owl:Class ;
-             rdfs:subClassOf :Piece ,
-                             [ rdf:type owl:Restriction ;
-                               owl:onProperty :hasConnectingBlock ;
-                               owl:allValuesFrom [ rdf:type owl:Class ;
-                                                   owl:unionOf ( :BorderLinePiece
-                                                                 :CornerBlock
-                                                               )
-                                                 ]
                              ] .
 
 
@@ -1343,14 +1358,36 @@
                                   rdf:type owl:Class
                                 ] ;
             rdfs:subClassOf [ rdf:type owl:Restriction ;
-                              owl:onProperty :hasPiece ;
-                              owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                              owl:onClass :InteriorPiece
+                              owl:onProperty :hasBorderLinePiece ;
+                              owl:someValuesFrom :Piece
                             ] ,
                             [ rdf:type owl:Restriction ;
-                              owl:onProperty :hasPiece ;
-                              owl:maxQualifiedCardinality "4"^^xsd:nonNegativeInteger ;
-                              owl:onClass :BorderLinePiece
+                              owl:onProperty :hasInteriorPiece ;
+                              owl:someValuesFrom :Piece
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasColumns ;
+                              owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                              owl:onDataRange [ rdf:type rdfs:Datatype ;
+                                                owl:onDatatype xsd:positiveInteger ;
+                                                owl:withRestrictions ( [ xsd:minInclusive "2"^^xsd:positiveInteger
+                                                                       ]
+                                                                       [ xsd:maxInclusive "3"^^xsd:positiveInteger
+                                                                       ]
+                                                                     )
+                                              ]
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasRows ;
+                              owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                              owl:onDataRange [ rdf:type rdfs:Datatype ;
+                                                owl:onDatatype xsd:positiveInteger ;
+                                                owl:withRestrictions ( [ xsd:minInclusive "2"^^xsd:positiveInteger
+                                                                       ]
+                                                                       [ xsd:maxInclusive "3"^^xsd:positiveInteger
+                                                                       ]
+                                                                     )
+                                              ]
                             ] .
 
 
@@ -1463,7 +1500,22 @@
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#Game
 :Game rdf:type owl:Class ;
-      rdfs:subClassOf owl:Thing ;
+      rdfs:subClassOf owl:Thing ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :hasId ;
+                        owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                        owl:onDataRange xsd:string
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :hasLevel ;
+                        owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                        owl:onDataRange xsd:positiveInteger
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :hasPlayer ;
+                        owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                        owl:onDataRange xsd:string
+                      ] ;
       owl:disjointWith :Object .
 
 
@@ -1786,24 +1838,36 @@
                                   rdf:type owl:Class
                                 ] ;
             rdfs:subClassOf [ rdf:type owl:Restriction ;
-                              owl:onProperty :hasPiece ;
-                              owl:minQualifiedCardinality "9"^^xsd:nonNegativeInteger ;
-                              owl:onClass :InteriorPiece
+                              owl:onProperty :hasBorderLinePiece ;
+                              owl:someValuesFrom :Piece
                             ] ,
                             [ rdf:type owl:Restriction ;
-                              owl:onProperty :hasPiece ;
-                              owl:minQualifiedCardinality "12"^^xsd:nonNegativeInteger ;
-                              owl:onClass :BorderLinePiece
+                              owl:onProperty :hasInteriorPiece ;
+                              owl:someValuesFrom :Piece
                             ] ,
                             [ rdf:type owl:Restriction ;
-                              owl:onProperty :hasPiece ;
-                              owl:maxQualifiedCardinality "24"^^xsd:nonNegativeInteger ;
-                              owl:onClass :BorderLinePiece
+                              owl:onProperty :hasColumns ;
+                              owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                              owl:onDataRange [ rdf:type rdfs:Datatype ;
+                                                owl:onDatatype xsd:positiveInteger ;
+                                                owl:withRestrictions ( [ xsd:minInclusive "6"^^xsd:positiveInteger
+                                                                       ]
+                                                                       [ xsd:maxInclusive "7"^^xsd:positiveInteger
+                                                                       ]
+                                                                     )
+                                              ]
                             ] ,
                             [ rdf:type owl:Restriction ;
-                              owl:onProperty :hasPiece ;
-                              owl:maxQualifiedCardinality "36"^^xsd:nonNegativeInteger ;
-                              owl:onClass :InteriorPiece
+                              owl:onProperty :hasRows ;
+                              owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                              owl:onDataRange [ rdf:type rdfs:Datatype ;
+                                                owl:onDatatype xsd:positiveInteger ;
+                                                owl:withRestrictions ( [ xsd:minInclusive "6"^^xsd:positiveInteger
+                                                                       ]
+                                                                       [ xsd:maxInclusive "7"^^xsd:positiveInteger
+                                                                       ]
+                                                                     )
+                                              ]
                             ] .
 
 
@@ -1973,32 +2037,6 @@
                               owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                               owl:onClass :Sound
                             ] .
-
-
-###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#InteriorPiece
-:InteriorPiece rdf:type owl:Class ;
-               rdfs:subClassOf :Piece ,
-                               [ rdf:type owl:Class ;
-                                 owl:unionOf ( [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
-                                                                        owl:onProperty :hasConnectingPiece ;
-                                                                        owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                                        owl:onClass :BorderLinePiece
-                                                                      ]
-                                                                      [ rdf:type owl:Restriction ;
-                                                                        owl:onProperty :hasConnectingPiece ;
-                                                                        owl:qualifiedCardinality "3"^^xsd:nonNegativeInteger ;
-                                                                        owl:onClass :InteriorPiece
-                                                                      ]
-                                                                    ) ;
-                                                 rdf:type owl:Class
-                                               ]
-                                               [ rdf:type owl:Restriction ;
-                                                 owl:onProperty :hasConnectingPiece ;
-                                                 owl:qualifiedCardinality "4"^^xsd:nonNegativeInteger ;
-                                                 owl:onClass :InteriorPiece
-                                               ]
-                                             )
-                               ] .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#LBorderBlock
@@ -2421,24 +2459,36 @@
                                     rdf:type owl:Class
                                   ] ;
               rdfs:subClassOf [ rdf:type owl:Restriction ;
-                                owl:onProperty :hasPiece ;
-                                owl:minQualifiedCardinality "2"^^xsd:nonNegativeInteger ;
-                                owl:onClass :InteriorPiece
+                                owl:onProperty :hasBorderLinePiece ;
+                                owl:someValuesFrom :Piece
                               ] ,
                               [ rdf:type owl:Restriction ;
-                                owl:onProperty :hasPiece ;
-                                owl:minQualifiedCardinality "6"^^xsd:nonNegativeInteger ;
-                                owl:onClass :BorderLinePiece
+                                owl:onProperty :hasInteriorPiece ;
+                                owl:someValuesFrom :Piece
                               ] ,
                               [ rdf:type owl:Restriction ;
-                                owl:onProperty :hasPiece ;
-                                owl:maxQualifiedCardinality "9"^^xsd:nonNegativeInteger ;
-                                owl:onClass :InteriorPiece
+                                owl:onProperty :hasColumns ;
+                                owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                owl:onDataRange [ rdf:type rdfs:Datatype ;
+                                                  owl:onDatatype xsd:positiveInteger ;
+                                                  owl:withRestrictions ( [ xsd:minInclusive "4"^^xsd:positiveInteger
+                                                                         ]
+                                                                         [ xsd:maxInclusive "5"^^xsd:positiveInteger
+                                                                         ]
+                                                                       )
+                                                ]
                               ] ,
                               [ rdf:type owl:Restriction ;
-                                owl:onProperty :hasPiece ;
-                                owl:maxQualifiedCardinality "12"^^xsd:nonNegativeInteger ;
-                                owl:onClass :BorderLinePiece
+                                owl:onProperty :hasRows ;
+                                owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                owl:onDataRange [ rdf:type rdfs:Datatype ;
+                                                  owl:onDatatype xsd:positiveInteger ;
+                                                  owl:withRestrictions ( [ xsd:minInclusive "4"^^xsd:positiveInteger
+                                                                         ]
+                                                                         [ xsd:maxInclusive "5"^^xsd:positiveInteger
+                                                                         ]
+                                                                       )
+                                                ]
                               ] .
 
 
@@ -2617,7 +2667,12 @@
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#Object
 :Object rdf:type owl:Class ;
-        rdfs:subClassOf owl:Thing .
+        rdfs:subClassOf owl:Thing ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :hasId ;
+                          owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                          owl:onDataRange xsd:string
+                        ] .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#Observation
@@ -2668,21 +2723,31 @@
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#Piece
 :Piece rdf:type owl:Class ;
-       rdfs:subClassOf :Object .
+       rdfs:subClassOf :Object ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :hasConnectingPiece ;
+                         owl:minQualifiedCardinality "2"^^xsd:nonNegativeInteger ;
+                         owl:onClass :Piece
+                       ] ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :hasConnectingPiece ;
+                         owl:maxQualifiedCardinality "4"^^xsd:nonNegativeInteger ;
+                         owl:onClass :Piece
+                       ] .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#Puzzle
 :Puzzle rdf:type owl:Class ;
         rdfs:subClassOf :Game ,
                         [ rdf:type owl:Restriction ;
+                          owl:onProperty :hasCornerPiece ;
+                          owl:qualifiedCardinality "4"^^xsd:nonNegativeInteger ;
+                          owl:onClass :Piece
+                        ] ,
+                        [ rdf:type owl:Restriction ;
                           owl:onProperty :hasImage ;
                           owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                           owl:onClass :Image
-                        ] ,
-                        [ rdf:type owl:Restriction ;
-                          owl:onProperty :hasPiece ;
-                          owl:qualifiedCardinality "4"^^xsd:nonNegativeInteger ;
-                          owl:onClass :CornerPiece
                         ] .
 
 
@@ -3134,14 +3199,6 @@
                 :Question
                 :Sound
                 :Word
-              )
-] .
-
-
-[ rdf:type owl:AllDisjointClasses ;
-  owl:members ( :BorderLinePiece
-                :CornerPiece
-                :InteriorPiece
               )
 ] .
 
