@@ -108,6 +108,14 @@
                     rdfs:range :Piece .
 
 
+###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasCorrectBlockSet
+:hasCorrectBlockSet rdf:type owl:ObjectProperty ;
+                    rdfs:subPropertyOf :hasBlockSet ;
+                    rdf:type owl:FunctionalProperty ;
+                    rdfs:domain :LogicalOrder ;
+                    rdfs:range :BlockSet .
+
+
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasDifference
 :hasDifference rdf:type owl:ObjectProperty ;
                rdfs:subPropertyOf owl:topObjectProperty ;
@@ -215,15 +223,6 @@
                rdfs:range :Number .
 
 
-###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasNextBlockSet
-:hasNextBlockSet rdf:type owl:ObjectProperty ;
-                 rdfs:subPropertyOf owl:topObjectProperty ;
-                 rdf:type owl:FunctionalProperty ,
-                          owl:IrreflexiveProperty ;
-                 rdfs:domain :BlockSet ;
-                 rdfs:range :BlockSet .
-
-
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasNumber
 :hasNumber rdf:type owl:ObjectProperty ;
            rdfs:subPropertyOf owl:topObjectProperty ;
@@ -280,6 +279,15 @@
           rdfs:subPropertyOf owl:topObjectProperty ;
           rdfs:domain :Puzzle ;
           rdfs:range :Piece .
+
+
+###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasPreviousBlockSet
+:hasPreviousBlockSet rdf:type owl:ObjectProperty ;
+                     rdfs:subPropertyOf owl:topObjectProperty ;
+                     rdf:type owl:FunctionalProperty ,
+                              owl:IrreflexiveProperty ;
+                     rdfs:domain :BlockSet ;
+                     rdfs:range :BlockSet .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasPreviousImage
@@ -400,6 +408,13 @@
 #################################################################
 #    Data properties
 #################################################################
+
+###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#choices
+:choices rdf:type owl:DatatypeProperty ,
+                  owl:FunctionalProperty ;
+         rdfs:domain :LogicalOrder ;
+         rdfs:range xsd:positiveInteger .
+
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#completedDate
 :completedDate rdf:type owl:DatatypeProperty ;
@@ -525,7 +540,6 @@
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasMovement
 :hasMovement rdf:type owl:DatatypeProperty ;
              rdfs:subPropertyOf owl:topDataProperty ;
-             rdf:type owl:FunctionalProperty ;
              rdfs:domain :LogicalOrder ;
              rdfs:range [ rdf:type rdfs:Datatype ;
                           owl:oneOf [ rdf:type rdf:List ;
@@ -566,6 +580,13 @@
                                           )
                             ] ;
                 rdfs:range xsd:positiveInteger .
+
+
+###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasOrder
+:hasOrder rdf:type owl:DatatypeProperty ,
+                   owl:FunctionalProperty ;
+          rdfs:domain :BlockSet ;
+          rdfs:range xsd:positiveInteger .
 
 
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasPlayer
@@ -836,8 +857,12 @@
                             owl:someValuesFrom :Block
                           ] ,
                           [ rdf:type owl:Restriction ;
-                            owl:onProperty :hasNextBlockSet ;
+                            owl:onProperty :hasPreviousBlockSet ;
                             owl:someValuesFrom :BlockSet
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasOrder ;
+                            owl:someValuesFrom xsd:positiveInteger
                           ] .
 
 
@@ -1151,6 +1176,10 @@
 :EasyLogicalOrder rdf:type owl:Class ;
                   owl:equivalentClass [ owl:intersectionOf ( :LogicalOrder
                                                              [ rdf:type owl:Restriction ;
+                                                               owl:onProperty :choices ;
+                                                               owl:hasValue 2
+                                                             ]
+                                                             [ rdf:type owl:Restriction ;
                                                                owl:onProperty :hasDifficulty ;
                                                                owl:hasValue "EASY"
                                                              ]
@@ -1179,7 +1208,12 @@
                                       ] ;
                   rdfs:subClassOf [ rdf:type owl:Restriction ;
                                     owl:onProperty :hasBlockSet ;
-                                    owl:qualifiedCardinality "3"^^xsd:nonNegativeInteger ;
+                                    owl:qualifiedCardinality "4"^^xsd:nonNegativeInteger ;
+                                    owl:onClass :BlockSet
+                                  ] ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty :hasCorrectBlockSet ;
+                                    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                     owl:onClass :BlockSet
                                   ] ,
                                   [ rdf:type owl:Restriction ;
@@ -1585,6 +1619,10 @@
 :HardLogicalOrder rdf:type owl:Class ;
                   owl:equivalentClass [ owl:intersectionOf ( :LogicalOrder
                                                              [ rdf:type owl:Restriction ;
+                                                               owl:onProperty :choices ;
+                                                               owl:hasValue 2
+                                                             ]
+                                                             [ rdf:type owl:Restriction ;
                                                                owl:onProperty :hasDifficulty ;
                                                                owl:hasValue "HARD"
                                                              ]
@@ -1613,7 +1651,12 @@
                                       ] ;
                   rdfs:subClassOf [ rdf:type owl:Restriction ;
                                     owl:onProperty :hasBlockSet ;
-                                    owl:qualifiedCardinality "3"^^xsd:nonNegativeInteger ;
+                                    owl:qualifiedCardinality "4"^^xsd:nonNegativeInteger ;
+                                    owl:onClass :BlockSet
+                                  ] ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty :hasCorrectBlockSet ;
+                                    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                     owl:onClass :BlockSet
                                   ] ,
                                   [ rdf:type owl:Restriction ;
@@ -2211,6 +2254,10 @@
 :MediumLogicalOrder rdf:type owl:Class ;
                     owl:equivalentClass [ owl:intersectionOf ( :LogicalOrder
                                                                [ rdf:type owl:Restriction ;
+                                                                 owl:onProperty :choices ;
+                                                                 owl:hasValue 2
+                                                               ]
+                                                               [ rdf:type owl:Restriction ;
                                                                  owl:onProperty :hasDifficulty ;
                                                                  owl:hasValue "MEDIUM"
                                                                ]
@@ -2239,7 +2286,12 @@
                                         ] ;
                     rdfs:subClassOf [ rdf:type owl:Restriction ;
                                       owl:onProperty :hasBlockSet ;
-                                      owl:qualifiedCardinality "3"^^xsd:nonNegativeInteger ;
+                                      owl:qualifiedCardinality "4"^^xsd:nonNegativeInteger ;
+                                      owl:onClass :BlockSet
+                                    ] ,
+                                    [ rdf:type owl:Restriction ;
+                                      owl:onProperty :hasCorrectBlockSet ;
+                                      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                       owl:onClass :BlockSet
                                     ] ,
                                     [ rdf:type owl:Restriction ;
@@ -3073,21 +3125,6 @@
 [ rdf:type owl:AllDisjointClasses ;
   owl:members ( :Block
                 :BlockSet
-                :Image
-                :LabyrinthBlock
-                :MathOperator
-                :Number
-                :ObservationObj
-                :Piece
-                :Question
-                :Sound
-                :Word
-              )
-] .
-
-
-[ rdf:type owl:AllDisjointClasses ;
-  owl:members ( :Block
                 :Image
                 :LabyrinthBlock
                 :MathOperator
