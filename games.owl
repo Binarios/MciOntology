@@ -176,6 +176,7 @@
                         owl:unionOf ( :ChronologicalOrder
                                       :FindTheSound
                                       :ObservationObj
+                                      :Piece
                                       :Puzzle
                                       :Question
                                     )
@@ -266,6 +267,7 @@
                                        :MemoryCards
                                        :Observation
                                        :ObservationObj
+                                       :Piece
                                        :Puzzle
                                        :Question
                                        :Synonyms
@@ -2728,6 +2730,11 @@
                          owl:onProperty :hasConnectingPiece ;
                          owl:minQualifiedCardinality "2"^^xsd:nonNegativeInteger ;
                          owl:onClass :Piece
+                       ] ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :hasImage ;
+                         owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                         owl:onClass :Image
                        ] ,
                        [ rdf:type owl:Restriction ;
                          owl:onProperty :hasConnectingPiece ;
