@@ -159,6 +159,13 @@
           rdfs:range :Image .
 
 
+###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasImageSound
+:hasImageSound rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf :hasImage ;
+               rdfs:domain :FindTheSound ;
+               rdfs:range :ImageSound .
+
+
 ###  http://www.semanticweb.org/iigou/diplomatiki/ontologies/Games#hasInteriorPiece
 :hasInteriorPiece rdf:type owl:ObjectProperty ;
                   rdfs:subPropertyOf :hasPiece ;
@@ -1155,8 +1162,8 @@
                                       ] ;
                   rdfs:subClassOf [ rdf:type owl:Restriction ;
                                     owl:onProperty :hasImage ;
-                                    owl:qualifiedCardinality "6"^^xsd:nonNegativeInteger ;
-                                    owl:onClass :ImageSound
+                                    owl:qualifiedCardinality "3"^^xsd:nonNegativeInteger ;
+                                    owl:onClass :Image
                                   ] .
 
 
@@ -1642,7 +1649,7 @@
                                         rdf:type owl:Class
                                       ] ;
                   rdfs:subClassOf [ rdf:type owl:Restriction ;
-                                    owl:onProperty :hasImage ;
+                                    owl:onProperty :hasImageSound ;
                                     owl:qualifiedCardinality "12"^^xsd:nonNegativeInteger ;
                                     owl:onClass :ImageSound
                                   ] .
@@ -2275,7 +2282,7 @@
                                           rdf:type owl:Class
                                         ] ;
                     rdfs:subClassOf [ rdf:type owl:Restriction ;
-                                      owl:onProperty :hasImage ;
+                                      owl:onProperty :hasImageSound ;
                                       owl:qualifiedCardinality "9"^^xsd:nonNegativeInteger ;
                                       owl:onClass :ImageSound
                                     ] .
